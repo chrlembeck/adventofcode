@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ++++++++++++++++++++ -->
+    <!-- artifact description -->
+    <!-- ++++++++++++++++++++ -->
+    <groupId>de.chrlembeck</groupId>
+    <artifactId>aoc2017</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <!-- ++++++++++++++++ -->
+    <!-- general settings -->
+    <!-- ++++++++++++++++ -->
+    <packaging>jar</packaging>
+    <name>Adevent of Code 2017</name>
+    <url>https://github.com/chrlembeck/aoc2017</url>
+
+    <!-- ++++++++++ -->
+    <!-- properties -->
+    <!-- ++++++++++ -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- dependencies -->
+    <!-- (note: opnly test scope dependencies are allowed in this project) -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.0.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>4.12.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-runner</artifactId>
+            <version>1.0.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- generate sources jar together with the classes jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- generate javadoc-jar together with the classes jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>false</nohelp>
+                    <sourcepath>src/main/java</sourcepath>
+                    <charset>UTF-8</charset>
+                    <defaultAuthor>Christoph Lembeck</defaultAuthor>
+                    <failOnError>true</failOnError>
+                    <level>private</level>
+                    <quiet>true</quiet>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- run the junit tests on build -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19</version>
+                <configuration>
+                    <useFile>false</useFile>
+                    <trimStackTrace>false</trimStackTrace>
+                    <detail>true</detail>
+                    <printSummary>true</printSummary>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.0.0-RC3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.8</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <failurePriority>5</failurePriority>
+                    <excludes>
+                        <exclude>**/generated/*.java</exclude>
+                    </excludes>
+                    <excludeRoots>
+                        <excludeRoot>target/generated-sources/antlr4</excludeRoot>
+                        <excludeRoot>target/clover</excludeRoot>
+                    </excludeRoots>
+                    <rulesets>
+                        <ruleset>src/test/resources/pmd/pmd-rules.xml</ruleset>
+                    </rulesets>
+                    <printFailingErrors>true</printFailingErrors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>runpgp</id>
+            <activation>
+                <property>
+                    <name>gpgsign-chrlembeck</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- sign jars with gpg -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- run clover: mvn -Dclover=true test site -->
+        <profile>
+            <id>runclover</id>
+            <activation>
+                <file>
+                    <exists>src/main/java</exists>
+                </file>
+                <property>
+                    <name>clover</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.openclover</groupId>
+                        <artifactId>clover-maven-plugin</artifactId>
+                        <version>4.2.0</version>
+                        <configuration>
+                            <includesAllSourceRoots>false</includesAllSourceRoots>
+                            <includesTestSourceRoots>false</includesTestSourceRoots>
+                            <copyExcludedFiles>false</copyExcludedFiles>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>cloversetup</id>
+                                <phase>process-sources</phase>
+                                <goals>
+                                    <goal>setup</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>cloveraggregate</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>aggregate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.openclover</groupId>
+                        <artifactId>clover-maven-plugin</artifactId>
+                        <configuration>
+                            <includesAllSourceRoots>false</includesAllSourceRoots>
+                            <charset>UTF-8</charset>
+                            <generateHtml>true</generateHtml>
+                            <generatePdf>true</generatePdf>
+                            <generateHistorical>false</generateHistorical>
+                        </configuration>
+                    </plugin>
+                </plugins>
+
+            </reporting>
+        </profile>
+    </profiles>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+</project>
