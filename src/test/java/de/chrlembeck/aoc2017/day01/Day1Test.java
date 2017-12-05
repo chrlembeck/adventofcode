@@ -6,7 +6,10 @@ import java.util.Scanner;
 import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitPlatform.class)
 public class Day1Test {
 
     static String test(final String input, final Function<Scanner, String> function) {
@@ -30,7 +33,6 @@ public class Day1Test {
         final Day1 day1 = new Day1();
         assertEquals("6", test("1212", day1::part2));
         assertEquals("0", test("1221", day1::part2));
-        ;
         assertEquals("4", test("123425", day1::part2));
         assertEquals("12", test("123123", day1::part2));
         assertEquals("4", test("12131415", day1::part2));
