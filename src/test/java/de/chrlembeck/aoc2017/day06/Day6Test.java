@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Scanner;
 import java.util.function.Function;
 
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
@@ -20,7 +19,6 @@ public class Day6Test {
     }
 
     @Test
-    @Ignore
     public void test1() {
         final Day6 day6 = new Day6();
         assertEquals("5", test("0 2 7 0", day6::part1));
@@ -28,7 +26,6 @@ public class Day6Test {
     }
 
     @Test
-    @Ignore
     public void test2() {
         final Day6 day6 = new Day6();
         assertEquals("4", test("0  2   7   0", day6::part2));
