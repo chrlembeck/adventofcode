@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.chrlembeck.aoc2017.common.AbstractAocBase;
+import de.chrlembeck.aoc2017.common.Result;
 
 public class Day8 extends AbstractAocBase {
 
@@ -16,7 +17,7 @@ public class Day8 extends AbstractAocBase {
             .compile(
                     "([a-z]+)\\s+([a-z]+)\\s+(\\-?[0-9]+)\\s+if\\s+([a-z]+)\\s+(<|>|!=|==|<=|>=)\\s+((\\-?[0-9]+))");
 
-    public int[] calc(final Scanner input) {
+    public Result<Integer> calc(final Scanner input) {
         final Map<String, Integer> register = new HashMap<>();
         int maxTotal = Integer.MIN_VALUE;
         while (input.hasNextLine()) {
@@ -46,19 +47,17 @@ public class Day8 extends AbstractAocBase {
             }
         }
         final int max = register.values().stream().mapToInt(Integer::intValue).max().getAsInt();
-        return new int[] { max, maxTotal };
+        return new Result<>(max, maxTotal);
     }
 
     @Override
     public String part1(final Scanner input) {
-        final int[] result = calc(input);
-        return Integer.toString(result[0]);
+        return calc(input).getPart1().toString();
     }
 
     @Override
     public String part2(final Scanner input) {
-        final int[] result = calc(input);
-        return Integer.toString(result[1]);
+        return calc(input).getPart2().toString();
     }
 
     @Override

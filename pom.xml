@@ -14,7 +14,7 @@
     <!-- general settings -->
     <!-- ++++++++++++++++ -->
     <packaging>jar</packaging>
-    <name>Adevent of Code 2017</name>
+    <name>Advent of Code 2017</name>
     <url>https://github.com/chrlembeck/aoc2017</url>
 
     <!-- ++++++++++ -->
@@ -26,11 +26,17 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++ -->
     <!-- dependencies -->
-    <!-- (note: opnly test scope dependencies are allowed in this project) -->
-    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++ -->
     <dependencies>
+    <!-- 
+        <dependency>
+            <groupId>de.chrlembeck</groupId>
+            <artifactId>chrlembeck-util</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+     -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
