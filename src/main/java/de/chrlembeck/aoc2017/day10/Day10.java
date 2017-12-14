@@ -51,27 +51,37 @@ public class Day10 extends AbstractAocBase {
     @Override
     public String part2(final Scanner input) {
         final String line = input.hasNextLine() ? input.nextLine() : "";
-        final int[] lengths = new int[line.length() + 5];
+        final int[] lengths = new int[line.length()];
         for (int i = 0; i < line.length(); i++) {
             lengths[i] = line.charAt(i);
         }
-        lengths[line.length()] = 17;
-        lengths[line.length() + 1] = 31;
-        lengths[line.length() + 2] = 73;
-        lengths[line.length() + 3] = 47;
-        lengths[line.length() + 4] = 23;
 
+        final int[] knotHash = hash(lengths);
+
+        final StringBuilder output = new StringBuilder();
+        for (final int value : knotHash) {
+            output.append(Integer.toHexString((value & 0xf0) >> 4));
+            output.append(Integer.toHexString(value & 0xf));
+        }
+
+        return output.toString();
+    }
+
+    public int[] hash(final int[] input) {
         int[] array = new int[length];
         for (int i = 0; i < array.length; i++) {
             array[i] = i;
         }
+        final int[] base = new int[input.length + 5];
+        System.arraycopy(input, 0, base, 0, input.length);
+        System.arraycopy(new int[] { 17, 31, 73, 47, 23 }, 0, base, input.length, 5);
 
         int pos = 0;
         int skip = 0;
         for (int i = 0; i < 64; i++) {
-            for (final int length : lengths) {
-                array = rotate(array, pos, length);
-                pos = (pos + skip + length) % array.length;
+            for (final int value : base) {
+                array = rotate(array, pos, value);
+                pos = (pos + skip + value) % array.length;
                 skip++;
             }
         }
@@ -82,14 +92,7 @@ public class Day10 extends AbstractAocBase {
                 dense[i] = dense[i] ^ array[16 * i + j];
             }
         }
-
-        final StringBuilder output = new StringBuilder();
-        for (final int value : dense) {
-            output.append(Integer.toHexString((value & 0xf0) >> 4));
-            output.append(Integer.toHexString(value & 0xf));
-        }
-
-        return output.toString();
+        return dense;
     }
 
     @Override

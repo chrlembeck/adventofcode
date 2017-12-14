@@ -21,14 +21,14 @@ public class Day14Test {
     @Test
     public void test1() {
         final Day14 day14 = new Day14();
-        assertEquals(null, test("", day14::part1));
-        assertEquals(null, test(day14.getInput1(), day14::part1));
+        assertEquals("8108", test("flqrgnkx", day14::part1));
+        assertEquals("8214", test(day14.getInput1(), day14::part1));
     }
 
     @Test
     public void test2() {
         final Day14 day14 = new Day14();
-        assertEquals(null, test("", day14::part2));
-        assertEquals(null, test(day14.getInput2(), day14::part2));
+        assertEquals("1242", test("flqrgnkx", day14::part2));
+        assertEquals("1093", test(day14.getInput2(), day14::part2));
     }
 }
