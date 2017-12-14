@@ -1,8 +1,5 @@
 package de.chrlembeck.aoc2017.common;
 
-import java.time.Duration;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.function.Function;
 
@@ -33,12 +30,22 @@ public abstract class AbstractAocBase {
     }
 
     private void printResult(final Scanner scanner, final String prefix, final Function<Scanner, String> function) {
-        final LocalTime start = LocalTime.now();
-        System.out.println(prefix + function.apply(scanner));
-        final LocalTime end = LocalTime.now();
-        final Duration duration = Duration.between(start, end);
-        System.out.println(LocalTime.MIDNIGHT.plus(duration).format(
-                DateTimeFormatter.ofPattern("HH 'hours', mm ' minutes', ss 'seconds', AAA 'milliseconds'")));
+        final long start = System.nanoTime();
+        final String result = function.apply(scanner);
+        final long end = System.nanoTime();
+        System.out.println(prefix + result);
+        long duration = end - start;
+        final long nanos = (duration) % 1000000;
+        duration /= 1000000;
+        final long millis = (duration) % 1000;
+        duration /= 1000;
+        final long seconds = (duration) % 60;
+        duration /= 60;
+        final long minutes = (duration) % 60;
+        duration /= 60;
+        final long hours = duration;
+        System.out.printf("%02d hours, %02d minuts, %02d seconds, %03d millis, %06d nanos\n", hours, minutes, seconds,
+                millis, nanos);
     }
 
     public String getInput1() {
