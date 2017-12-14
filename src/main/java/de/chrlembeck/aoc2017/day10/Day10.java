@@ -67,7 +67,7 @@ public class Day10 extends AbstractAocBase {
         return output.toString();
     }
 
-    public int[] hash(final int[] input) {
+    public int[] hash(final int... input) {
         int[] array = new int[length];
         for (int i = 0; i < array.length; i++) {
             array[i] = i;

@@ -67,20 +67,20 @@ public class Day14 extends AbstractAocBase {
         return Integer.toString(result);
     }
 
-    public void floodFill(final int[][] field, final int x, final int y, final int value) {
-        final int current = field[y][x];
-        field[y][x] = value;
-        if (y > 0 && field[y - 1][x] == current) {
-            floodFill(field, x, y - 1, value);
+    public void floodFill(final int[][] field, final int xPos, final int yPos, final int value) {
+        final int current = field[yPos][xPos];
+        field[yPos][xPos] = value;
+        if (yPos > 0 && field[yPos - 1][xPos] == current) {
+            floodFill(field, xPos, yPos - 1, value);
         }
-        if (x > 0 && field[y][x - 1] == current) {
-            floodFill(field, x - 1, y, value);
+        if (xPos > 0 && field[yPos][xPos - 1] == current) {
+            floodFill(field, xPos - 1, yPos, value);
         }
-        if (y < 127 && field[y + 1][x] == current) {
-            floodFill(field, x, y + 1, value);
+        if (yPos < 127 && field[yPos + 1][xPos] == current) {
+            floodFill(field, xPos, yPos + 1, value);
         }
-        if (x < 127 && field[y][x + 1] == current) {
-            floodFill(field, x + 1, y, value);
+        if (xPos < 127 && field[yPos][xPos + 1] == current) {
+            floodFill(field, xPos + 1, yPos, value);
         }
     }
 
