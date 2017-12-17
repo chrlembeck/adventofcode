@@ -15,7 +15,7 @@ public class Aoc2017Day15 extends AbstractAocBase {
     }
 
     @Override
-    public String part1(final Scanner input) {
+    public Integer part1(final Scanner input) {
         Matcher matcher = regex.matcher(input.nextLine());
         matcher.matches();
         final int startA = Integer.parseInt(matcher.group(1));
@@ -33,11 +33,11 @@ public class Aoc2017Day15 extends AbstractAocBase {
                 result++;
             }
         }
-        return Integer.toString(result);
+        return result;
     }
 
     @Override
-    public String part2(final Scanner input) {
+    public Integer part2(final Scanner input) {
         Matcher matcher = regex.matcher(input.nextLine());
         matcher.matches();
         final int startA = Integer.parseInt(matcher.group(1));
@@ -59,7 +59,7 @@ public class Aoc2017Day15 extends AbstractAocBase {
                 result++;
             }
         }
-        return Integer.toString(result);
+        return result;
     }
 
     @Override
