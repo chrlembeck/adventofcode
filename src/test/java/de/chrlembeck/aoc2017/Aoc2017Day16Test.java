@@ -35,13 +35,13 @@ public class Aoc2017Day16Test {
         assertEquals("bacdefghijklmnop", test("pa/b", day::part1));
         assertEquals("cabdefghijklmnop", test("pa/b,pb/c", day::part1));
 
-        assertEquals("bkgcdefiholnpmja", test(day.getInput1(), day::part1));
+        assertEquals("ceijbfoamgkdnlph", test(day.getInput1(), day::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2017Day16 day = new Aoc2017Day16();
         //        assertEquals(null, test("", day::part2));
-        assertEquals("knmdfoijcbpghlea", test(day.getInput2(), day::part2));
+        assertEquals("pnhajoekigcbflmd", test(day.getInput2(), day::part2));
     }
 }
