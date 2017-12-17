@@ -46,7 +46,7 @@ public abstract class AbstractAocBase {
         final long minutes = (duration) % 60;
         duration /= 60;
         final long hours = duration;
-        System.out.printf("%02d hours, %02d minuts, %02d seconds, %03d millis, %06d nanos\n", hours, minutes, seconds,
+        System.out.printf("%02d hours, %02d minutes, %02d seconds, %03d millis, %06d nanos\n", hours, minutes, seconds,
                 millis, nanos);
     }
 
