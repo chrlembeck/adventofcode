@@ -14,15 +14,15 @@ public class Aoc2017Day17Test {
 
     @Test
     public void test1() {
-        final Aoc2017Day17 day17 = new Aoc2017Day17();
-        assertEquals(null, test("", day17::part1));
-        assertEquals(null, test(day17.getInput1(), day17::part1));
+        final Aoc2017Day17 day = new Aoc2017Day17();
+        assertEquals("638", test("3", day::part1));
+        assertEquals("2000", test(day.getInput1(), day::part1));
     }
 
     @Test
     public void test2() {
-        final Aoc2017Day17 day17 = new Aoc2017Day17();
-        assertEquals(null, test("", day17::part2));
-        assertEquals(null, test(day17.getInput2(), day17::part2));
+        final Aoc2017Day17 day = new Aoc2017Day17();
+        assertEquals("1222153", test("3", day::part2));
+        assertEquals("10242889", test(day.getInput2(), day::part2));
     }
 }
