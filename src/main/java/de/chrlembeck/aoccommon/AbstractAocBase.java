@@ -18,7 +18,6 @@ public abstract class AbstractAocBase {
     public abstract String getInputLocation(int part);
 
     public void run() {
-
         final String input1 = getInput1();
         System.out.println("Input 1: \n'" + input1 + "'\n");
         final String input2 = getInput2();

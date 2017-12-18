@@ -17,13 +17,13 @@ public class Aoc2017Day17 extends AbstractAocBase {
         int pos = 0;
         int size = 1;
         for (int i = 1; i <= 2017; i++) {
-            final int insertAt = 1+(pos + steps) % size;
-            System.arraycopy(array, insertAt, array, insertAt+1, size-insertAt+1);
+            final int insertAt = 1 + (pos + steps) % size;
+            System.arraycopy(array, insertAt, array, insertAt + 1, size - insertAt + 1);
             array[insertAt] = i;
-            pos=insertAt;
+            pos = insertAt;
             size++;
         }
-        return array[(pos+1)%size];
+        return array[(pos + 1) % size];
     }
 
     @Override

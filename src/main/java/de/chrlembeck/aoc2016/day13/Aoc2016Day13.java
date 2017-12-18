@@ -22,6 +22,6 @@ public class Aoc2016Day13 extends AbstractAocBase {
 
     @Override
     public String getInputLocation(final int part) {
-        return "/input/aoc2016/day13.txt";
+        return "/input/aoc2016/aoc2016day13.txt";
     }
 }
