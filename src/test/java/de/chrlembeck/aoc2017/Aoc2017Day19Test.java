@@ -15,14 +15,26 @@ public class Aoc2017Day19Test {
     @Test
     public void test1() {
         final Aoc2017Day19 day19 = new Aoc2017Day19();
-        assertEquals(null, test("", day19::part1));
-        assertEquals(null, test(day19.getInput1(), day19::part1));
+        assertEquals("ABCDEF", test("     |          \n" +
+                "     |  +--+    \n" +
+                "     A  |  C    \n" +
+                " F---|----E|--+ \n" +
+                "     |  |  |  D \n" +
+                "     +B-+  +--+ \n" +
+                "", day19::part1));
+        assertEquals("GEPYAWTMLK", test(day19.getInput1(), day19::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2017Day19 day19 = new Aoc2017Day19();
-        assertEquals(null, test("", day19::part2));
-        assertEquals(null, test(day19.getInput2(), day19::part2));
+        assertEquals("38", test("     |          \n" +
+                "     |  +--+    \n" +
+                "     A  |  C    \n" +
+                " F---|----E|--+ \n" +
+                "     |  |  |  D \n" +
+                "     +B-+  +--+ \n" +
+                "", day19::part2));
+        assertEquals("17628", test(day19.getInput2(), day19::part2));
     }
 }
