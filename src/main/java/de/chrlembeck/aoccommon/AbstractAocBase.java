@@ -65,4 +65,14 @@ public abstract class AbstractAocBase {
             throw new IllegalArgumentException("Input '" + input + "' does not match pattern " + pattern.pattern());
         }
     }
+
+    public Matcher matchRegex(final String regex, final CharSequence input) {
+        final Pattern pattern = Pattern.compile(regex);
+        final Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            return matcher;
+        } else {
+            throw new IllegalArgumentException("Input '" + input + "' does not match pattern " + pattern.pattern());
+        }
+    }
 }
