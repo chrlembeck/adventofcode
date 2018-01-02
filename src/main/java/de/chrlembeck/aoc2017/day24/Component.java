@@ -12,7 +12,7 @@ public class Component {
         this(portA, portB, new Component(portB, portA, null));
     }
 
-    private Component(final int portA, final int portB, final Component turned ) {
+    private Component(final int portA, final int portB, final Component turned) {
         this.portA = portA;
         this.portB = portB;
         this.turned = turned;
@@ -34,12 +34,12 @@ public class Component {
         return portA + portB;
     }
 
-    public Component rotateToFit(int currentPort) {
+    public Component rotateToFit(final int currentPort) {
         if (portA == currentPort) {
             return this;
         } else if (portB == currentPort) {
             return turned;
-        }else {
+        } else {
             return null;
         }
     }

@@ -19,20 +19,20 @@ public class Aoc2017Day24 extends AbstractAocBase {
 
     @Override
     public Integer part1(final Scanner input) {
-        List<Component> components = readComponents(input);
+        final List<Component> components = readComponents(input);
         return calcMax(0, components);
     }
 
     private List<Component> readComponents(final Scanner input) {
-        List<Component> components = new ArrayList<>();
+        final List<Component> components = new ArrayList<>();
         while (input.hasNextLine()) {
-            Matcher matcher = matchRegex(regex, input.nextLine());
+            final Matcher matcher = matchRegex(regex, input.nextLine());
             components.add(new Component(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2))));
         }
         return components;
     }
 
-    private int calcMax(final int currentPort,  final List<Component> components) {
+    private int calcMax(final int currentPort, final List<Component> components) {
         int max = 0;
         for (int i = components.size() - 1; i >= 0; i--) {
             final Component component = components.get(i);
@@ -53,7 +53,7 @@ public class Aoc2017Day24 extends AbstractAocBase {
             final Component rotated = component.rotateToFit(currentPort);
             if (rotated != null) {
                 components.remove(i);
-                Bridge subBridge = calcLongest(rotated.getPortB(), components);
+                final Bridge subBridge = calcLongest(rotated.getPortB(), components);
                 subBridge.strength += rotated.getStrength();
                 subBridge.length++;
                 max = max(max, subBridge);
@@ -63,22 +63,22 @@ public class Aoc2017Day24 extends AbstractAocBase {
         return max;
     }
 
-    private Bridge max(Bridge a, Bridge b) {
-        if (a.length > b.length) {
-            return a;
+    private Bridge max(final Bridge bridgeA, final Bridge bridgeB) {
+        if (bridgeA.length > bridgeB.length) {
+            return bridgeA;
         }
-        if (a.length < b.length) {
-            return b;
+        if (bridgeA.length < bridgeB.length) {
+            return bridgeB;
         }
-        if (a.strength > b.strength) {
-            return a;
+        if (bridgeA.strength > bridgeB.strength) {
+            return bridgeA;
         }
-        return b;
+        return bridgeB;
     }
 
     @Override
     public Integer part2(final Scanner input) {
-        List<Component> components = readComponents(input);
+        final List<Component> components = readComponents(input);
         return calcLongest(0, components).getStrength();
     }
 
