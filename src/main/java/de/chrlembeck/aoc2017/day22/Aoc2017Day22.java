@@ -3,6 +3,7 @@ package de.chrlembeck.aoc2017.day22;
 import java.util.Scanner;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
+import de.chrlembeck.aoccommon.BidirectionalGrowingArray;
 
 public class Aoc2017Day22 extends AbstractAocBase {
 
@@ -11,7 +12,9 @@ public class Aoc2017Day22 extends AbstractAocBase {
     }
 
     @Override
-    public String part1(final Scanner input) {
+    public Integer part1(final Scanner input) {
+        BidirectionalGrowingArray<BidirectionalGrowingArray<Boolean>> array = new BidirectionalGrowingArray<>(BidirectionalGrowingArray[]::new);
+
         return null;
     }
 
