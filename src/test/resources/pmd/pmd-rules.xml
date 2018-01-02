@@ -23,6 +23,7 @@
         <exclude name="UnnecessaryLocalBeforeReturn" />
         <exclude name="AvoidReassigningParameters" />
         <exclude name="EmptyMethodInAbstractClassShouldBeAbstract" />
+        <exclude name="UseVarargs" />
     </rule>
     <rule ref="rulesets/java/optimizations.xml">
         <exclude name="UseStringBufferForStringAppends" />
