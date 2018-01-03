@@ -43,11 +43,11 @@ public class Aoc2017Day19 extends AbstractAocBase {
         if (get(diagram, next) != ' ') {
             return next;
         }
-        next = pos.left();
+        next = pos.left().forward();
         if (get(diagram, next) != ' ') {
             return next;
         }
-        next = pos.right();
+        next = pos.right().forward();
         if (get(diagram, next) != ' ') {
             return next;
         }
@@ -56,8 +56,8 @@ public class Aoc2017Day19 extends AbstractAocBase {
 
     private boolean canMove(final char[][] diagram, final Position pos) {
         return get(diagram, pos.forward()) != ' '
-                || get(diagram, pos.left()) != ' '
-                || get(diagram, pos.right()) != ' ';
+                || get(diagram, pos.left().forward()) != ' '
+                || get(diagram, pos.right().forward()) != ' ';
     }
 
     public char get(final char[][] diagram, final Position pos) {

@@ -26,6 +26,8 @@ public class State {
 
     private Queue<BigInteger> queue = new LinkedList<>();
 
+    private int mulInstructionCount;
+
     public State(final int programId) {
         this.programId = programId;
         register.put("p", BigInteger.valueOf(programId));
@@ -106,5 +108,13 @@ public class State {
     public BigInteger receiveValue() {
         final BigInteger value = queue.isEmpty() ? null : queue.poll();
         return value;
+    }
+
+    public void countMulInstruction() {
+        mulInstructionCount++;
+    }
+
+    public int getMulInstructionCount() {
+        return mulInstructionCount;
     }
 }

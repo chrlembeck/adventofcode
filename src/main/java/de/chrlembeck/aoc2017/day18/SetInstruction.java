@@ -15,4 +15,8 @@ public class SetInstruction implements Instruction {
     public void execute(final State state) {
         state.setValue(varName, value.intValue(state));
     }
+
+    public Token getValue() {
+        return value;
+    }
 }

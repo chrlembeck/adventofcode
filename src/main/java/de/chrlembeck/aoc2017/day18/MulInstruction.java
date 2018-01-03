@@ -18,5 +18,6 @@ public class MulInstruction implements Instruction {
         BigInteger currentValue = state.getValue(varName);
         currentValue = currentValue.multiply(factor.intValue(state));
         state.setValue(varName, currentValue);
+        state.countMulInstruction();
     }
 }

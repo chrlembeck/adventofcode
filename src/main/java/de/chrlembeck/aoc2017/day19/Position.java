@@ -32,13 +32,13 @@ public class Position {
     public Position left() {
         switch (direction) {
             case UP:
-                return new Position(posX, posY, Direction.LEFT).forward();
+                return new Position(posX, posY, Direction.LEFT);
             case DOWN:
-                return new Position(posX, posY, Direction.RIGHT).forward();
+                return new Position(posX, posY, Direction.RIGHT);
             case LEFT:
-                return new Position(posX, posY, Direction.DOWN).forward();
+                return new Position(posX, posY, Direction.DOWN);
             case RIGHT:
-                return new Position(posX, posY, Direction.UP).forward();
+                return new Position(posX, posY, Direction.UP);
             default:
                 throw new IllegalStateException();
         }
@@ -47,15 +47,28 @@ public class Position {
     public Position right() {
         switch (direction) {
             case UP:
-                return new Position(posX, posY, Direction.RIGHT).forward();
+                return new Position(posX, posY, Direction.RIGHT);
             case DOWN:
-                return new Position(posX, posY, Direction.LEFT).forward();
+                return new Position(posX, posY, Direction.LEFT);
             case LEFT:
-                return new Position(posX, posY, Direction.UP).forward();
+                return new Position(posX, posY, Direction.UP);
             case RIGHT:
-                return new Position(posX, posY, Direction.DOWN).forward();
+                return new Position(posX, posY, Direction.DOWN);
             default:
                 throw new IllegalStateException();
         }
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    @Override
+    public String toString() {
+        return "[x=" + posX + ", y=" + posY + ", direction=" + direction + "]";
     }
 }

@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
 
-// 222 is too high
 public class Aoc2017Day21 extends AbstractAocBase {
 
     public static void main(final String[] args) {

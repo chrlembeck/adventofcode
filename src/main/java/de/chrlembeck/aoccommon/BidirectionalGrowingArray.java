@@ -51,7 +51,7 @@ public class BidirectionalGrowingArray<T> implements Iterable<T> {
      */
     public BidirectionalGrowingArray(final IntFunction<T[]> arrayProducer, final int startIndex) {
         this.arrayProducer = arrayProducer;
-        this.array = arrayProducer.apply(1);
+        this.array = arrayProducer.apply(0);
         this.offset = startIndex;
     }
 
@@ -129,9 +129,23 @@ public class BidirectionalGrowingArray<T> implements Iterable<T> {
      * innerhalb des Arrays.
      * 
      * @return Zweielementige Array mit dem kleinsten und größten noch im Array befindlichen Index.
+     * @throws ArrayIndexOutOfBoundsException
+     *             Falls das Array leer ist.
      */
-    public int[] getRange() {
+    public int[] getRange() throws ArrayIndexOutOfBoundsException {
+        if (isEmpty()) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
         return new int[] { offset, offset + array.length - 1 };
+    }
+
+    /**
+     * Prüft, ob das Array leer ist.
+     * 
+     * @return true, wenn das Array leer ist, sonst false.
+     */
+    private boolean isEmpty() {
+        return size() == 0;
     }
 
     /**

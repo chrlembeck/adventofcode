@@ -57,7 +57,7 @@ public abstract class AbstractAocBase {
         return getInput(getInputLocation(2));
     }
 
-    public Matcher matchRegex(final Pattern pattern, final CharSequence input) {
+    public static Matcher matchRegex(final Pattern pattern, final CharSequence input) {
         final Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
             return matcher;

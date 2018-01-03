@@ -11,7 +11,7 @@ import de.chrlembeck.aoccommon.AbstractAocBase;
 
 public class Aoc2017Day18 extends AbstractAocBase {
 
-    Pattern regex = Pattern.compile("([a-z]+)\\s+(\\w+)\\s*(-?\\w+)?");
+    public static final Pattern REGEX = Pattern.compile("([a-z]+)\\s+(\\w+)\\s*(-?\\w+)?");
 
     public static void main(final String[] args) {
         new Aoc2017Day18().run();
@@ -30,15 +30,28 @@ public class Aoc2017Day18 extends AbstractAocBase {
         return state.getRecoveredSound();
     }
 
-    private List<Instruction> loadProgram(final Scanner input, final int part) {
+    @Override
+    public BigInteger part2(final Scanner input) {
+        final List<Instruction> program = loadProgram(input, 2);
+        final State state0 = new State(0);
+        final State state1 = new State(1);
+        state0.setOtherState(state1);
+        while (state0.isRunning() || state1.isRunning()) {
+            executeStep(program, state0);
+            executeStep(program, state1);
+        }
+        return state1.getSentCount();
+    }
+
+    public static List<Instruction> loadProgram(final Scanner input, final int part) {
         final List<Instruction> program = new ArrayList<Instruction>();
         while (input.hasNextLine()) {
-            program.add(createInstruction(matchRegex(regex, input.nextLine()), part));
+            program.add(createInstruction(matchRegex(REGEX, input.nextLine()), part));
         }
         return program;
     }
 
-    private Instruction createInstruction(final Matcher matcher, final int part) {
+    private static Instruction createInstruction(final Matcher matcher, final int part) {
         switch (matcher.group(1)) {
             case "snd":
                 if (part == 1) {
@@ -48,6 +61,8 @@ public class Aoc2017Day18 extends AbstractAocBase {
                 }
             case "add":
                 return new AddInstruction(matcher.group(2), matcher.group(3));
+            case "sub":
+                return new SubInstruction(matcher.group(2), matcher.group(3));
             case "mul":
                 return new MulInstruction(matcher.group(2), matcher.group(3));
             case "mod":
@@ -62,22 +77,11 @@ public class Aoc2017Day18 extends AbstractAocBase {
                 }
             case "jgz":
                 return new JgzInstruction(matcher.group(2), matcher.group(3));
+            case "jnz":
+                return new JnzInstruction(matcher.group(2), matcher.group(3));
             default:
                 throw new IllegalArgumentException(matcher.toString());
         }
-    }
-
-    @Override
-    public BigInteger part2(final Scanner input) {
-        final List<Instruction> program = loadProgram(input, 2);
-        final State state0 = new State(0);
-        final State state1 = new State(1);
-        state0.setOtherState(state1);
-        while (state0.isRunning() || state1.isRunning()) {
-            executeStep(program, state0);
-            executeStep(program, state1);
-        }
-        return state1.getSentCount();
     }
 
     private void executeStep(final List<Instruction> program, final State state) {
