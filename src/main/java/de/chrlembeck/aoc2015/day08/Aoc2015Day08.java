@@ -1,8 +1,8 @@
 package de.chrlembeck.aoc2015.day08;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
+
+import java.util.Scanner;
 
 public class Aoc2015Day08 extends AbstractAocBase {
 
