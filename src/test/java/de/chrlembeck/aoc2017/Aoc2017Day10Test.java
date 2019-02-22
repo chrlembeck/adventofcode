@@ -1,15 +1,11 @@
 package de.chrlembeck.aoc2017;
 
+import de.chrlembeck.aoc2017.day10.Aoc2017Day10;
+import org.junit.jupiter.api.Test;
+
 import static de.chrlembeck.aoccommon.TestUtils.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
-
-import de.chrlembeck.aoc2017.day10.Aoc2017Day10;
-
-@RunWith(JUnitPlatform.class)
 public class Aoc2017Day10Test {
 
     @Test

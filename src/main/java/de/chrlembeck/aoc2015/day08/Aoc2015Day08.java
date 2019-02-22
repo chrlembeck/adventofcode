@@ -11,13 +11,42 @@ public class Aoc2015Day08 extends AbstractAocBase {
     }
 
     @Override
-    public String part1(final Scanner input) {
-        return "";
+    public Integer part1(final Scanner input) {
+        int counter = 0;
+        while (input.hasNextLine()) {
+            final String line = input.nextLine();
+            boolean escaping = false;
+            counter += 2;
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == '\\' && !escaping) {
+                    counter++;
+                    escaping = true;
+                } else {
+                    if (escaping) {
+                        if (line.charAt(i) == 'x') {
+                            counter += 2;
+                        }
+                        escaping = false;
+                    }
+                }
+            }
+        }
+        return counter;
     }
 
     @Override
-    public String part2(final Scanner input) {
-        return "";
+    public Integer part2(final Scanner input) {
+        int counter = 0;
+        while (input.hasNextLine()) {
+            final String line = input.nextLine();
+            counter += 2;
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == '\\' || line.charAt(i) == '\"') {
+                    counter++;
+                }
+            }
+        }
+        return counter;
     }
 
     @Override

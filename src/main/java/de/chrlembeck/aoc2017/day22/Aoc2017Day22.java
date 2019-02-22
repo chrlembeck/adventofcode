@@ -5,7 +5,7 @@ import java.util.Scanner;
 import de.chrlembeck.aoc2017.day19.Direction;
 import de.chrlembeck.aoc2017.day19.Position;
 import de.chrlembeck.aoccommon.AbstractAocBase;
-import de.chrlembeck.aoccommon.BidirectionalGrowingArray;
+import de.chrlembeck.util.collections.BidirectionalGrowingArray;
 
 public class Aoc2017Day22 extends AbstractAocBase {
 

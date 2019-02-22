@@ -30,20 +30,19 @@
     <!-- dependencies -->
     <!-- ++++++++++++ -->
     <dependencies>
-    <!-- 
         <dependency>
             <groupId>de.chrlembeck</groupId>
             <artifactId>chrlembeck-util</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
-     -->
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.0.2</version>
+            <version>5.4.0</version>
             <scope>test</scope>
         </dependency>
-
+<!--
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
@@ -62,6 +61,7 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        -->
     </dependencies>
 
     <build>

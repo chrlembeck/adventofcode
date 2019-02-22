@@ -3,7 +3,7 @@ package de.chrlembeck.aoc2017.day03;
 import java.util.Scanner;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
-import de.chrlembeck.aoccommon.BidirectionalGrowingArray;
+import de.chrlembeck.util.collections.BidirectionalGrowingArray;
 
 public class Aoc2017Day03 extends AbstractAocBase {
 
