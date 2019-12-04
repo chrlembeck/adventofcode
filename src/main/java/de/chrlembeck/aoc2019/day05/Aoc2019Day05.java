@@ -6,22 +6,22 @@ import java.util.Scanner;
 
 public class Aoc2019Day05 extends AbstractAocBase {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         new Aoc2019Day05().run();
     }
 
     @Override
-    public Object part1(Scanner input) {
+    public Object part1(final Scanner input) {
         return "";
     }
 
     @Override
-    public Object part2(Scanner input) {
+    public Object part2(final Scanner input) {
         return "";
     }
 
     @Override
-    public String getInputLocation(int part) {
+    public String getInputLocation(final int part) {
         return "/input/aoc2019/aoc2019day04.txt";
     }
 }

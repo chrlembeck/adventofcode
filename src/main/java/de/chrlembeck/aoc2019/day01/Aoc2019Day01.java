@@ -7,30 +7,29 @@ import java.util.Scanner;
 
 public class Aoc2019Day01 extends AbstractAocBase {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         new Aoc2019Day01().run();
     }
 
     @Override
-    public Object part1(Scanner input) {
+    public Object part1(final Scanner input) {
         BigInteger sum = BigInteger.ZERO;
         while (input.hasNextBigInteger()) {
-            BigInteger mass = input.nextBigInteger();
+            final BigInteger mass = input.nextBigInteger();
             sum = sum.add(calcFuelForMass(mass));
         }
         return sum;
     }
 
-    private BigInteger calcFuelForMass(BigInteger mass) {
+    private BigInteger calcFuelForMass(final BigInteger mass) {
         return mass.divide(BigInteger.valueOf(3)).subtract(BigInteger.TWO);
     }
 
     @Override
-    public Object part2(Scanner input) {
+    public Object part2(final Scanner input) {
         BigInteger sum = BigInteger.ZERO;
         while (input.hasNextBigInteger()) {
-            BigInteger mass = input.nextBigInteger();
-            BigInteger fuel = calcFuelForMass(mass);
+            BigInteger fuel = calcFuelForMass(input.nextBigInteger());
             while (fuel.compareTo(BigInteger.ZERO) > 0) {
                 sum = sum.add(fuel);
                 fuel = calcFuelForMass(fuel);
@@ -40,7 +39,7 @@ public class Aoc2019Day01 extends AbstractAocBase {
     }
 
     @Override
-    public String getInputLocation(int part) {
+    public String getInputLocation(final int part) {
         return "/input/aoc2019/aoc2019day01.txt";
     }
 }

@@ -1,11 +1,11 @@
 package de.chrlembeck.aoc2017.day02;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
-
-import de.chrlembeck.aoccommon.AbstractAocBase;
 
 public class Aoc2017Day02 extends AbstractAocBase {
 
@@ -26,7 +26,7 @@ public class Aoc2017Day02 extends AbstractAocBase {
     private String calc(final Scanner input, final Function<Scanner, Integer> lineFunction) {
         int sum = 0;
         while (input.hasNextLine()) {
-            try (final Scanner lineScanner = new Scanner(input.nextLine())) {
+            try (Scanner lineScanner = new Scanner(input.nextLine())) {
                 sum += lineFunction.apply(lineScanner);
             }
         }

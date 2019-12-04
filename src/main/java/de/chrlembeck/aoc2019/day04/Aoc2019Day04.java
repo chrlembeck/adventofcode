@@ -7,24 +7,24 @@ import java.util.function.Predicate;
 
 public class Aoc2019Day04 extends AbstractAocBase {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         new Aoc2019Day04().run();
     }
 
     @Override
-    public Object part1(Scanner input) {
+    public Object part1(final Scanner input) {
         return execute(input, this::isValid1);
     }
 
     @Override
-    public Object part2(Scanner input) {
+    public Object part2(final Scanner input) {
         return execute(input, this::isValid2);
     }
 
-    private int execute(Scanner input, Predicate<String> validCheck) {
-        String line = input.nextLine();
-        int start = Integer.valueOf(line.substring(0,6));
-        int end = Integer.valueOf(line.substring(7,13));
+    private int execute(final Scanner input, final Predicate<String> validCheck) {
+        final String line = input.nextLine();
+        final int start = Integer.valueOf(line.substring(0,6));
+        final int end = Integer.valueOf(line.substring(7,13));
         int result = 0;
         for (int i = start; i <= end; i++) {
             if (validCheck.test(Integer.toString(i))) {
@@ -34,14 +34,14 @@ public class Aoc2019Day04 extends AbstractAocBase {
         return result;
     }
 
-    public boolean isValid1(String password) {
+    public boolean isValid1(final String password) {
         if (password.length() != 6) {
             return false;
         }
         char last = password.charAt(0);
         boolean pair = false;
         for (int i = 1; i < password.length(); i++) {
-            char next = password.charAt(i);
+            final char next = password.charAt(i);
             if (next == last) {
                 pair = true;
             }
@@ -53,7 +53,7 @@ public class Aoc2019Day04 extends AbstractAocBase {
         return pair;
     }
 
-    public boolean isValid2(String password) {
+    public boolean isValid2(final String password) {
         if (password.length() != 6) {
             return false;
         }
@@ -61,7 +61,7 @@ public class Aoc2019Day04 extends AbstractAocBase {
         boolean pair = false;
         int length  = 1;
         for (int i = 1; i < password.length(); i++) {
-            char next = password.charAt(i);
+            final char next = password.charAt(i);
             if (next == last) {
                 length++;
             } else {
@@ -78,7 +78,7 @@ public class Aoc2019Day04 extends AbstractAocBase {
         return pair || length == 2;
     }
     @Override
-    public String getInputLocation(int part) {
+    public String getInputLocation(final int part) {
         return "/input/aoc2019/aoc2019day04.txt";
     }
 }
