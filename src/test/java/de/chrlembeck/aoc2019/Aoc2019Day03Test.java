@@ -15,7 +15,7 @@ public class Aoc2019Day03Test {
                 + "U62,R66,U55,R34,D71,R55,D58,R83", day3::part1));
         assertEquals("135", test("R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\n"
                 + "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7", day3::part1));
-        assertEquals("2427", test(day3.getInput1(), day3::part1));
+        assertEquals("1674", test(day3.getInput1(), day3::part1));
     }
 
     @Test
@@ -25,6 +25,6 @@ public class Aoc2019Day03Test {
                 + "U62,R66,U55,R34,D71,R55,D58,R83", day3::part2));
         assertEquals("410", test("R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\n"
                 + "U98,R91,D20,R16,D67,R40,U7,R15,U6,R7", day3::part2));
-        assertEquals("27890", test(day3.getInput2(), day3::part2));
+        assertEquals("14012", test(day3.getInput2(), day3::part2));
     }
 }

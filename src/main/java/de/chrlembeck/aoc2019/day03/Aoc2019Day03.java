@@ -9,6 +9,10 @@ import java.util.Scanner;
 
 public class Aoc2019Day03 extends AbstractAocBase {
 
+    public static void main(String[] args) {
+        new Aoc2019Day03().run();
+    }
+
     @Override
     public Object part1(Scanner input) {
         String line1 = input.nextLine();
@@ -95,6 +99,6 @@ public class Aoc2019Day03 extends AbstractAocBase {
 
     @Override
     public String getInputLocation(int part) {
-        return "/input/aoc2019/day03.txt";
+        return "/input/aoc2019/aoc2019day03.txt";
     }
 }

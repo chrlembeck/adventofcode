@@ -7,6 +7,10 @@ import java.util.Scanner;
 
 public class Aoc2019Day01 extends AbstractAocBase {
 
+    public static void main(String[] args) {
+        new Aoc2019Day01().run();
+    }
+
     @Override
     public Object part1(Scanner input) {
         BigInteger sum = BigInteger.ZERO;
@@ -37,6 +41,6 @@ public class Aoc2019Day01 extends AbstractAocBase {
 
     @Override
     public String getInputLocation(int part) {
-        return "/input/aoc2019/day01.txt";
+        return "/input/aoc2019/aoc2019day01.txt";
     }
 }

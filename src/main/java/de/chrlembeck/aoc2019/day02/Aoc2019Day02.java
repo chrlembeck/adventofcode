@@ -9,6 +9,10 @@ import java.util.Scanner;
 
 public class Aoc2019Day02 extends AbstractAocBase {
 
+    public static void main(String[] args) {
+        new Aoc2019Day02().run();
+    }
+
     private ArrayList<BigInteger> readProgram(Scanner input) {
         input.useDelimiter(",");
         ArrayList<BigInteger> list = new ArrayList<>();
@@ -75,6 +79,6 @@ public class Aoc2019Day02 extends AbstractAocBase {
 
     @Override
     public String getInputLocation(int part) {
-        return "/input/aoc2019/day02.txt";
+        return "/input/aoc2019/aoc2019day02.txt";
     }
 }

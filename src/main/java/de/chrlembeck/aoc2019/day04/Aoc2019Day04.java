@@ -7,6 +7,10 @@ import java.util.function.Predicate;
 
 public class Aoc2019Day04 extends AbstractAocBase {
 
+    public static void main(String[] args) {
+        new Aoc2019Day04().run();
+    }
+
     @Override
     public Object part1(Scanner input) {
         return execute(input, this::isValid1);
@@ -21,7 +25,6 @@ public class Aoc2019Day04 extends AbstractAocBase {
         String line = input.nextLine();
         int start = Integer.valueOf(line.substring(0,6));
         int end = Integer.valueOf(line.substring(7,13));
-        System.out.println(start + " " + end);
         int result = 0;
         for (int i = start; i <= end; i++) {
             if (validCheck.test(Integer.toString(i))) {
@@ -76,6 +79,6 @@ public class Aoc2019Day04 extends AbstractAocBase {
     }
     @Override
     public String getInputLocation(int part) {
-        return "/input/aoc2019/day04.txt";
+        return "/input/aoc2019/aoc2019day04.txt";
     }
 }

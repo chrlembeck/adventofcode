@@ -14,7 +14,7 @@ public class Aoc2019Day04Test {
         assertEquals(true, day4.isValid1("111111"));
         assertEquals(false, day4.isValid1("223450"));
         assertEquals(false, day4.isValid1("123789"));
-        assertEquals("1864", test(day4.getInput1(), day4::part1));
+        assertEquals("931", test(day4.getInput1(), day4::part1));
     }
 
     @Test
@@ -25,7 +25,6 @@ public class Aoc2019Day04Test {
         assertEquals(true, day4.isValid2("111122"));
         assertEquals(true, day4.isValid2("112222"));
         assertEquals(false, day4.isValid2("111111"));
-        assertEquals("1258", test(day4.getInput1(), day4::part2));
-        // 1451 too high
+        assertEquals("609", test(day4.getInput1(), day4::part2));
     }
 }

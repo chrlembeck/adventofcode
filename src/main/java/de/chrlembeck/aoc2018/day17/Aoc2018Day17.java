@@ -1,8 +1,8 @@
 package de.chrlembeck.aoc2018.day17;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
+
+import java.util.Scanner;
 
 public class Aoc2018Day17 extends AbstractAocBase {
 
@@ -22,6 +22,6 @@ public class Aoc2018Day17 extends AbstractAocBase {
 
     @Override
     public String getInputLocation(final int part) {
-        return "/input/aoc2018/day17.txt";
+        return "/input/aoc2018/aoc2018day17.txt";
     }
 }

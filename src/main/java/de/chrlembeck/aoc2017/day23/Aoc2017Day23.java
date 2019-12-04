@@ -1,13 +1,13 @@
 package de.chrlembeck.aoc2017.day23;
 
-import java.util.List;
-import java.util.Scanner;
-
 import de.chrlembeck.aoc2017.day18.Aoc2017Day18;
 import de.chrlembeck.aoc2017.day18.Instruction;
 import de.chrlembeck.aoc2017.day18.SetInstruction;
 import de.chrlembeck.aoc2017.day18.State;
 import de.chrlembeck.aoccommon.AbstractAocBase;
+
+import java.util.List;
+import java.util.Scanner;
 
 public class Aoc2017Day23 extends AbstractAocBase {
 
@@ -24,9 +24,6 @@ public class Aoc2017Day23 extends AbstractAocBase {
             final Instruction instruction = program.get(pos);
             instruction.execute(state);
             state.incPos();
-        }
-        for (char ch = 'a'; ch <= 'h'; ch++) {
-            System.out.print(ch + "=" + state.getValue(Character.toString(ch)) + ", ");
         }
         return state.getMulInstructionCount();
     }

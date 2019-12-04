@@ -1,5 +1,7 @@
 package de.chrlembeck.aoc2017.day20;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,8 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import de.chrlembeck.aoccommon.AbstractAocBase;
 
 public class Aoc2017Day20 extends AbstractAocBase {
 
@@ -44,10 +44,10 @@ public class Aoc2017Day20 extends AbstractAocBase {
             } else {
                 final int cmp = accComp.compare(nearest, particle);
                 if (cmp > 0) {
-                    System.out.println("new minimum at pos " + pos + " " + line);
+//                    System.out.println("new minimum at pos " + pos + " " + line);
                     nearest = particle;
                 } else if (cmp == 0) {
-                    System.out.println("same minimum at pos " + pos + " " + line);
+//                    System.out.println("same minimum at pos " + pos + " " + line);
                     nearest = particle;
                 }
             }
