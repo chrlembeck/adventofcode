@@ -106,7 +106,6 @@ public class Aoc2017Day20 extends AbstractAocBase {
                 p.posZ = p.posZ.add(p.velZ);
             }
         }
-//        System.out.println(particles.size());
         return particles.size();
     }
 

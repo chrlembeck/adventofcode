@@ -25,12 +25,12 @@ Day | 2015 | 2016 | 2017                | 2018 | 2019
  17 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  18 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  19 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
- 20 | :x:  | :x:  | :warning:           | :x:  | :x:
+ 20 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  21 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  22 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  23 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  24 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
- 25 | :x:  | :x:  | :warning:           | :x:  | :x:
+ 25 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
 
 Completed: :heavy_check_mark:
 Partially completed: :warning:

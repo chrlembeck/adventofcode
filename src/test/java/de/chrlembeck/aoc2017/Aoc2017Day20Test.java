@@ -1,6 +1,7 @@
 package de.chrlembeck.aoc2017;
 
 import de.chrlembeck.aoc2017.day20.Aoc2017Day20;
+import de.chrlembeck.aoccommon.FileUtil;
 import org.junit.jupiter.api.Test;
 
 import static de.chrlembeck.aoccommon.TestUtils.test;
@@ -24,11 +25,13 @@ public class Aoc2017Day20Test {
         assertEquals("1", test("p=<1,1,1>, v=<1,1,1>, a=<-1,-1,0>\n" +
                 "p=<1,1,1>, v=<1,1,1>, a=<-1,0,0>", day20::part1));
         assertEquals("161", test(day20.getInput1(), day20::part1));
+        assertEquals("258", test( FileUtil.readString("/input/aoc2017/aoc2017day20_2.txt"), day20::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2017Day20 day20 = new Aoc2017Day20();
-         assertEquals("438", test(day20.getInput2(), day20::part2));
+        assertEquals("438", test(day20.getInput2(), day20::part2));
+        assertEquals("707", test( FileUtil.readString("/input/aoc2017/aoc2017day20_2.txt"), day20::part2));
     }
 }
