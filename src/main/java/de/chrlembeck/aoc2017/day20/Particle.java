@@ -80,4 +80,38 @@ public class Particle {
         return posZ.add(stepsBi.multiply(velZ)
                 .add(stepsBi.pow(2).multiply(accZ).add(stepsBi.multiply(accZ)).divide(BigInteger.valueOf(2))));
     }
+
+    @Override
+    public String toString() {
+        return "Particle{" +
+                "identifier=" + identifier +
+                ", posX=" + posX +
+                ", posY=" + posY +
+                ", posZ=" + posZ +
+                ", velX=" + velX +
+                ", velY=" + velY +
+                ", velZ=" + velZ +
+                ", accX=" + accX +
+                ", accY=" + accY +
+                ", accZ=" + accZ +
+                '}';
+    }
+
+    public void normalizeDirection() {
+        if (this.accX.signum() < 0 || this.accX.signum() == 0 && this.velX.signum() < 0) {
+            this.posX = this.posX.negate();
+            this.velX = this.velX.negate();
+            this.accX = this.accX.negate();
+        }
+        if (this.accY.signum() < 0 || this.accY.signum() == 0 && this.velY.signum() < 0) {
+            this.posY = this.posY.negate();
+            this.velY = this.velY.negate();
+            this.accY = this.accY.negate();
+        }
+        if (this.accZ.signum() < 0 || this.accZ.signum() == 0 && this.velZ.signum() < 0) {
+            this.posZ = this.posZ.negate();
+            this.velZ = this.velZ.negate();
+            this.accZ = this.accZ.negate();
+        }
+    }
 }

@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
 
 public class Aoc2017Day20 extends AbstractAocBase {
 
-    // p=<1500,413,-535>, v=<-119,22,36>, a=<-5,-12,3>
     Pattern regex = Pattern
             .compile("p=<(-?\\d+),(-?\\d+),(-?\\d+)>, v=<(-?\\d+),(-?\\d+),(-?\\d+)>, a=<(-?\\d+),(-?\\d+),(-?\\d+)>");
 
@@ -21,9 +20,12 @@ public class Aoc2017Day20 extends AbstractAocBase {
             .thenComparing(Particle::getPz);
 
     public Comparator<Particle> accComp = Comparator
-            .comparing(part -> part.getAx().abs()
+            .comparing((Particle part) -> part.getAx().abs()
                     .add(part.getAy().abs())
-                    .add(part.getAz().abs()));
+                    .add(part.getAz().abs()))
+            .thenComparing(part-> part.getVx().add(part.getVy()).add(part.getVz()))
+            .thenComparing(part -> part.getPx().add(part.getPy()).add(part.getPz()));
+
 
     public static void main(final String[] args) {
         new Aoc2017Day20().run();
@@ -32,24 +34,24 @@ public class Aoc2017Day20 extends AbstractAocBase {
     @Override
     public Integer part1(final Scanner input) {
         int pos = 0;
-
         Particle nearest = null;
 
         while (input.hasNextLine()) {
             final String line = input.nextLine();
             final Matcher matcher = matchRegex(regex, line);
             final Particle particle = readParticle(pos, matcher);
+            particle.normalizeDirection();
+
             if (nearest == null) {
                 nearest = particle;
             } else {
                 final int cmp = accComp.compare(nearest, particle);
                 if (cmp > 0) {
-//                    System.out.println("new minimum at pos " + pos + " " + line);
                     nearest = particle;
                 } else if (cmp == 0) {
-//                    System.out.println("same minimum at pos " + pos + " " + line);
                     nearest = particle;
                 }
+                //System.out.println("Nearest: " + nearest + ", a=" + nearest.getAx().add(nearest.getAy()).add(nearest.getAz()) + "v=" + nearest.getVx().add(nearest.getVy()).add(nearest.getVz()) + " particle: " + particle);
             }
             pos++;
         }
@@ -76,7 +78,6 @@ public class Aoc2017Day20 extends AbstractAocBase {
             particles.add(particle);
         }
         for (int i = 0; i < 1000; i++) {
-            System.out.println(i + " " + particles.size());
             particles.sort(particleComparator);
 
             final List<Integer> removeList = new ArrayList<Integer>();
@@ -105,7 +106,7 @@ public class Aoc2017Day20 extends AbstractAocBase {
                 p.posZ = p.posZ.add(p.velZ);
             }
         }
-        System.out.println(particles.size());
+//        System.out.println(particles.size());
         return particles.size();
     }
 

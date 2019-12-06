@@ -23,13 +23,12 @@ public class Aoc2017Day20Test {
                 "p=<1,1,1>, v=<1,1,1>, a=<-1,-1,0>", day20::part1));
         assertEquals("1", test("p=<1,1,1>, v=<1,1,1>, a=<-1,-1,0>\n" +
                 "p=<1,1,1>, v=<1,1,1>, a=<-1,0,0>", day20::part1));
-        // assertEquals(null, test(day20.getInput1(), day20::part1));
+        assertEquals("161", test(day20.getInput1(), day20::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2017Day20 day20 = new Aoc2017Day20();
-        // assertEquals(null, test("", day20::part2));
-        // assertEquals(null, test(day20.getInput2(), day20::part2));
+         assertEquals("438", test(day20.getInput2(), day20::part2));
     }
 }
