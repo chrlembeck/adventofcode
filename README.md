@@ -4,19 +4,19 @@ See http://www.adventofcode.com
 
 ### Progress
 
-Day | 2015 | 2016 | 2017                | 2018 | 2019
---- | ---- | ---- | ------------------- | ---- | ----
- 1  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
- 2  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
- 3  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
- 4  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
- 5  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
- 6  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
- 7  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
- 8  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
- 9  | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
- 10 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
- 11 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
+Day | 2015                | 2016 | 2017                | 2018 | 2019
+--- | ------------------- | ---- | ------------------- | ---- | ----
+ 1  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
+ 2  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
+ 3  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
+ 4  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
+ 5  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :heavy_check_mark:
+ 6  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :x:
+ 7  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :x:
+ 8  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :x:
+ 9  | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :x:
+ 10 | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :x:
+ 11 | :heavy_check_mark:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  12 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  13 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:
  14 | :x:  | :x:  | :heavy_check_mark:  | :x:  | :x:

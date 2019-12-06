@@ -11,12 +11,12 @@ public class Aoc2015Day10 extends AbstractAocBase {
     }
 
     @Override
-    public String part1(final Scanner input) {
+    public Integer part1(final Scanner input) {
         String line = input.nextLine();
         for (int i = 0; i < 40; i++) {
             line = step(line);
         }
-        return line;
+        return line.length();
     }
 
     public String step(final String input) {
@@ -44,8 +44,12 @@ public class Aoc2015Day10 extends AbstractAocBase {
     }
 
     @Override
-    public String part2(final Scanner input) {
-        return "";
+    public Integer part2(final Scanner input) {
+        String line = input.nextLine();
+        for (int i = 0; i < 50; i++) {
+            line = step(line);
+        }
+        return line.length();
     }
 
     @Override

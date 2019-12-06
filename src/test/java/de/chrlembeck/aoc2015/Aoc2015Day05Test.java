@@ -17,7 +17,7 @@ public class Aoc2015Day05Test {
         assertEquals("0", test("haegwjzuvuyypxyu", day::part1));
         assertEquals("0", test("dvszwmarrgswjxmb", day::part1));
         assertEquals("2", test("ugknbfddgicrmopn\naaa\njchzalrnumimnmhp\nhaegwjzuvuyypxyu", day::part1));
-        assertEquals("258", test(day.getInput1(), day::part1));
+        assertEquals("236", test(day.getInput1(), day::part1));
     }
 
     @Test
@@ -30,6 +30,6 @@ public class Aoc2015Day05Test {
         assertEquals("0", test("fxxxyx", day::part2));
         assertEquals("1", test("yxxxyx", day::part2));
         assertEquals("1", test("yxyx", day::part2));
-        assertEquals("53", test(day.getInput2(), day::part2));
+        assertEquals("51", test(day.getInput2(), day::part2));
     }
 }

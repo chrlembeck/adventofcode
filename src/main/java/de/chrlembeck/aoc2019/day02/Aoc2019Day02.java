@@ -13,7 +13,7 @@ public class Aoc2019Day02 extends AbstractAocBase {
         new Aoc2019Day02().run();
     }
 
-    private ArrayList<BigInteger> readProgram(final Scanner input) {
+    public static ArrayList<BigInteger> readProgram(final Scanner input) {
         input.useDelimiter(",");
         final ArrayList<BigInteger> list = new ArrayList<>();
         while (input.hasNextBigInteger()) {

@@ -16,14 +16,12 @@ public class Aoc2015Day10Test {
         assertEquals("1211", day.step("21"));
         assertEquals("111221", day.step("1211"));
         assertEquals("312211", day.step("111221"));
-        // assertEquals("", test(day.getInput1(), day::part1));
+        assertEquals("360154", test(day.getInput1(), day::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2015Day10 day = new Aoc2015Day10();
-        assertEquals("", test("", day::part2));
-        assertEquals("", test("", day::part2));
-        assertEquals("", test(day.getInput2(), day::part2));
+        assertEquals("5103798", test(day.getInput2(), day::part2));
     }
 }

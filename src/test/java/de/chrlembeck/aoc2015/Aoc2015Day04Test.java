@@ -13,7 +13,7 @@ public class Aoc2015Day04Test {
         final Aoc2015Day04 day = new Aoc2015Day04();
         assertEquals("609043", test("abcdef", day::part1));
         assertEquals("1048970", test("pqrstuv", day::part1));
-        assertEquals("254575", test(day.getInput1(), day::part1));
+        assertEquals("346386", test(day.getInput1(), day::part1));
     }
 
     @Test
@@ -21,6 +21,6 @@ public class Aoc2015Day04Test {
         final Aoc2015Day04 day = new Aoc2015Day04();
         assertEquals("6742839", test("abcdef", day::part2));
         assertEquals("5714438", test("pqrstuv", day::part2));
-        assertEquals("1038736", test(day.getInput2(), day::part2));
+        assertEquals("9958218", test(day.getInput2(), day::part2));
     }
 }

@@ -1,13 +1,13 @@
-package de.chrlembeck.aoc2019.day06;
+package de.chrlembeck.aoc2019.day07;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
 
 import java.util.Scanner;
 
-public class Aoc2019Day06 extends AbstractAocBase {
+public class Aoc2019Day07 extends AbstractAocBase {
 
     public static void main(final String[] args) {
-        new Aoc2019Day06().run();
+        new Aoc2019Day07().run();
     }
 
     @Override
@@ -22,6 +22,6 @@ public class Aoc2019Day06 extends AbstractAocBase {
 
     @Override
     public String getInputLocation(final int part) {
-        return "/input/aoc2019/aoc2019day06.txt";
+        return "/input/aoc2019/aoc2019day07.txt";
     }
 }

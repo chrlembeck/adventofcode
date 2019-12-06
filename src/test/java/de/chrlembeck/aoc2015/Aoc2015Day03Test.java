@@ -14,7 +14,7 @@ public class Aoc2015Day03Test {
         assertEquals("2", test(">", day::part1));
         assertEquals("4", test("^>v<", day::part1));
         assertEquals("2", test("^v^v^v^v^v", day::part1));
-        assertEquals("2081", test(day.getInput1(), day::part1));
+        assertEquals("2572", test(day.getInput1(), day::part1));
     }
 
     @Test
@@ -23,6 +23,6 @@ public class Aoc2015Day03Test {
         assertEquals("3", test("^v", day::part2));
         assertEquals("3", test("^>v<", day::part2));
         assertEquals("11", test("^v^v^v^v^v", day::part2));
-        assertEquals("2341", test(day.getInput2(), day::part2));
+        assertEquals("2631", test(day.getInput2(), day::part2));
     }
 }
