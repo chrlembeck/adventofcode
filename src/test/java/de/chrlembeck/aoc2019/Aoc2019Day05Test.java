@@ -14,7 +14,7 @@ public class Aoc2019Day05Test {
     @Test
     public void test1() {
         final Aoc2019Day05 day = new Aoc2019Day05();
-        assertEquals("15097178", test(day.getInput1(), day::part1));
+        assertEquals("15386262", test(day.getInput1(), day::part1));
     }
 
     @Test
@@ -40,6 +40,6 @@ public class Aoc2019Day05Test {
         assertEquals("1001", day.run(new Scanner(input), BigInteger.valueOf(9)).toString());
         assertEquals("1001", day.run(new Scanner(input), BigInteger.valueOf(10)).toString());
         assertEquals("1001", day.run(new Scanner(input), BigInteger.valueOf(11)).toString());
-        assertEquals("1558663", test(day.getInput2(), day::part2));
+        assertEquals("10376124", test(day.getInput2(), day::part2));
     }
 }
