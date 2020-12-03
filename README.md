@@ -8,7 +8,7 @@ Day | 2015                | 2016                | 2017                | 2018    
 --- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------ | ------------------ 
  1  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
  2  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
- 3  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
+ 3  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
  4  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
  5  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
  6  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
