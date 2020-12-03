@@ -35,7 +35,6 @@ public class Aoc2020Day03 extends AbstractAocBase {
             }
             pos = (pos + right) % line.length();
         }
-
         return trees;
     }
 
