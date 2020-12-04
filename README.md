@@ -1,4 +1,4 @@
-# Advent of Code solutions 2015-2019 ![travis build state](https://travis-ci.org/chrlembeck/aoc2017.svg?branch=master)
+# Advent of Code solutions 2015-2020 ![travis build state](https://travis-ci.org/chrlembeck/aoc2017.svg?branch=master)
 
 See http://www.adventofcode.com
 
@@ -9,7 +9,7 @@ Day | 2015                | 2016                | 2017                | 2018    
  1  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
  2  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
  3  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
- 4  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
+ 4  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
  5  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
  6  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
  7  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
