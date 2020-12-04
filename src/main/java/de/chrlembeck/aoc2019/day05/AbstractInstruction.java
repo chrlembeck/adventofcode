@@ -3,7 +3,7 @@ package de.chrlembeck.aoc2019.day05;
 import java.math.BigInteger;
 import java.util.List;
 
-public abstract class Instruction {
+public abstract class AbstractInstruction {
 
     private final State state;
 
@@ -17,9 +17,9 @@ public abstract class Instruction {
 
     private int thirdParameter;
 
-    public static Instruction of(List<BigInteger> program, State state) {
-        int code = program.get(state.getProgCount()).intValueExact();
-        int opcode = code % 100;
+    public static AbstractInstruction readNextInstruction(final List<BigInteger> program, final State state) {
+        final int code = program.get(state.getProgCount()).intValueExact();
+        final int opcode = code % 100;
         switch (opcode) {
             case 1:
                 return new ArithmeticInstruction( program, state, BigInteger::add);
@@ -44,8 +44,8 @@ public abstract class Instruction {
         }
     }
 
-    Instruction(List<BigInteger> program, State state) {
-        int code = program.get(state.getProgCount()).intValueExact();
+    AbstractInstruction(final List<BigInteger> program, final State state) {
+        final int code = program.get(state.getProgCount()).intValueExact();
         this.program = program;
         this.state = state;
         opcode = code % 100;
@@ -70,7 +70,7 @@ public abstract class Instruction {
         return firstParameter;
     }
 
-    public abstract void exec(List<BigInteger> program, State state);
+    public abstract void exec(final List<BigInteger> program, final State state);
 
     public BigInteger getAndEvaluateOperand1() {
         BigInteger operand1 = program.get(state.getProgCount() + 1);

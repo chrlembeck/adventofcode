@@ -11,9 +11,9 @@ public class Aoc2020Day01 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        Set<Long> values = new TreeSet<>();
+        final Set<Long> values = new TreeSet<>();
         while (input.hasNextLong()) {
-            long next = input.nextLong();
+            final long next = input.nextLong();
             if (values.contains(2020 - next)) {
                 return next * (2020 - next);
             }
@@ -24,9 +24,9 @@ public class Aoc2020Day01 extends AbstractAocBase {
 
     @Override
     public Object part2(final Scanner input) {
-        List<Long> values = new ArrayList<>();
+        final List<Long> values = new ArrayList<>();
         while (input.hasNextLong()) {
-            long next = input.nextLong();
+            final long next = input.nextLong();
             for (int a = 0; a < values.size()-1; a++) {
                 for (int b = a + 1; b < values.size(); b++) {
                     if (next + values.get(a) + values.get(b) == 2020) {

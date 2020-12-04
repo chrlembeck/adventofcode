@@ -10,21 +10,21 @@ public class State {
 
     private final BlockingQueue<BigInteger> inputQueue = new LinkedBlockingDeque();
 
-    private int progCount = 0;
+    private int progCount;
 
     private Consumer<BigInteger> outputConsumer;
 
     private BigInteger lastOutput;
 
-    public State(BigInteger... inputValues) {
+    public State(final BigInteger... inputValues) {
         Arrays.stream(inputValues).forEach(inputQueue::add);
     }
 
-    public void setOutputConsumer(Consumer<BigInteger> outputConsumer) {
+    public void setOutputConsumer(final Consumer<BigInteger> outputConsumer) {
         this.outputConsumer = outputConsumer;
     }
 
-    public void inc(int steps) {
+    public void inc(final int steps) {
         progCount += steps;
     }
 
@@ -40,7 +40,7 @@ public class State {
         }
     }
 
-    public void output(BigInteger output) {
+    public void output(final BigInteger output) {
         if (outputConsumer == null) {
             throw new IllegalStateException("no output consumer");
         }
@@ -48,7 +48,7 @@ public class State {
         outputConsumer.accept(output);
     }
 
-    public void setProgCount(int newPos) {
+    public void setProgCount(final int newPos) {
         this.progCount = newPos;
     }
 

@@ -22,13 +22,13 @@ public class Aoc2019Day05 extends AbstractAocBase {
         return run(input, BigInteger.valueOf(5));
     }
 
-    public BigInteger run(Scanner program, BigInteger... inputValues) {
+    public BigInteger run(final Scanner program, final BigInteger... inputValues) {
         return run(Aoc2019Day02.readProgram(program), inputValues);
     }
 
-    public BigInteger run(List<BigInteger> program, BigInteger... initialInput) {
-        SingleOutputConsumer outputConsumer = new SingleOutputConsumer();
-        IntcodeComputer computer = new IntcodeComputer(program, initialInput);
+    public BigInteger run(final List<BigInteger> program, final BigInteger... initialInput) {
+        final SingleOutputConsumer outputConsumer = new SingleOutputConsumer();
+        final IntcodeComputer computer = new IntcodeComputer(program, initialInput);
         computer.setOutputConsumer(outputConsumer);
         computer.startCalculation();
         try {

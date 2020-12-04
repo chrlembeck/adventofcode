@@ -21,10 +21,6 @@ public class Aoc2020Day04 extends AbstractAocBase {
 
     private static final Pattern HGT_PATTERN = Pattern.compile("(\\d+)(in|cm)");
 
-    public static void main(final String[] args) {
-        new Aoc2020Day04().run();
-    }
-
     public static final String[] REQUIRED_FIELDS = new String[] { "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid" };
 
     private Predicate<Map<String, String>> hasRequiredFields = passport -> Arrays.stream(REQUIRED_FIELDS).allMatch(passport::containsKey);
@@ -38,6 +34,10 @@ public class Aoc2020Day04 extends AbstractAocBase {
                     && PID_PATTERN.matcher(passport.get("pid")).matches()
                     && ECL_PATTERN.matcher(passport.get("ecl")).matches();
 
+    public static void main(final String[] args) {
+        new Aoc2020Day04().run();
+    }
+
     @Override
     public Object part1(final Scanner input) {
         return count(input, hasRequiredFields);
@@ -48,7 +48,7 @@ public class Aoc2020Day04 extends AbstractAocBase {
         return count(input, hasRequiredFields.and(fieldsValid));
     }
 
-    private int count(Scanner input, Predicate<Map<String, String>> validator) {
+    private int count(final Scanner input, final Predicate<Map<String, String>> validator) {
         int validCounter = 0;
         while (input.hasNextLine()) {
             if (validator.test(parsePassport(input))) {
@@ -58,8 +58,8 @@ public class Aoc2020Day04 extends AbstractAocBase {
         return validCounter;
     }
 
-    private boolean isHeightValid(String hgt) {
-        Matcher hgtMatcher = HGT_PATTERN.matcher(hgt);
+    private boolean isHeightValid(final String hgt) {
+        final Matcher hgtMatcher = HGT_PATTERN.matcher(hgt);
         if (hgtMatcher.matches()) {
             if (hgtMatcher.group(2).equals("cm")) {
                 return between(hgtMatcher.group(1), 150, 193);
@@ -71,20 +71,20 @@ public class Aoc2020Day04 extends AbstractAocBase {
         }
     }
 
-    private boolean between(String value, int min, int max) {
+    private boolean between(final String value, final int min, final int max) {
         try {
-            Integer number = Integer.parseInt(value);
+            final Integer number = Integer.parseInt(value);
             return number >= min && number <= max;
         } catch (NumberFormatException nfe) {
             return false;
         }
     }
 
-    private Map<String, String> parsePassport(Scanner input) {
-        Map<String, String> passport = new TreeMap<>();
+    private Map<String, String> parsePassport(final Scanner input) {
+        final Map<String, String> passport = new TreeMap<>();
         String line;
         while (input.hasNextLine() && !(line = input.nextLine()).equals("")) {
-            Matcher matcher = ENTRY_PATTERN.matcher(line);
+            final Matcher matcher = ENTRY_PATTERN.matcher(line);
             while (matcher.find()) {
                 passport.put(matcher.group(1), matcher.group(2));
             }

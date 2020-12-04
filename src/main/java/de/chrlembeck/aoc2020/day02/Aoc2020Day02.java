@@ -18,7 +18,7 @@ public class Aoc2020Day02 extends AbstractAocBase {
                 .filter(mr -> checkPassword1(Integer.parseInt(mr.group(1)), Integer.parseInt(mr.group(2)), mr.group(3).charAt(0), mr.group(4))).count();
     }
 
-    private boolean checkPassword1(int min, int max, char letter, String password) {
+    private boolean checkPassword1(final int min, final int max, final char letter, final String password) {
         int counter = 0;
         for (int i = 0; i < password.length(); i++) {
             if (password.charAt(i) == letter) {
@@ -34,7 +34,7 @@ public class Aoc2020Day02 extends AbstractAocBase {
                 .filter(mr -> checkPassword2(Integer.parseInt(mr.group(1)), Integer.parseInt(mr.group(2)), mr.group(3).charAt(0), mr.group(4))).count();
     }
 
-    private boolean checkPassword2(int first, int second, char letter, String password) {
+    private boolean checkPassword2(final int first, final int second, final char letter, final String password) {
         return password.charAt(first - 1) == letter ^ password.charAt(second - 1) == letter;
     }
 

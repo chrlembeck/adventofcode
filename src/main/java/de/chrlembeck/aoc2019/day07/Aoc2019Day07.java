@@ -6,10 +6,7 @@ import de.chrlembeck.aoc2019.day05.SingleOutputConsumer;
 import de.chrlembeck.aoccommon.AbstractAocBase;
 import de.chrlembeck.aoccommon.Permutation;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Aoc2019Day07 extends AbstractAocBase {
 
@@ -19,34 +16,19 @@ public class Aoc2019Day07 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        Permutation<BigInteger> perm = new Permutation<>(
+        final Permutation<BigInteger> perm = new Permutation<>(
                 new BigInteger[] { BigInteger.ZERO, BigInteger.ONE, BigInteger.TWO, BigInteger.valueOf(3), BigInteger.valueOf(4) }, BigInteger[]::new);
-        List<BigInteger> program = Collections.unmodifiableList(Aoc2019Day02.readProgram(input));
+        final List<BigInteger> program = Collections.unmodifiableList(Aoc2019Day02.readProgram(input));
 
         BigInteger maxResult = null;
         while (perm.hasNext()) {
-            BigInteger[] phaseSettings = perm.next();
+            final BigInteger[] phaseSettings = perm.next();
+            final IntcodeComputer[] computers = createComputers(program, phaseSettings, BigInteger.ZERO);
+            final SingleOutputConsumer cons = new SingleOutputConsumer();
+            computers[4].setOutputConsumer(cons);
+            Arrays.stream(computers).forEach(IntcodeComputer::startCalculation);
 
-            IntcodeComputer a = new IntcodeComputer(new ArrayList<>(program), phaseSettings[0], BigInteger.ZERO);
-            IntcodeComputer b = new IntcodeComputer(new ArrayList<>(program), phaseSettings[1]);
-            IntcodeComputer c = new IntcodeComputer(new ArrayList<>(program), phaseSettings[2]);
-            IntcodeComputer d = new IntcodeComputer(new ArrayList<>(program), phaseSettings[3]);
-            IntcodeComputer e = new IntcodeComputer(new ArrayList<>(program) ,phaseSettings[4]);
-            a.setOutputConsumer(b.getInputConsumer());
-            b.setOutputConsumer(c.getInputConsumer());
-            c.setOutputConsumer(d.getInputConsumer());
-            d.setOutputConsumer(e.getInputConsumer());
-            SingleOutputConsumer cons = new SingleOutputConsumer();
-            e.setOutputConsumer(cons);
-
-            a.startCalculation();
-            b.startCalculation();
-            c.startCalculation();
-            d.startCalculation();
-            e.startCalculation();
-
-            BigInteger value = cons.getOutput();
-
+            final BigInteger value = cons.getOutput();
             maxResult = maxResult == null ? value : maxResult.max(value);
         }
         return maxResult;
@@ -54,42 +36,40 @@ public class Aoc2019Day07 extends AbstractAocBase {
 
     @Override
     public Object part2(final Scanner input) {
-        Permutation<BigInteger> perm = new Permutation<>(
-                new BigInteger[] { BigInteger.valueOf(5), BigInteger.valueOf(6), BigInteger.valueOf(7), BigInteger.valueOf(8), BigInteger.valueOf(9) }, BigInteger[]::new);
-        List<BigInteger> program = Collections.unmodifiableList(Aoc2019Day02.readProgram(input));
+        final Permutation<BigInteger> perm = new Permutation<>(
+                new BigInteger[] { BigInteger.valueOf(5), BigInteger.valueOf(6), BigInteger.valueOf(7), BigInteger.valueOf(8), BigInteger.valueOf(9) },
+                BigInteger[]::new);
+        final List<BigInteger> program = Collections.unmodifiableList(Aoc2019Day02.readProgram(input));
 
         BigInteger maxResult = null;
         while (perm.hasNext()) {
-            BigInteger[] phaseSettings = perm.next();
+            final BigInteger[] phaseSettings = perm.next();
+            final IntcodeComputer[] computers = createComputers(program, phaseSettings, BigInteger.ZERO);
+            computers[4].setOutputConsumer(computers[0].getInputConsumer());
+            Arrays.stream(computers).forEach(IntcodeComputer::startCalculation);
 
-            IntcodeComputer a = new IntcodeComputer(new ArrayList<>(program), phaseSettings[0], BigInteger.ZERO);
-            IntcodeComputer b = new IntcodeComputer(new ArrayList<>(program), phaseSettings[1]);
-            IntcodeComputer c = new IntcodeComputer(new ArrayList<>(program), phaseSettings[2]);
-            IntcodeComputer d = new IntcodeComputer(new ArrayList<>(program), phaseSettings[3]);
-            IntcodeComputer e = new IntcodeComputer(new ArrayList<>(program) ,phaseSettings[4]);
-            a.setOutputConsumer(b.getInputConsumer());
-            b.setOutputConsumer(c.getInputConsumer());
-            c.setOutputConsumer(d.getInputConsumer());
-            d.setOutputConsumer(e.getInputConsumer());
-            e.setOutputConsumer(a.getInputConsumer());
-
-
-            a.startCalculation();
-            b.startCalculation();
-            c.startCalculation();
-            d.startCalculation();
-            e.startCalculation();
             try {
-                e.waitForExit();
+                computers[4].waitForExit();
             } catch (InterruptedException ie) {
                 throw new RuntimeException(ie);
             }
 
-            BigInteger value = e.getLastOutput();
-
+            final BigInteger value = computers[4].getLastOutput();
             maxResult = maxResult == null ? value : maxResult.max(value);
         }
         return maxResult;
+    }
+
+    private IntcodeComputer[] createComputers(final List<BigInteger> program, final BigInteger[] phaseSettings, final BigInteger initialInput) {
+        final IntcodeComputer[] computers = new IntcodeComputer[5];
+        for (int computerIdx = 0; computerIdx < computers.length; computerIdx++) {
+            computers[computerIdx] = new IntcodeComputer(new ArrayList<>(program), phaseSettings[computerIdx]);
+        }
+        for (int computerIdx = 0; computerIdx < computers.length - 1; computerIdx++) {
+            computers[computerIdx].setOutputConsumer(computers[computerIdx + 1].getInputConsumer());
+        }
+        computers[0].getInputConsumer().accept(initialInput);
+        return computers;
     }
 
     @Override

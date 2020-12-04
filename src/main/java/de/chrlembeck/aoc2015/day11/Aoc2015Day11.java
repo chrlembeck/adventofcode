@@ -1,7 +1,6 @@
 package de.chrlembeck.aoc2015.day11;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
-
 import java.util.Scanner;
 
 public class Aoc2015Day11 extends AbstractAocBase {
@@ -12,25 +11,27 @@ public class Aoc2015Day11 extends AbstractAocBase {
 
     @Override
     public String part1(final Scanner input) {
-        char[] password = input.nextLine().toCharArray();
+        final char[] password = input.nextLine().toCharArray();
         nextValid(password);
         return new String(password);
     }
 
     @Override
     public String part2(final Scanner input) {
-        char[] password = input.nextLine().toCharArray();
+        final char[] password = input.nextLine().toCharArray();
         nextValid(password);
         nextValid(password);
         return new String(password);
     }
 
-    public char[] nextValid(char[] password) {
-        while (!valid(next(password)));
+    public char[] nextValid(final char[] password) {
+        do {
+            next(password);
+        } while (!valid(password));
         return password;
     }
 
-    public char[] next(char[] password) {
+    public char[] next(final char[] password) {
         password[password.length - 1]++;
         int pos = password.length - 1;
         while (password[pos] > 'z' && pos >=0) {
@@ -41,13 +42,13 @@ public class Aoc2015Day11 extends AbstractAocBase {
         return password;
     }
 
-    public boolean valid(char[] password) {
-        boolean rule1 = false;
+    public boolean valid(final char[] password) {
         for (int i = 0; i < password.length; i++) {
             if (password[i] == 'i' || password[i] == 'o' || password[i] == 'l') {
                 return false;
             }
         }
+        boolean rule1 = false;
         for (int i = 2; i < password.length; i++) {
             if ((password[i-2] == password[i-1]-1) && (password[i-1] == password[i]-1)) {
                 rule1 = true;

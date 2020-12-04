@@ -18,16 +18,16 @@ public class Aoc2019Day06 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        Map<String, String> map = generateOrbitMap(input);
+        final Map<String, String> map = generateOrbitMap(input);
         return map.keySet().stream().mapToInt(key -> length(key, map)).sum();
     }
 
-    private Map<String, String> generateOrbitMap(Scanner input) {
+    private Map<String, String> generateOrbitMap(final Scanner input) {
         return input.findAll(REGEX).collect(Collectors.toMap(r -> r.group(2), r -> r.group(1)));
     }
 
-    private int length(String key, Map<String, String> map) {
-        String next = map.get(key);
+    private int length(final String key, final Map<String, String> map) {
+        final String next = map.get(key);
         if (next == null) {
             return 0;
         } else {
@@ -37,18 +37,18 @@ public class Aoc2019Day06 extends AbstractAocBase {
 
     @Override
     public Object part2(final Scanner input) {
-        Map<String, String> map = generateOrbitMap(input);
-        List<String> you = spur(map, "YOU");
-        List<String> san = spur(map, "SAN");
-        int i = 1;
-        while (i <= you.size() && i <= san.size() && you.get(you.size() - i).equals(san.get(san.size() - i))) {
-            i++;
+        final Map<String, String> map = generateOrbitMap(input);
+        final List<String> you = spur(map, "YOU");
+        final List<String> san = spur(map, "SAN");
+        int orbitIndex = 1;
+        while (orbitIndex <= you.size() && orbitIndex <= san.size() && you.get(you.size() - orbitIndex).equals(san.get(san.size() - orbitIndex))) {
+            orbitIndex++;
         }
-        return san.size() + you.size() - 2 * i;
+        return san.size() + you.size() - 2 * orbitIndex;
     }
 
-    private List<String> spur(Map<String, String> orbitMap, String searchValue) {
-        List<String> spur = new ArrayList<>();
+    private List<String> spur(final Map<String, String> orbitMap, String searchValue) {
+        final List<String> spur = new ArrayList<>();
         while (searchValue != null) {
             spur.add(searchValue);
             searchValue = orbitMap.get(searchValue);

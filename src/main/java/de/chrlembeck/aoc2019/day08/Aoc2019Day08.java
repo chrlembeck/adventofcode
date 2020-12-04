@@ -12,20 +12,20 @@ public class Aoc2019Day08 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        String line = input.nextLine();
-        int width = 25;
-        int height = 6;
-        int layersize = width * height;
+        final String line = input.nextLine();
+        final int width = 25;
+        final int height = 6;
+        final int layerSize = width * height;
 
-        int minZeros = layersize;
+        int minZeros = layerSize;
         int result = -1;
 
-        for (int layerIndex = 0; layerIndex < line.length() / layersize; layerIndex++) {
+        for (int layerIndex = 0; layerIndex < line.length() / layerSize; layerIndex++) {
             int zeros = 0;
             int ones = 0;
             int twos = 0;
-            for (int i = 0; i < layersize; i++) {
-                char pixel = line.charAt(layerIndex * layersize + i);
+            for (int i = 0; i < layerSize; i++) {
+                final char pixel = line.charAt(layerIndex * layerSize + i);
                 switch (pixel) {
                     case '0':
                         zeros++;
@@ -36,6 +36,7 @@ public class Aoc2019Day08 extends AbstractAocBase {
                     case '2':
                         twos++;
                         break;
+                    default:
                 }
             }
             if (zeros < minZeros) {
@@ -49,11 +50,11 @@ public class Aoc2019Day08 extends AbstractAocBase {
 
     @Override
     public Object part2(final Scanner input) {
-        String line = input.nextLine();
-        int width = 25;
-        int height = 6;
-        int layersize = width * height;
-        char[] image = new char[layersize];
+        final String line = input.nextLine();
+        final int width = 25;
+        final int height = 6;
+        final int layersize = width * height;
+        final char[] image = new char[layersize];
         Arrays.fill(image, ' ');
         for (int i = 0; i < line.length(); i++) {
             if (image[i % layersize] == ' ') {
@@ -64,12 +65,12 @@ public class Aoc2019Day08 extends AbstractAocBase {
                 }
             }
         }
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder result = new StringBuilder();
         for (int y = 0; y < height; y++) {
-            sb.append(image, y*width, width);
-            sb.append('\n');
+            result.append(image, y*width, width);
+            result.append('\n');
         }
-        return sb.toString();
+        return result.toString();
     }
 
     @Override

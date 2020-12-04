@@ -1,15 +1,14 @@
 package de.chrlembeck.aoc2017.day08;
 
-import static de.chrlembeck.aoccommon.Util.isNull;
-
+import de.chrlembeck.aoccommon.AbstractAocBase;
+import de.chrlembeck.aoccommon.Result;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.chrlembeck.aoccommon.AbstractAocBase;
-import de.chrlembeck.aoccommon.Result;
+import static de.chrlembeck.aoccommon.LangUtils.isNull;
 
 public class Aoc2017Day08 extends AbstractAocBase {
 

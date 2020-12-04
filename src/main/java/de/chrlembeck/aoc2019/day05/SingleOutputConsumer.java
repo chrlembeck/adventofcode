@@ -8,19 +8,23 @@ public class SingleOutputConsumer implements Consumer<BigInteger> {
     private BigInteger output;
 
     @Override
-    public synchronized void accept(BigInteger value) {
-        this.output = value;
-        this.notify();
+    public void accept(final BigInteger value) {
+        synchronized (this) {
+            this.output = value;
+            this.notifyAll();
+        }
     }
 
-    public synchronized BigInteger getOutput() {
-        if (output == null) {
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+    public BigInteger getOutput() {
+        synchronized (this) {
+            while (output == null) {
+                try {
+                    this.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
+            return output;
         }
-        return output;
     }
 }

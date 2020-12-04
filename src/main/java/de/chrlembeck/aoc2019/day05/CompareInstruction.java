@@ -4,18 +4,18 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.function.BiPredicate;
 
-public class CompareInstruction extends Instruction {
+public class CompareInstruction extends AbstractInstruction {
 
     private final BiPredicate<BigInteger, BigInteger> predicate;
 
-    CompareInstruction(List<BigInteger> program, State state, BiPredicate<BigInteger, BigInteger> predicate) {
+    CompareInstruction(final List<BigInteger> program, final State state, final BiPredicate<BigInteger, BigInteger> predicate) {
         super(program, state);
         this.predicate = predicate;
     }
 
     @Override
-    public final void exec(List<BigInteger> program, State state) {
-        BigInteger operand3 = program.get(state.getProgCount() + 3);
+    public final void exec(final List<BigInteger> program, final State state) {
+        final BigInteger operand3 = program.get(state.getProgCount() + 3);
         if (predicate.test(getAndEvaluateOperand1(), getAndEvaluateOperand2())) {
             program.set(operand3.intValueExact(), BigInteger.ONE);
         } else {

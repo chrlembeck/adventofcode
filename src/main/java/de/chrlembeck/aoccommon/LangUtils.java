@@ -1,8 +1,8 @@
 package de.chrlembeck.aoccommon;
 
-public final class Util {
+public final class LangUtils {
 
-    private Util() {
+    private LangUtils() {
     }
 
     public static <T> T isNull(final T value, final T defaultValue) {

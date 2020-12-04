@@ -1,18 +1,13 @@
 package de.chrlembeck.aoc2017.day07;
 
-import java.util.HashMap;
-import java.util.Map;
+import de.chrlembeck.aoccommon.AbstractAocBase;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Scanner;
-import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
-
-import de.chrlembeck.aoccommon.AbstractAocBase;
 
 public class Aoc2017Day07 extends AbstractAocBase {
 
@@ -73,7 +68,7 @@ public class Aoc2017Day07 extends AbstractAocBase {
         public Program(final String name, final int weight, final String... children) {
             this.name = name;
             this.weight = weight;
-            this.children = children;
+            this.children = children.clone();
         }
 
         public int findMisbalance() {

@@ -1,16 +1,9 @@
 package de.chrlembeck.aoc2015.day12;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
-
 import java.util.Scanner;
 
 public class Aoc2015Day12 extends AbstractAocBase {
-
-    enum State {
-        unkown,
-        identifier,
-        number
-    }
 
     public static void main(final String[] args) {
         new Aoc2015Day12().run();
@@ -18,11 +11,10 @@ public class Aoc2015Day12 extends AbstractAocBase {
 
     @Override
     public Long part1(final Scanner input) {
-        String line = input.nextLine();
-        State state = State.unkown;
+        final String line = input.nextLine();
         long sum = 0;
         for (int i = 0; i < line.length(); i++) {
-            char next = line.charAt(i);
+            final char next = line.charAt(i);
             if (Character.isDigit(next) || next == '-') {
                 // number
                 if (next == '-') {
