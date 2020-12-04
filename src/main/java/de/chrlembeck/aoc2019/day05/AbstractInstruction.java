@@ -1,13 +1,12 @@
 package de.chrlembeck.aoc2019.day05;
 
 import java.math.BigInteger;
-import java.util.List;
 
 public abstract class AbstractInstruction {
 
     private final State state;
 
-    private final List<BigInteger> program;
+    private final IntcodeProgram program;
 
     private int opcode;
 
@@ -17,7 +16,7 @@ public abstract class AbstractInstruction {
 
     private int thirdParameter;
 
-    public static AbstractInstruction readNextInstruction(final List<BigInteger> program, final State state) {
+    public static AbstractInstruction readNextInstruction(final IntcodeProgram program, final State state) {
         final int code = program.get(state.getProgCount()).intValueExact();
         final int opcode = code % 100;
         switch (opcode) {
@@ -37,6 +36,8 @@ public abstract class AbstractInstruction {
                 return new CompareInstruction( program, state, (operand1, operand2) -> operand1.compareTo(operand2) < 0);
             case 8:
                 return new CompareInstruction( program, state, (operand1, operand2) -> operand1.compareTo(operand2) == 0);
+            case 9:
+                return new AdjustRelativeBaseInstruction(program, state);
             case 99:
                 return new Exit( program, state);
             default:
@@ -44,7 +45,7 @@ public abstract class AbstractInstruction {
         }
     }
 
-    AbstractInstruction(final List<BigInteger> program, final State state) {
+    AbstractInstruction(final IntcodeProgram program, final State state) {
         final int code = program.get(state.getProgCount()).intValueExact();
         this.program = program;
         this.state = state;
@@ -70,21 +71,39 @@ public abstract class AbstractInstruction {
         return firstParameter;
     }
 
-    public abstract void exec(final List<BigInteger> program, final State state);
+    public abstract void exec(final IntcodeProgram program, final State state);
+
+    protected static final int PARAMETER_POSITION_MODE = 0;
+
+    protected static final int PARAMETER_IMMIDIATE_MODE = 1;
+
+    protected static final int PARAMETER_RELATIVE_MODE = 2;
 
     public BigInteger getAndEvaluateOperand1() {
         BigInteger operand1 = program.get(state.getProgCount() + 1);
-        if (getFirstParameter() == 0) {
-            operand1 = program.get(operand1.intValueExact());
+        switch(getFirstParameter()) {
+            case PARAMETER_IMMIDIATE_MODE:
+                return operand1;
+            case PARAMETER_POSITION_MODE:
+                return program.get(operand1.intValueExact());
+            case PARAMETER_RELATIVE_MODE:
+                return program.get(operand1.intValueExact() + state.getRelativeBase());
+            default:
+                throw new IllegalArgumentException("unknown parameter mode " + getFirstParameter());
         }
-        return operand1;
     }
 
     public BigInteger getAndEvaluateOperand2() {
         BigInteger operand2 = program.get(state.getProgCount() + 2);
-        if (getSecondParameter() == 0) {
-            operand2 = program.get(operand2.intValueExact());
+        switch(getSecondParameter()) {
+            case PARAMETER_IMMIDIATE_MODE:
+                return operand2;
+            case PARAMETER_POSITION_MODE:
+                return program.get(operand2.intValueExact());
+            case PARAMETER_RELATIVE_MODE:
+                return program.get(operand2.intValueExact() + state.getRelativeBase());
+            default:
+                throw new IllegalArgumentException("unknown parameter mode " + getSecondParameter());
         }
-        return operand2;
     }
 }

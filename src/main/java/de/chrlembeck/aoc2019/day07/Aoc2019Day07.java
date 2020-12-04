@@ -2,11 +2,13 @@ package de.chrlembeck.aoc2019.day07;
 
 import de.chrlembeck.aoc2019.day02.Aoc2019Day02;
 import de.chrlembeck.aoc2019.day05.IntcodeComputer;
+import de.chrlembeck.aoc2019.day05.IntcodeProgram;
 import de.chrlembeck.aoc2019.day05.SingleOutputConsumer;
 import de.chrlembeck.aoccommon.AbstractAocBase;
 import de.chrlembeck.aoccommon.Permutation;
 import java.math.BigInteger;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Aoc2019Day07 extends AbstractAocBase {
 
@@ -18,7 +20,7 @@ public class Aoc2019Day07 extends AbstractAocBase {
     public Object part1(final Scanner input) {
         final Permutation<BigInteger> perm = new Permutation<>(
                 new BigInteger[] { BigInteger.ZERO, BigInteger.ONE, BigInteger.TWO, BigInteger.valueOf(3), BigInteger.valueOf(4) }, BigInteger[]::new);
-        final List<BigInteger> program = Collections.unmodifiableList(Aoc2019Day02.readProgram(input));
+        final IntcodeProgram program = Aoc2019Day02.readProgram(input);
 
         BigInteger maxResult = null;
         while (perm.hasNext()) {
@@ -39,7 +41,7 @@ public class Aoc2019Day07 extends AbstractAocBase {
         final Permutation<BigInteger> perm = new Permutation<>(
                 new BigInteger[] { BigInteger.valueOf(5), BigInteger.valueOf(6), BigInteger.valueOf(7), BigInteger.valueOf(8), BigInteger.valueOf(9) },
                 BigInteger[]::new);
-        final List<BigInteger> program = Collections.unmodifiableList(Aoc2019Day02.readProgram(input));
+        final IntcodeProgram program = Aoc2019Day02.readProgram(input);
 
         BigInteger maxResult = null;
         while (perm.hasNext()) {
@@ -48,11 +50,7 @@ public class Aoc2019Day07 extends AbstractAocBase {
             computers[4].setOutputConsumer(computers[0].getInputConsumer());
             Arrays.stream(computers).forEach(IntcodeComputer::startCalculation);
 
-            try {
-                computers[4].waitForExit();
-            } catch (InterruptedException ie) {
-                throw new RuntimeException(ie);
-            }
+            computers[4].waitForExit();
 
             final BigInteger value = computers[4].getLastOutput();
             maxResult = maxResult == null ? value : maxResult.max(value);
@@ -60,10 +58,10 @@ public class Aoc2019Day07 extends AbstractAocBase {
         return maxResult;
     }
 
-    private IntcodeComputer[] createComputers(final List<BigInteger> program, final BigInteger[] phaseSettings, final BigInteger initialInput) {
+    private IntcodeComputer[] createComputers(final IntcodeProgram program, final BigInteger[] phaseSettings, final BigInteger initialInput) {
         final IntcodeComputer[] computers = new IntcodeComputer[5];
         for (int computerIdx = 0; computerIdx < computers.length; computerIdx++) {
-            computers[computerIdx] = new IntcodeComputer(new ArrayList<>(program), phaseSettings[computerIdx]);
+            computers[computerIdx] = new IntcodeComputer(program.clone(), phaseSettings[computerIdx]);
         }
         for (int computerIdx = 0; computerIdx < computers.length - 1; computerIdx++) {
             computers[computerIdx].setOutputConsumer(computers[computerIdx + 1].getInputConsumer());

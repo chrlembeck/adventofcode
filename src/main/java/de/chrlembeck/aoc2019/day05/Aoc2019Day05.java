@@ -3,7 +3,6 @@ package de.chrlembeck.aoc2019.day05;
 import de.chrlembeck.aoc2019.day02.Aoc2019Day02;
 import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.math.BigInteger;
-import java.util.List;
 import java.util.Scanner;
 
 public class Aoc2019Day05 extends AbstractAocBase {
@@ -26,17 +25,13 @@ public class Aoc2019Day05 extends AbstractAocBase {
         return run(Aoc2019Day02.readProgram(program), inputValues);
     }
 
-    public BigInteger run(final List<BigInteger> program, final BigInteger... initialInput) {
+    public BigInteger run(final IntcodeProgram program, final BigInteger... initialInput) {
         final SingleOutputConsumer outputConsumer = new SingleOutputConsumer();
         final IntcodeComputer computer = new IntcodeComputer(program, initialInput);
         computer.setOutputConsumer(outputConsumer);
         computer.startCalculation();
-        try {
-            computer.waitForExit();
-            return outputConsumer.getOutput();
-        } catch(InterruptedException ie) {
-            throw new RuntimeException(ie);
-        }
+        computer.waitForExit();
+        return outputConsumer.getOutput();
     }
 
     @Override

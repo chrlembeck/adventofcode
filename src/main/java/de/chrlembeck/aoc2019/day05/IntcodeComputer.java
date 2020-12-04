@@ -1,18 +1,17 @@
 package de.chrlembeck.aoc2019.day05;
 
 import java.math.BigInteger;
-import java.util.List;
 import java.util.function.Consumer;
 
 public class IntcodeComputer {
 
-    private List<BigInteger> program;
+    private IntcodeProgram program;
 
     private State state;
 
     private Thread calculator;
 
-    public IntcodeComputer(final List<BigInteger> program, final BigInteger... initialInput) {
+    public IntcodeComputer(IntcodeProgram program, final BigInteger... initialInput) {
         this.state = new State(initialInput);
         this.program = program;
     }
@@ -37,8 +36,12 @@ public class IntcodeComputer {
         calculator.start();
     }
 
-    public void waitForExit() throws InterruptedException{
-        calculator.join();
+    public void waitForExit() {
+        try {
+            calculator.join();
+        } catch (InterruptedException ie) {
+            throw new RuntimeException(ie);
+        }
     }
 
     public BigInteger getLastOutput() {

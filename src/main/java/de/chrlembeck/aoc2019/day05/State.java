@@ -12,6 +12,8 @@ public class State {
 
     private int progCount;
 
+    private int relativeBase;
+
     private Consumer<BigInteger> outputConsumer;
 
     private BigInteger lastOutput;
@@ -58,5 +60,13 @@ public class State {
 
     public BigInteger getLastOutput() {
         return lastOutput;
+    }
+
+    public void incRelativeBase(final int offset) {
+        this.relativeBase += offset;
+    }
+
+    public int getRelativeBase() {
+        return relativeBase;
     }
 }
