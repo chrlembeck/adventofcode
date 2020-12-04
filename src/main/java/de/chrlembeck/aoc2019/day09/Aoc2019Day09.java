@@ -16,18 +16,22 @@ public class Aoc2019Day09 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        IntcodeProgram program = Aoc2019Day02.readProgram(input);
-        final SingleOutputConsumer outputConsumer = new SingleOutputConsumer();
-        final IntcodeComputer computer = new IntcodeComputer(program, BigInteger.ONE);
-        computer.setOutputConsumer(outputConsumer);
-        computer.startCalculation();
-        computer.waitForExit();
-        return outputConsumer.getOutput();
+        return runProgramm(input, BigInteger.ONE);
     }
 
     @Override
     public Object part2(final Scanner input) {
-        return "";
+        return runProgramm(input, BigInteger.TWO);
+    }
+
+    private BigInteger runProgramm(Scanner input, BigInteger value) {
+        IntcodeProgram program = Aoc2019Day02.readProgram(input);
+        final SingleOutputConsumer outputConsumer = new SingleOutputConsumer();
+        final IntcodeComputer computer = new IntcodeComputer(program, value);
+        computer.setOutputConsumer(outputConsumer);
+        computer.startCalculation();
+        computer.waitForExit();
+        return outputConsumer.getOutput();
     }
 
     @Override
