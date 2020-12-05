@@ -11,7 +11,7 @@ public class IntcodeComputer {
 
     private Thread calculator;
 
-    public IntcodeComputer(IntcodeProgram program, final BigInteger... initialInput) {
+    public IntcodeComputer(final IntcodeProgram program, final BigInteger... initialInput) {
         this.state = new State(initialInput);
         this.program = program;
     }

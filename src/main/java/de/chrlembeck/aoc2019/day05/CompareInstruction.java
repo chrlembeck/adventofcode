@@ -15,7 +15,7 @@ public class CompareInstruction extends AbstractInstruction {
     @Override
     public final void exec(final IntcodeProgram program, final State state) {
         final BigInteger operand3 = program.get(state.getProgCount() + 3);
-        BigInteger result = predicate.test(getAndEvaluateOperand1(), getAndEvaluateOperand2()) ?            BigInteger.ONE: BigInteger.ZERO;
+        final BigInteger result = predicate.test(getAndEvaluateOperand1(), getAndEvaluateOperand2()) ?            BigInteger.ONE: BigInteger.ZERO;
 
         switch(getThirdParameter()) {
             case PARAMETER_POSITION_MODE:

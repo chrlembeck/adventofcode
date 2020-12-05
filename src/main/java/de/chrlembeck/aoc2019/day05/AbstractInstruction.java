@@ -4,6 +4,12 @@ import java.math.BigInteger;
 
 public abstract class AbstractInstruction {
 
+    protected static final int PARAMETER_POSITION_MODE = 0;
+
+    protected static final int PARAMETER_IMMIDIATE_MODE = 1;
+
+    protected static final int PARAMETER_RELATIVE_MODE = 2;
+
     private final State state;
 
     private final IntcodeProgram program;
@@ -73,14 +79,8 @@ public abstract class AbstractInstruction {
 
     public abstract void exec(final IntcodeProgram program, final State state);
 
-    protected static final int PARAMETER_POSITION_MODE = 0;
-
-    protected static final int PARAMETER_IMMIDIATE_MODE = 1;
-
-    protected static final int PARAMETER_RELATIVE_MODE = 2;
-
     public BigInteger getAndEvaluateOperand1() {
-        BigInteger operand1 = program.get(state.getProgCount() + 1);
+        final BigInteger operand1 = program.get(state.getProgCount() + 1);
         switch(getFirstParameter()) {
             case PARAMETER_IMMIDIATE_MODE:
                 return operand1;
@@ -94,7 +94,7 @@ public abstract class AbstractInstruction {
     }
 
     public BigInteger getAndEvaluateOperand2() {
-        BigInteger operand2 = program.get(state.getProgCount() + 2);
+        final BigInteger operand2 = program.get(state.getProgCount() + 2);
         switch(getSecondParameter()) {
             case PARAMETER_IMMIDIATE_MODE:
                 return operand2;

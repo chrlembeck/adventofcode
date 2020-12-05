@@ -24,8 +24,8 @@ public class Aoc2019Day09 extends AbstractAocBase {
         return runProgramm(input, BigInteger.TWO);
     }
 
-    private BigInteger runProgramm(Scanner input, BigInteger value) {
-        IntcodeProgram program = Aoc2019Day02.readProgram(input);
+    private BigInteger runProgramm(final Scanner input, final BigInteger value) {
+        final IntcodeProgram program = Aoc2019Day02.readProgram(input);
         final SingleOutputConsumer outputConsumer = new SingleOutputConsumer();
         final IntcodeComputer computer = new IntcodeComputer(program, value);
         computer.setOutputConsumer(outputConsumer);

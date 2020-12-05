@@ -8,7 +8,7 @@ public class ArithmeticInstruction extends AbstractInstruction {
 
     private final BiFunction<BigInteger, BigInteger, BigInteger> function;
 
-    ArithmeticInstruction(IntcodeProgram program, final State state, final BiFunction<BigInteger, BigInteger, BigInteger> function) {
+    ArithmeticInstruction(final IntcodeProgram program, final State state, final BiFunction<BigInteger, BigInteger, BigInteger> function) {
         super(program, state);
         this.function = Objects.requireNonNull(function);
     }
