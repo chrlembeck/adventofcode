@@ -15,48 +15,20 @@ public class Position {
     }
 
     public Position forward() {
-        switch (direction) {
-            case UP:
-                return new Position(posX, posY - 1, direction);
-            case DOWN:
-                return new Position(posX, posY + 1, direction);
-            case LEFT:
-                return new Position(posX - 1, posY, direction);
-            case RIGHT:
-                return new Position(posX + 1, posY, direction);
-            default:
-                throw new IllegalStateException();
-        }
+        return switch (direction) {
+            case UP -> new Position(posX, posY - 1, direction);
+            case DOWN -> new Position(posX, posY + 1, direction);
+            case LEFT -> new Position(posX - 1, posY, direction);
+            case RIGHT -> new Position(posX + 1, posY, direction);
+        };
     }
 
     public Position left() {
-        switch (direction) {
-            case UP:
-                return new Position(posX, posY, Direction.LEFT);
-            case DOWN:
-                return new Position(posX, posY, Direction.RIGHT);
-            case LEFT:
-                return new Position(posX, posY, Direction.DOWN);
-            case RIGHT:
-                return new Position(posX, posY, Direction.UP);
-            default:
-                throw new IllegalStateException();
-        }
+        return new Position(posX, posY, direction.left());
     }
 
     public Position right() {
-        switch (direction) {
-            case UP:
-                return new Position(posX, posY, Direction.RIGHT);
-            case DOWN:
-                return new Position(posX, posY, Direction.LEFT);
-            case LEFT:
-                return new Position(posX, posY, Direction.UP);
-            case RIGHT:
-                return new Position(posX, posY, Direction.DOWN);
-            default:
-                throw new IllegalStateException();
-        }
+        return  new Position(posX, posY, direction.right());
     }
 
     public int getPosX() {
