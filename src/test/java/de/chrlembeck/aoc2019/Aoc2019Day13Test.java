@@ -11,16 +11,12 @@ public class Aoc2019Day13Test {
     @Test
     public void test1() {
         final Aoc2019Day13 day = new Aoc2019Day13();
-        assertEquals("", test("", day::part1));
-        assertEquals("", test("", day::part1));
-        assertEquals("", test(day.getInput1(), day::part1));
+        assertEquals("304", test(day.getInput1(), day::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2019Day13 day = new Aoc2019Day13();
-        assertEquals("", test("", day::part2));
-        assertEquals("", test("", day::part2));
-        assertEquals("", test(day.getInput2(), day::part2));
+        assertEquals("14747", test(day.getInput2(), day::part2));
     }
 }
