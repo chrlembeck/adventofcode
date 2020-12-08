@@ -28,4 +28,12 @@ public final class LangUtils {
         }
         return lcm(firstNumber, lcm(moreNumbers[moreNumbers.length - 1], Arrays.copyOf(moreNumbers, moreNumbers.length - 1)));
     }
+
+    public static Integer min(int first, int... others) {
+        int result = first;
+        for (int i = 0; i < others.length; i++) {
+            result = Math.min(result, others[i]);
+        }
+        return result;
+    }
 }
