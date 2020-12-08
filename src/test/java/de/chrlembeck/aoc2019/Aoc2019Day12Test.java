@@ -11,7 +11,7 @@ public class Aoc2019Day12Test {
     @Test
     public void test1() {
         final Aoc2019Day12 day = new Aoc2019Day12();
-        assertEquals("13045", test(day.getInput1(), day::part1));
+        assertEquals("6220", test(day.getInput1(), day::part1));
     }
 
     @Test
@@ -27,6 +27,6 @@ public class Aoc2019Day12Test {
                                         <x=5, y=5, z=10>
                                         <x=2, y=-7, z=3>
                                         <x=9, y=-8, z=-3>""", day::part2));
-        assertEquals("344724687853944", test(day.getInput2(), day::part2));
+        assertEquals("548525804273976", test(day.getInput2(), day::part2));
     }
 }
