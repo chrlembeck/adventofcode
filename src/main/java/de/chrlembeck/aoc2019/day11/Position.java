@@ -51,4 +51,20 @@ public class Position implements Comparable<Position> {
     public String toString() {
         return "(" + xPos + "; " + yPos + ")";
     }
+
+    public Position leftNeighbour() {
+        return new Position(xPos - 1, yPos);
+    }
+
+    public Position rightNeighbour() {
+        return new Position(xPos + 1, yPos);
+    }
+
+    public Position topNeighbour() {
+        return new Position(xPos, yPos - 1);
+    }
+
+    public Position bottomNeighbour() {
+        return new Position(xPos, yPos + 1);
+    }
 }

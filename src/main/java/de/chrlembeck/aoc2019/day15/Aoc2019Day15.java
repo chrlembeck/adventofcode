@@ -25,7 +25,13 @@ public class Aoc2019Day15 extends AbstractAocBase {
 
     @Override
     public Object part2(final Scanner input) {
-        return "";
+        final IntcodeProgram program = Aoc2019Day02.readProgram(input);
+        final IntcodeComputer computer = new IntcodeComputer(program);
+        final TargetFinder finder = new TargetFinder(computer.getInputConsumer());
+        computer.setOutputConsumer(finder);
+        computer.startCalculation();
+        finder.readFully();
+        return finder.getOxygenFillTime();
     }
 
     @Override
