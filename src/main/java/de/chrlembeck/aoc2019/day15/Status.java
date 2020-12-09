@@ -5,7 +5,7 @@ public enum Status {
     EMPTY,
     OXYGEN_SYSTEM;
 
-    public static Status fromResult(int result) {
+    public static Status fromResult(final int result) {
         return switch (result) {
             case 0 -> WALL;
             case 1 -> EMPTY;

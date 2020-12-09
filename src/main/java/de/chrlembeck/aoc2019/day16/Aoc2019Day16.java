@@ -13,7 +13,7 @@ public class Aoc2019Day16 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        String line = input.nextLine();
+        final String line = input.nextLine();
         int[] digits = toArray(line);
         for (int i = 0; i < 100; i++) {
             digits = fft(digits);
@@ -23,9 +23,9 @@ public class Aoc2019Day16 extends AbstractAocBase {
 
     @Override
     public Object part2(final Scanner input) {
-        String line = input.nextLine();
-        int offset = Integer.parseInt(line.substring(0, 7));
-        int[] digits = toArray(line);
+        final String line = input.nextLine();
+        final int offset = Integer.parseInt(line.substring(0, 7));
+        final int[] digits = toArray(line);
         int[] tail = new int[digits.length * 10_000 - offset];
         System.arraycopy(digits, offset % digits.length, tail, 0, digits.length - offset % digits.length);
         for (int i = 1; i <= tail.length / digits.length; i++) {
@@ -46,15 +46,15 @@ public class Aoc2019Day16 extends AbstractAocBase {
     }
 
     private String first8ToString(final int[] array) {
-        final StringBuilder sb = new StringBuilder();
+        final StringBuilder output = new StringBuilder();
         for (int i = 0; i < 8; i++) {
-            sb.append(array[i]);
+            output.append(array[i]);
         }
-        return sb.toString();
+        return output.toString();
     }
 
-    private int[] fft(int[] digits) {
-        int[] result = new int[digits.length];
+    private int[] fft(final int[] digits) {
+        final int[] result = new int[digits.length];
         for (int round = 0; round < digits.length; round++) {
             int digit = 0;
             for (int i = 0; i < digits.length; i++) {
@@ -65,8 +65,8 @@ public class Aoc2019Day16 extends AbstractAocBase {
         return result;
     }
 
-    private int[] fft2(int[] digits) {
-        int[] result = new int[digits.length];
+    private int[] fft2(final int[] digits) {
+        final int[] result = new int[digits.length];
         int sum = 0;
         for (int round = digits.length - 1; round >= 0; round--) {
             sum = (sum + digits[round]) % 10;

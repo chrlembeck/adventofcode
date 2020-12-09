@@ -35,23 +35,23 @@ public class TargetFinder implements Consumer<BigInteger> {
         return distanceMap.get(oxygenModulePosition);
     }
 
-    public TargetFinder(Consumer<BigInteger> inputConsumer) {
+    public TargetFinder(final Consumer<BigInteger> inputConsumer) {
         this.input = inputConsumer;
         distanceMap.put(currentPosition, 0);
         area.put(currentPosition, Status.EMPTY);
     }
 
     @Override
-    public void accept(BigInteger result) {
+    public void accept(final BigInteger result) {
         outputQueue.add(result);
     }
 
     public void readFully() {
-        Queue<Position> positionsToCheck = new LinkedList<>();
+        final Queue<Position> positionsToCheck = new LinkedList<>();
         Status state;
         positionsToCheck.add(currentPosition);
         while (!positionsToCheck.isEmpty()) {
-            Position posToCheck = positionsToCheck.poll();
+            final Position posToCheck = positionsToCheck.poll();
             state = checkPosition(posToCheck);
             area.put(posToCheck, state);
             if ((state == Status.EMPTY || state == Status.OXYGEN_SYSTEM)) {
@@ -59,10 +59,10 @@ public class TargetFinder implements Consumer<BigInteger> {
                 if (state == Status.OXYGEN_SYSTEM) {
                     oxygenModulePosition = posToCheck;
                 }
-                Position left = posToCheck.leftNeighbour();
-                Position right = posToCheck.rightNeighbour();
-                Position top = posToCheck.topNeighbour();
-                Position bottom = posToCheck.bottomNeighbour();
+                final Position left = posToCheck.leftNeighbour();
+                final Position right = posToCheck.rightNeighbour();
+                final Position top = posToCheck.topNeighbour();
+                final Position bottom = posToCheck.bottomNeighbour();
                 if (area.get(left) == null) {
                     positionsToCheck.add(left);
                 }
@@ -80,17 +80,17 @@ public class TargetFinder implements Consumer<BigInteger> {
         input.accept(BigInteger.ZERO); // stop program
     }
 
-    private void addDistance(Position position) {
+    private void addDistance(final Position position) {
         if (distanceMap.get(position) == null) {
-            int left = LangUtils.isNull(distanceMap.get(position.leftNeighbour()), Integer.MAX_VALUE);
-            int right = LangUtils.isNull(distanceMap.get(position.rightNeighbour()), Integer.MAX_VALUE);
-            int top = LangUtils.isNull(distanceMap.get(position.topNeighbour()), Integer.MAX_VALUE);
-            int bottom = LangUtils.isNull(distanceMap.get(position.bottomNeighbour()), Integer.MAX_VALUE);
+            final int left = LangUtils.isNull(distanceMap.get(position.leftNeighbour()), Integer.MAX_VALUE);
+            final int right = LangUtils.isNull(distanceMap.get(position.rightNeighbour()), Integer.MAX_VALUE);
+            final int top = LangUtils.isNull(distanceMap.get(position.topNeighbour()), Integer.MAX_VALUE);
+            final int bottom = LangUtils.isNull(distanceMap.get(position.bottomNeighbour()), Integer.MAX_VALUE);
             distanceMap.put(position, 1 + LangUtils.min(left, right, top, bottom));
         }
     }
 
-    private Status checkPosition(Position posToCheck) {
+    private Status checkPosition(final Position posToCheck) {
         if (area.containsKey(posToCheck)) {
             return area.get(posToCheck);
         }
@@ -107,27 +107,24 @@ public class TargetFinder implements Consumer<BigInteger> {
             return move(NORTH);
         }
 
-        Stack<Integer> path = new Stack<>();
-        Set<Position> visited = new TreeSet<>();
+        final Stack<Integer> path = new Stack<>();
+        final Set<Position> visited = new TreeSet<>();
         if (!findPath(currentPosition, posToCheck, path, visited)) {
             throw new IllegalStateException("no path found from " + currentPosition + " to " + posToCheck);
         }
         Status result = null;
-        for (int direction : path) {
+        for (final int direction : path) {
             result = move(direction);
         }
         return result;
     }
 
-    private boolean findPath(Position cursor, Position target, Stack<Integer> path, Set<Position> visited) {
+    private boolean findPath(final Position cursor, final Position target, final Stack<Integer> path, final Set<Position> visited) {
         if (cursor.equals(target)) {
             return true;
         }
         visited.add(cursor);
-        Position left = cursor.leftNeighbour();
-        Position right = cursor.rightNeighbour();
-        Position top = cursor.topNeighbour();
-        Position bottom = cursor.bottomNeighbour();
+        final Position left = cursor.leftNeighbour();
         if ((left.equals(target) || isKnownAndFree(left)) && !visited.contains(left)) {
             path.push(WEST);
             if (findPath(left, target, path, visited)) {
@@ -135,6 +132,7 @@ public class TargetFinder implements Consumer<BigInteger> {
             }
             path.pop();
         }
+        final Position right = cursor.rightNeighbour();
         if ((right.equals(target) || isKnownAndFree(right)) && !visited.contains(right)) {
             path.push(EAST);
             if (findPath(right, target, path, visited)) {
@@ -142,6 +140,7 @@ public class TargetFinder implements Consumer<BigInteger> {
             }
             path.pop();
         }
+        final Position top = cursor.topNeighbour();
         if ((top.equals(target) || isKnownAndFree(top)) && !visited.contains(top)) {
             path.push(NORTH);
             if (findPath(top, target, path, visited)) {
@@ -149,6 +148,7 @@ public class TargetFinder implements Consumer<BigInteger> {
             }
             path.pop();
         }
+        final Position bottom = cursor.bottomNeighbour();
         if ((bottom.equals(target) || isKnownAndFree(bottom)) && !visited.contains(bottom)) {
             path.push(SOUTH);
             if (findPath(bottom, target, path, visited)) {
@@ -159,15 +159,15 @@ public class TargetFinder implements Consumer<BigInteger> {
         return false;
     }
 
-    private boolean isKnownAndFree(Position pos) {
-        Status state = area.get(pos);
+    private boolean isKnownAndFree(final Position pos) {
+        final Status state = area.get(pos);
         return state != null && state != Status.WALL;
     }
 
-    public Status move(int direction) {
+    public Status move(final int direction) {
         input.accept(BigInteger.valueOf(direction));
         try {
-            int result = outputQueue.take().intValueExact();
+            final int result = outputQueue.take().intValueExact();
             if (result == 1 || result == 2) {
                 currentPosition = switch (direction) {
                     case NORTH -> currentPosition.topNeighbour();
@@ -185,27 +185,27 @@ public class TargetFinder implements Consumer<BigInteger> {
 
     public int getOxygenFillTime() {
         int time = -1;
-        Set<Position> spaceToFill = area.entrySet().stream().filter(e -> e.getValue().equals(Status.EMPTY)).map(Map.Entry::getKey).collect(Collectors.toSet());
+        final Set<Position> spaceToFill = area.entrySet().stream().filter(e -> e.getValue().equals(Status.EMPTY)).map(Map.Entry::getKey).collect(Collectors.toSet());
         List<Position> currentMinuteSpace = new ArrayList<>();
         currentMinuteSpace.add(oxygenModulePosition);
         while (!spaceToFill.isEmpty()) {
             time++;
-            List<Position> nextMinute = new ArrayList<>();
-            for (Position pos: currentMinuteSpace) {
+            final List<Position> nextMinute = new ArrayList<>();
+            for (final Position pos: currentMinuteSpace) {
                 spaceToFill.remove(pos);
-                Position left = pos.leftNeighbour();
-                Position right = pos.rightNeighbour();
-                Position top = pos.topNeighbour();
-                Position bottom = pos.bottomNeighbour();
+                final Position left = pos.leftNeighbour();
                 if (spaceToFill.contains(left)) {
                     nextMinute.add(left);
                 }
+                final Position right = pos.rightNeighbour();
                 if (spaceToFill.contains(right)) {
                     nextMinute.add(right);
                 }
+                final Position top = pos.topNeighbour();
                 if (spaceToFill.contains(top)) {
                     nextMinute.add(top);
                 }
+                final Position bottom = pos.bottomNeighbour();
                 if (spaceToFill.contains(bottom)) {
                     nextMinute.add(bottom);
                 }
