@@ -1,8 +1,7 @@
 package de.chrlembeck.aoc2017.day17;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
+import java.util.Scanner;
 
 public class Aoc2017Day17 extends AbstractAocBase {
 
@@ -31,7 +30,7 @@ public class Aoc2017Day17 extends AbstractAocBase {
         final int steps = Integer.parseInt(input.nextLine());
         int pos = 0;
         int result = 0;
-        for (int i = 1; i <= 50000000; i++) {
+        for (int i = 1; i <= 50_000_000; i++) {
             pos = (pos + steps) % i;
             if (pos == 0) {
                 result = i;

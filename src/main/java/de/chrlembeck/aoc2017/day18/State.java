@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 public class State {
 
-    private int programId;
+    private final int programId;
 
     private State otherState;
 
@@ -16,7 +16,7 @@ public class State {
 
     private BigInteger sentCount = BigInteger.ZERO;
 
-    private Map<String, BigInteger> register = new TreeMap<>();
+    private final Map<String, BigInteger> register = new TreeMap<>();
 
     private BigInteger currentSound;
 
@@ -24,7 +24,7 @@ public class State {
 
     private BigInteger recoveredSound;
 
-    private Queue<BigInteger> queue = new LinkedList<>();
+    private final Queue<BigInteger> queue = new LinkedList<>();
 
     private int mulInstructionCount;
 
@@ -106,8 +106,7 @@ public class State {
     }
 
     public BigInteger receiveValue() {
-        final BigInteger value = queue.isEmpty() ? null : queue.poll();
-        return value;
+        return queue.isEmpty() ? null : queue.poll();
     }
 
     public void countMulInstruction() {

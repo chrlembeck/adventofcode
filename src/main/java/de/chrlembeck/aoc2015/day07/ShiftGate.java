@@ -8,11 +8,11 @@ public class ShiftGate implements Gate {
 
     public final static Pattern SHIFT = Pattern.compile("(\\w*)\\ (LSHIFT|RSHIFT)\\ (\\w+)\\ ->\\ ([a-z]*)");
 
-    private boolean leftShift;
+    private final boolean leftShift;
 
-    private Gate right;
+    private final Gate right;
 
-    private Gate left;
+    private final Gate left;
 
     public ShiftGate(final Gate left, final Gate right, final boolean leftShift) {
         this.right = right;
@@ -36,8 +36,7 @@ public class ShiftGate implements Gate {
     public int execute(final Map<String, Gate> program) {
         final int leftValue = left.execute(program);
         final int rightValue = right.execute(program);
-        final int value = leftShift ? ((leftValue << rightValue) & 0xffff) : ((leftValue >> rightValue) & 0xffff);
-        return value;
+        return leftShift ? ((leftValue << rightValue) & 0xffff) : ((leftValue >> rightValue) & 0xffff);
     }
 
     @Override

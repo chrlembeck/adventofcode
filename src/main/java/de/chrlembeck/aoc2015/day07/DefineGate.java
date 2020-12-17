@@ -8,7 +8,7 @@ public class DefineGate implements Gate {
 
     public static final Pattern DEFINE = Pattern.compile("(\\w+)\\ ->\\ ([a-z]*)");
 
-    private String varName;
+    private final String varName;
 
     public DefineGate(final String varName) {
         this.varName = varName;

@@ -1,16 +1,15 @@
 package de.chrlembeck.aoc2017.day13;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.chrlembeck.aoccommon.AbstractAocBase;
-
 public class Aoc2017Day13 extends AbstractAocBase {
 
-    Pattern regex = Pattern.compile("(\\d+):\\s*(\\d+)");
+    private static final Pattern REGEX = Pattern.compile("(\\d+):\\s*(\\d+)");
 
     public static void main(final String[] args) {
         new Aoc2017Day13().run();
@@ -51,7 +50,7 @@ public class Aoc2017Day13 extends AbstractAocBase {
     private Map<Integer, Integer> createMap(final Scanner input) {
         final Map<Integer, Integer> map = new TreeMap<>();
         while (input.hasNextLine()) {
-            final Matcher matcher = regex.matcher(input.nextLine());
+            final Matcher matcher = REGEX.matcher(input.nextLine());
             if (matcher.matches()) {
                 map.put(Integer.valueOf(matcher.group(1)), Integer.valueOf(matcher.group(2)));
             }

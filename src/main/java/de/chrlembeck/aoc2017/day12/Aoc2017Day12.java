@@ -1,24 +1,14 @@
 package de.chrlembeck.aoc2017.day12;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import de.chrlembeck.aoccommon.AbstractAocBase;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import de.chrlembeck.aoccommon.AbstractAocBase;
-
 public class Aoc2017Day12 extends AbstractAocBase {
 
-    Pattern regex = Pattern.compile("(\\d+)\\s*<->\\s*([\\s,\\d]+)");
+    private static final Pattern REGEX = Pattern.compile("(\\d+)\\s*<->\\s*([\\s,\\d]+)");
 
     public static void main(final String[] args) {
         new Aoc2017Day12().run();
@@ -40,7 +30,7 @@ public class Aoc2017Day12 extends AbstractAocBase {
     }
 
     private Set<Integer> collectGroup(final Map<Integer, Set<Integer>> map, final Integer start) {
-        final Set<Integer> result = new TreeSet<Integer>();
+        final Set<Integer> result = new TreeSet<>();
         final Queue<Integer> queue = new LinkedList<>();
         queue.add(start);
         while (!queue.isEmpty()) {
@@ -56,7 +46,7 @@ public class Aoc2017Day12 extends AbstractAocBase {
         final Map<Integer, Set<Integer>> map = new TreeMap<>();
         while (input.hasNextLine()) {
             final String line = input.nextLine();
-            final Matcher matcher = regex.matcher(line);
+            final Matcher matcher = REGEX.matcher(line);
             if (matcher.matches()) {
                 final Integer processId = Integer.valueOf(matcher.group(1));
                 final String rhs = matcher.group(2).trim();

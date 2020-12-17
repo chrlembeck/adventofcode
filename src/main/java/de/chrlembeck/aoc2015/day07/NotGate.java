@@ -8,7 +8,7 @@ public class NotGate implements Gate {
 
     public static final Pattern NOT = Pattern.compile("NOT\\ ([a-z]*)\\ ->\\ ([a-z]*)");
 
-    private Gate operand;
+    private final Gate operand;
 
     public NotGate(final Gate operand) {
         this.operand = operand;

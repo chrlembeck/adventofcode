@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class Constant implements Gate {
 
-    private int value;
+    private final int value;
 
     public Constant(final int value) {
         this.value = value;

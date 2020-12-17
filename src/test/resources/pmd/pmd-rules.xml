@@ -3,9 +3,45 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
     <description>
-        PMD-Regeln für Sourcen innerhalb von chrlembeck.de
+        PMD-Regeln für das Advent of Code Projekt
     </description>
-    <rule ref="rulesets/java/basic.xml" />
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="AvoidReassigningParameters"/>
+        <exclude name="SystemPrintln"/>
+        <exclude name="AvoidReassigningLoopVariables"/>
+    </rule>
+    <rule ref="category/java/codestyle.xml" >
+        <exclude name="UselessParentheses"/>
+        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="CommentDefaultAccessModifier"/>
+        <exclude name="LongVariable"/>
+        <exclude name="OnlyOneReturn"/>
+    </rule>
+    <rule ref="category/java/design.xml">
+        <exclude name="AvoidThrowingRawExceptionTypes"/>
+        <exclude name="LawOfDemeter"/>
+        <exclude name="CyclomaticComplexity"/>
+        <exclude name="NPathComplexity"/>
+        <exclude name="ExcessiveParameterList"/>
+        <exclude name="DataClass"/>
+    </rule>
+    <rule ref="category/java/documentation.xml" >
+        <exclude name="CommentRequired"/>
+        <exclude name="CommentSize"/>
+    </rule>
+    <rule ref="category/java/errorprone.xml" >
+        <exclude name="AvoidLiteralsInIfCondition"/>
+        <exclude name="BeanMembersShouldSerialize"/>
+        <exclude name="AssignmentInOperand"/>
+    </rule>
+    <rule ref="category/java/multithreading.xml" >
+        <exclude name="UseConcurrentHashMap"/>
+    </rule>
+    <rule ref="category/java/performance.xml" >
+        <exclude name="AvoidInstantiatingObjectsInLoops"/>
+    </rule>
+    <rule ref="category/java/security.xml" />
+<!--    <rule ref="rulesets/java/basic.xml" />
     <rule ref="rulesets/java/empty.xml" />
     <rule ref="rulesets/java/imports.xml" />
     <rule ref="rulesets/java/unnecessary.xml">
@@ -29,5 +65,5 @@
         <exclude name="UseStringBufferForStringAppends" />
         <exclude name="AvoidInstantiatingObjectsInLoops" />
     </rule>
-    <rule ref="rulesets/java/sunsecure.xml" />
+    <rule ref="rulesets/java/sunsecure.xml" />-->
 </ruleset>

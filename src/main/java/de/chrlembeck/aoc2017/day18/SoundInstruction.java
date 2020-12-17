@@ -2,7 +2,7 @@ package de.chrlembeck.aoc2017.day18;
 
 public class SoundInstruction implements Instruction {
 
-    private String varName;
+    private final String varName;
 
     public SoundInstruction(final String varName) {
         this.varName = varName;

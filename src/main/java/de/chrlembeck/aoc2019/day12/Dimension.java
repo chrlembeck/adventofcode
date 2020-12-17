@@ -1,6 +1,6 @@
 package de.chrlembeck.aoc2019.day12;
 
-public class Dimension {
+public class Dimension implements Cloneable {
 
     private long pos;
 
@@ -42,6 +42,13 @@ public class Dimension {
     }
 
     public Dimension clone() {
-        return new Dimension(pos, velocity);
+        try {
+            Dimension clone = (Dimension) super.clone();
+            clone.pos = this.pos;
+            clone.velocity = this.velocity;
+            return clone;
+        } catch (CloneNotSupportedException cnse) {
+            throw new RuntimeException(cnse);
+        }
     }
 }

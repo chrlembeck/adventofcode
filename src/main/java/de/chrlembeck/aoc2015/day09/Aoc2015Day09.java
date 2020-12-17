@@ -1,20 +1,15 @@
 package de.chrlembeck.aoc2015.day09;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+import de.chrlembeck.aoccommon.AbstractAocBase;
+import de.chrlembeck.aoccommon.Permutation;
+import java.util.*;
 import java.util.function.IntBinaryOperator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.chrlembeck.aoccommon.AbstractAocBase;
-import de.chrlembeck.aoccommon.Permutation;
-
 public class Aoc2015Day09 extends AbstractAocBase {
 
-    Pattern regex = Pattern.compile("(\\w+) to (\\w+) = (\\d+)");
+    public final static Pattern REGEX = Pattern.compile("(\\w+) to (\\w+) = (\\d+)");
 
     public static void main(final String[] args) {
         new Aoc2015Day09().run();
@@ -34,7 +29,7 @@ public class Aoc2015Day09 extends AbstractAocBase {
         final Map<String, Map<String, Integer>> map = new HashMap<>();
         final Set<String> names = new TreeSet<>();
         while (input.hasNextLine()) {
-            final Matcher matcher = matchRegex(regex, input.nextLine());
+            final Matcher matcher = matchRegex(REGEX, input.nextLine());
             final String src = matcher.group(1);
             final String dest = matcher.group(2);
             final Integer dist = Integer.parseInt(matcher.group(3));
@@ -59,11 +54,7 @@ public class Aoc2015Day09 extends AbstractAocBase {
 
     public static <K1, K2, V> void putMapValue(final Map<K1, Map<K2, V>> map, final K1 key1, final K2 key2,
             final V value) {
-        Map<K2, V> tmp = map.get(key1);
-        if (tmp == null) {
-            map.put(key1, tmp = new HashMap<>());
-        }
-        tmp.put(key2, value);
+        map.computeIfAbsent(key1, key -> new HashMap<>()).put(key2, value);
     }
 
     @Override

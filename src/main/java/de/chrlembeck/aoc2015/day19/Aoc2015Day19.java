@@ -1,19 +1,14 @@
 package de.chrlembeck.aoc2015.day19;
 
-import java.util.Map;
+import de.chrlembeck.aoccommon.AbstractAocBase;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.chrlembeck.aoccommon.AbstractAocBase;
-
 public class Aoc2015Day19 extends AbstractAocBase {
 
-    Pattern regex = Pattern.compile("(\\w+) => (\\w+)");
+    public static final Pattern REGEX = Pattern.compile("(\\w+) => (\\w+)");
 
     public static void main(final String[] args) {
         new Aoc2015Day19().run();
@@ -43,7 +38,7 @@ public class Aoc2015Day19 extends AbstractAocBase {
             if (line.length() == 0) {
                 break;
             }
-            final Matcher matcher = matchRegex(regex, line);
+            final Matcher matcher = matchRegex(REGEX, line);
             reverseMap.put(reverse(matcher.group(2)), reverse(matcher.group(1)));
         }
         return reverseMap;

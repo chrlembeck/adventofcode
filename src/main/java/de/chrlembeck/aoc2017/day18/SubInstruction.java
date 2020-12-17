@@ -4,9 +4,9 @@ import java.math.BigInteger;
 
 public class SubInstruction implements Instruction {
 
-    private String varName;
+    private final String varName;
 
-    private Token subtrahend;
+    private final Token subtrahend;
 
     public SubInstruction(final String varName, final String value) {
         this.varName = varName;

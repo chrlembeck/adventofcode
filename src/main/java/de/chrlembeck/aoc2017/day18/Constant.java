@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class Constant implements Token {
 
-    private BigInteger value;
+    private final BigInteger value;
 
     public Constant(final BigInteger value) {
         this.value = value;

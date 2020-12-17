@@ -3,9 +3,9 @@ package de.chrlembeck.aoc2019.day05;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class IntcodeProgram {
+public class IntcodeProgram implements Cloneable {
 
-    private final ArrayList<BigInteger> memory;
+    private ArrayList<BigInteger> memory;
 
     public IntcodeProgram(final ArrayList<BigInteger> list) {
         memory = new ArrayList<>(list);
@@ -31,6 +31,12 @@ public class IntcodeProgram {
 
     @Override
     public IntcodeProgram clone() {
-        return new IntcodeProgram(memory);
+        try {
+            IntcodeProgram clone = (IntcodeProgram) super.clone();
+            clone.memory = new ArrayList<>(this.memory);
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

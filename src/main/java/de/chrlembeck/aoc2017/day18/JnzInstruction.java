@@ -4,9 +4,9 @@ import java.math.BigInteger;
 
 public class JnzInstruction implements Instruction {
 
-    private Token condition;
+    private final Token condition;
 
-    private Token offset;
+    private final Token offset;
 
     public JnzInstruction(final String cond, final String offs) {
         this.condition = Aoc2017Day18.createToken(cond);

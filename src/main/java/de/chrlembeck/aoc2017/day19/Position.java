@@ -2,11 +2,11 @@ package de.chrlembeck.aoc2017.day19;
 
 public class Position {
 
-    int posX;
+    private final int posX;
 
-    int posY;
+    private final int posY;
 
-    Direction direction;
+    private final Direction direction;
 
     public Position(final int posX, final int posY, final Direction direction) {
         this.posX = posX;

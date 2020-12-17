@@ -2,7 +2,7 @@ package de.chrlembeck.aoc2017.day18;
 
 public class SendInstruction implements Instruction {
 
-    private Token token;
+    private final Token token;
 
     public SendInstruction(final String value) {
         token = Aoc2017Day18.createToken(value);

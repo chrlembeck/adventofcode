@@ -1,13 +1,12 @@
 package de.chrlembeck.aoc2017.day18;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import de.chrlembeck.aoccommon.AbstractAocBase;
 
 public class Aoc2017Day18 extends AbstractAocBase {
 
@@ -44,7 +43,7 @@ public class Aoc2017Day18 extends AbstractAocBase {
     }
 
     public static List<Instruction> loadProgram(final Scanner input, final int part) {
-        final List<Instruction> program = new ArrayList<Instruction>();
+        final List<Instruction> program = new ArrayList<>();
         while (input.hasNextLine()) {
             program.add(createInstruction(matchRegex(REGEX, input.nextLine()), part));
         }

@@ -43,8 +43,8 @@ public class Aoc2015Day11 extends AbstractAocBase {
     }
 
     public boolean valid(final char[] password) {
-        for (int i = 0; i < password.length; i++) {
-            if (password[i] == 'i' || password[i] == 'o' || password[i] == 'l') {
+        for (final char character : password) {
+            if (character == 'i' || character == 'o' || character == 'l') {
                 return false;
             }
         }

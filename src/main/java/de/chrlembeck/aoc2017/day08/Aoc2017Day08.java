@@ -12,16 +12,15 @@ import static de.chrlembeck.aoccommon.LangUtils.isNull;
 
 public class Aoc2017Day08 extends AbstractAocBase {
 
-    static Pattern regex = Pattern
-            .compile(
-                    "([a-z]+)\\s+([a-z]+)\\s+(\\-?[0-9]+)\\s+if\\s+([a-z]+)\\s+(<|>|!=|==|<=|>=)\\s+((\\-?[0-9]+))");
+    private static final Pattern REGEX = Pattern
+            .compile("([a-z]+)\\s+([a-z]+)\\s+(\\-?[0-9]+)\\s+if\\s+([a-z]+)\\s+(<|>|!=|==|<=|>=)\\s+((\\-?[0-9]+))");
 
     public Result<Integer> calc(final Scanner input) {
         final Map<String, Integer> register = new HashMap<>();
         int maxTotal = Integer.MIN_VALUE;
         while (input.hasNextLine()) {
             final String line = input.nextLine();
-            final Matcher matcher = regex.matcher(line);
+            final Matcher matcher = REGEX.matcher(line);
             if (matcher.matches()) {
                 final String varName = matcher.group(1);
                 final String operation = matcher.group(2);

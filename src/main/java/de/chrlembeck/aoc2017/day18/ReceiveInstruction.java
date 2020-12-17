@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class ReceiveInstruction implements Instruction {
 
-    private String varName;
+    private final String varName;
 
     public ReceiveInstruction(final String value) {
         varName = value;

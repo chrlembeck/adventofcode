@@ -1,9 +1,8 @@
 package de.chrlembeck.aoc2017.day25;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
 import de.chrlembeck.util.collections.BidirectionalGrowingArray;
+import java.util.Scanner;
 
 public class Aoc2017Day25 extends AbstractAocBase {
 
@@ -37,7 +36,7 @@ public class Aoc2017Day25 extends AbstractAocBase {
             currentState = rule.nextState;
         }
         int checksum = 0;
-        for (final Integer element: array) {
+        for (final Integer element : array) {
             if (element.intValue() == 1) {
                 checksum++;
             }
@@ -63,7 +62,7 @@ public class Aoc2017Day25 extends AbstractAocBase {
         final Rule rule = new Rule();
         rule.condition = Integer.parseInt(matchRegex("  If the current value is (\\d+):", input.nextLine()).group(1));
         rule.valueToWrite = Integer.parseInt(matchRegex("    - Write the value (\\d+).", input.nextLine()).group(1));
-        rule.offset = matchRegex("    - Move one slot to the (right|left).", input.nextLine()).group(1).equalsIgnoreCase("left")?-1:1;
+        rule.offset = "left".equalsIgnoreCase(matchRegex("    - Move one slot to the (right|left).", input.nextLine()).group(1)) ? -1 : 1;
         rule.nextState = matchRegex("    - Continue with state ([A-Z]).", input.nextLine()).group(1).charAt(0);
         return rule;
     }
@@ -79,15 +78,22 @@ public class Aoc2017Day25 extends AbstractAocBase {
     }
 
     static class State {
-        char stateIdentifier;
-        Rule zeroRule;
-        Rule oneRule;
+
+        private char stateIdentifier;
+
+        private Rule zeroRule;
+
+        private Rule oneRule;
     }
 
     static class Rule {
-        int condition;
-        int valueToWrite;
-        int offset;
-        char nextState;
+
+        private int condition;
+
+        private int valueToWrite;
+
+        private int offset;
+
+        private char nextState;
     }
 }

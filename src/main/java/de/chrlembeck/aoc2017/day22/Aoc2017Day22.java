@@ -1,11 +1,10 @@
 package de.chrlembeck.aoc2017.day22;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoc2017.day19.Direction;
 import de.chrlembeck.aoc2017.day19.Position;
 import de.chrlembeck.aoccommon.AbstractAocBase;
 import de.chrlembeck.util.collections.BidirectionalGrowingArray;
+import java.util.Scanner;
 
 public class Aoc2017Day22 extends AbstractAocBase {
 
@@ -30,7 +29,7 @@ public class Aoc2017Day22 extends AbstractAocBase {
             }
             return pos.forward();
         };
-        return calc(input, 10000, virus);
+        return calc(input, 10_000, virus);
     }
 
     @Override
@@ -58,7 +57,7 @@ public class Aoc2017Day22 extends AbstractAocBase {
             }
             return pos.forward();
         };
-        return calc(input, 10000000, virus);
+        return calc(input, 10_000_000, virus);
     }
 
     public Integer calc(final Scanner input, final int iterations, final VirusFunction virusFunction) {

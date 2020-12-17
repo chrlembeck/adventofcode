@@ -4,9 +4,9 @@ import java.math.BigInteger;
 
 public class ModInstruction implements Instruction {
 
-    private Token modulus;
+    private final Token modulus;
 
-    private String varName;
+    private final String varName;
 
     public ModInstruction(final String varName, final String value) {
         this.varName = varName;

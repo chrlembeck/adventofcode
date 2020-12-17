@@ -1,15 +1,13 @@
 package de.chrlembeck.aoc2015.day06;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.chrlembeck.aoccommon.AbstractAocBase;
-
 public class Aoc2015Day06 extends AbstractAocBase {
-    // toggle 772,846 through 994,888
 
-    Pattern regex = Pattern.compile("(toggle|turn\\ on|turn\\ off)\\ (\\d+),(\\d+)\\ through\\ (\\d+),(\\d+)");
+    private final static Pattern REGEX = Pattern.compile("(toggle|turn\\ on|turn\\ off)\\ (\\d+),(\\d+)\\ through\\ (\\d+),(\\d+)");
 
     public static void main(final String[] args) {
         new Aoc2015Day06().run();
@@ -19,7 +17,7 @@ public class Aoc2015Day06 extends AbstractAocBase {
     public Integer part1(final Scanner input) {
         final boolean[][] lights = new boolean[1000][1000];
         while (input.hasNextLine()) {
-            final Matcher matcher = matchRegex(regex, input.nextLine());
+            final Matcher matcher = matchRegex(REGEX, input.nextLine());
             final String command = matcher.group(1);
             final int startX = Integer.parseInt(matcher.group(2));
             final int startY = Integer.parseInt(matcher.group(3));
@@ -58,7 +56,7 @@ public class Aoc2015Day06 extends AbstractAocBase {
     public Long part2(final Scanner input) {
         final int[][] lights = new int[1000][1000];
         while (input.hasNextLine()) {
-            final Matcher matcher = matchRegex(regex, input.nextLine());
+            final Matcher matcher = matchRegex(REGEX, input.nextLine());
             final String command = matcher.group(1);
             final int startX = Integer.parseInt(matcher.group(2));
             final int startY = Integer.parseInt(matcher.group(3));

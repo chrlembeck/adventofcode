@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class RecoverInstruction implements Instruction {
 
-    private Token value;
+    private final Token value;
 
     public RecoverInstruction(final String value) {
         this.value = Aoc2017Day18.createToken(value);

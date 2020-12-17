@@ -4,9 +4,25 @@ import java.math.BigInteger;
 
 public class Particle {
 
-    int identifier;
+    private final int identifier;
 
-    BigInteger posX, posY, posZ, velX, velY, velZ, accX, accY, accZ;
+    private BigInteger posX;
+
+    private BigInteger posY;
+
+    private BigInteger posZ;
+
+    private BigInteger velX;
+
+    private BigInteger velY;
+
+    private BigInteger velZ;
+
+    private BigInteger accX;
+
+    private BigInteger accY;
+
+    private BigInteger accZ;
 
     public Particle(final int identifier, final BigInteger posX, final BigInteger posY, final BigInteger posZ,
             final BigInteger velX, final BigInteger velY, final BigInteger velZ, final BigInteger accX,
@@ -23,62 +39,68 @@ public class Particle {
         this.accZ = accZ;
     }
 
-    public int getId() {
+    public int getIdentifier() {
         return identifier;
     }
 
-    public BigInteger getPx() {
+    public BigInteger getPosX() {
         return posX;
     }
 
-    public BigInteger getPy() {
+    public BigInteger getPosY() {
         return posY;
     }
 
-    public BigInteger getPz() {
+    public BigInteger getPosZ() {
         return posZ;
     }
 
-    public BigInteger getVx() {
+    public BigInteger getVelX() {
         return velX;
     }
 
-    public BigInteger getVy() {
+    public BigInteger getVelY() {
         return velY;
     }
 
-    public BigInteger getVz() {
+    public BigInteger getVelZ() {
         return velZ;
     }
 
-    public BigInteger getAx() {
+    public BigInteger getAccX() {
         return accX;
     }
 
-    public BigInteger getAy() {
+    public BigInteger getAccY() {
         return accY;
     }
 
-    public BigInteger getAz() {
+    public BigInteger getAccZ() {
         return accZ;
     }
 
-    public BigInteger getPxn(final int steps) {
-        final BigInteger stepsBi = BigInteger.valueOf(steps);
-        return posX.add(stepsBi.multiply(velX)
-                .add(stepsBi.pow(2).multiply(accX).add(stepsBi.multiply(accX)).divide(BigInteger.valueOf(2))));
+    public void setPosX(final BigInteger posX) {
+        this.posX = posX;
     }
 
-    public BigInteger getPyn(final int steps) {
-        final BigInteger stepsBi = BigInteger.valueOf(steps);
-        return posY.add(stepsBi.multiply(velY)
-                .add(stepsBi.pow(2).multiply(accY).add(stepsBi.multiply(accY)).divide(BigInteger.valueOf(2))));
+    public void setPosY(final BigInteger posY) {
+        this.posY = posY;
     }
 
-    public BigInteger getPzn(final int steps) {
-        final BigInteger stepsBi = BigInteger.valueOf(steps);
-        return posZ.add(stepsBi.multiply(velZ)
-                .add(stepsBi.pow(2).multiply(accZ).add(stepsBi.multiply(accZ)).divide(BigInteger.valueOf(2))));
+    public void setPosZ(final BigInteger posZ) {
+        this.posZ = posZ;
+    }
+
+    public void setVelX(final BigInteger velX) {
+        this.velX = velX;
+    }
+
+    public void setVelY(final BigInteger velY) {
+        this.velY = velY;
+    }
+
+    public void setVelZ(final BigInteger velZ) {
+        this.velZ = velZ;
     }
 
     @Override

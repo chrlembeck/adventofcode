@@ -11,9 +11,9 @@ import java.util.stream.Stream;
 
 public class Aoc2017Day07 extends AbstractAocBase {
 
-    final Pattern regex = Pattern.compile("([a-z]+)\\s*\\((\\d+)\\)(\\s*\\-\\>(([a-z,\\s]*)))?");
+    public static final Pattern REGEX = Pattern.compile("([a-z]+)\\s*\\((\\d+)\\)(\\s*\\-\\>(([a-z,\\s]*)))?");
 
-    Map<String, Program> programs;
+    private Map<String, Program> programs;
 
     public static void main(final String[] args) {
         new Aoc2017Day07().run();
@@ -36,7 +36,7 @@ public class Aoc2017Day07 extends AbstractAocBase {
         programs = new TreeMap<>();
         while (input.hasNextLine()) {
             final String line = input.nextLine();
-            final Matcher matcher = regex.matcher(line);
+            final Matcher matcher = REGEX.matcher(line);
             if (!matcher.matches()) {
                 throw new IllegalArgumentException(line);
             }
@@ -57,13 +57,13 @@ public class Aoc2017Day07 extends AbstractAocBase {
 
     class Program {
 
-        final int weight;
+        private final int weight;
 
-        final String name;
+        private final String name;
 
-        Program parent;
+        private Program parent;
 
-        final String[] children;
+        private final String[] children;
 
         public Program(final String name, final int weight, final String... children) {
             this.name = name;

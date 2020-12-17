@@ -1,10 +1,9 @@
 package de.chrlembeck.aoc2017.day19;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import de.chrlembeck.aoccommon.AbstractAocBase;
 
 public class Aoc2017Day19 extends AbstractAocBase {
 
@@ -30,8 +29,8 @@ public class Aoc2017Day19 extends AbstractAocBase {
         while (canMove(diagram, pos)) {
             final Position nextPos = nextPos(diagram, pos);
             pos = nextPos;
-            if (Character.isLetter(diagram[pos.posY][pos.posX])) {
-                result.append(diagram[pos.posY][pos.posX]);
+            if (Character.isLetter(diagram[pos.getPosY()][pos.getPosX()])) {
+                result.append(diagram[pos.getPosY()][pos.getPosX()]);
             }
             stepCount++;
         }
@@ -63,8 +62,8 @@ public class Aoc2017Day19 extends AbstractAocBase {
     public char get(final char[][] diagram, final Position pos) {
         final int height = diagram.length;
         final int width = diagram[0].length;
-        return pos.posX < 0 || pos.posY < 0 || pos.posX >= width || pos.posY >= height ? ' '
-                : diagram[pos.posY][pos.posX];
+        return pos.getPosX() < 0 || pos.getPosY() < 0 || pos.getPosX() >= width || pos.getPosY() >= height ? ' '
+                : diagram[pos.getPosY()][pos.getPosX()];
     }
 
     private Position findStart(final char... firstLine) {

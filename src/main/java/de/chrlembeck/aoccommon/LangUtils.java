@@ -36,4 +36,11 @@ public final class LangUtils {
         }
         return result;
     }
+
+    public static BigInteger euclid(BigInteger a, BigInteger b) {
+        if (b.signum() == 0) {
+            return a;
+        }
+        return euclid(b, a.mod(b));
+    }
 }

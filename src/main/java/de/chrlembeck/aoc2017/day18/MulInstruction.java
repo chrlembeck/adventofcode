@@ -4,9 +4,9 @@ import java.math.BigInteger;
 
 public class MulInstruction implements Instruction {
 
-    private Token factor;
+    private final Token factor;
 
-    private String varName;
+    private final String varName;
 
     public MulInstruction(final String varName, final String value) {
         this.varName = varName;

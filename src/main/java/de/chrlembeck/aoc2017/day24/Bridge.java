@@ -2,9 +2,9 @@ package de.chrlembeck.aoc2017.day24;
 
 public class Bridge {
 
-    int length;
+    private int length;
 
-    int strength;
+    private int strength;
 
     public Bridge(final int length, final int strength) {
         super();
@@ -18,5 +18,13 @@ public class Bridge {
 
     public int getLength() {
         return length;
+    }
+
+    public void incLength() {
+        length++;
+    }
+
+    public void incStrength(int additionalStrength) {
+        this.strength += additionalStrength;
     }
 }

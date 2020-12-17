@@ -4,9 +4,9 @@ import java.math.BigInteger;
 
 public class AddInstruction implements Instruction {
 
-    private Token addend;
+    private final Token addend;
 
-    private String varName;
+    private final String varName;
 
     public AddInstruction(final String varName, final String value) {
         this.varName = varName;

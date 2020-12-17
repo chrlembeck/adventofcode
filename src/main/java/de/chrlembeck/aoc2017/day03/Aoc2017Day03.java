@@ -1,9 +1,8 @@
 package de.chrlembeck.aoc2017.day03;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
 import de.chrlembeck.util.collections.BidirectionalGrowingArray;
+import java.util.Scanner;
 
 public class Aoc2017Day03 extends AbstractAocBase {
 
@@ -69,8 +68,7 @@ public class Aoc2017Day03 extends AbstractAocBase {
     }
 
     private int nextBiggerValue(final int value) {
-        final BidirectionalGrowingArray<BidirectionalGrowingArray<Integer>> array = new BidirectionalGrowingArray<BidirectionalGrowingArray<Integer>>(
-                BidirectionalGrowingArray[]::new);
+        final BidirectionalGrowingArray<BidirectionalGrowingArray<Integer>> array = new BidirectionalGrowingArray<>(BidirectionalGrowingArray[]::new);
         int xPos = 0;
         int yPos = 0;
         setValue(array, xPos, yPos, 1);

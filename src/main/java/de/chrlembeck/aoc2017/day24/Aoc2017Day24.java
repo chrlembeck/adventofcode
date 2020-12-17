@@ -1,17 +1,16 @@
 package de.chrlembeck.aoc2017.day24;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.chrlembeck.aoccommon.AbstractAocBase;
-
 // 1057 to low
 public class Aoc2017Day24 extends AbstractAocBase {
 
-    Pattern regex = Pattern.compile("(\\d+)/(\\d+)");
+    private final static Pattern REGEX = Pattern.compile("(\\d+)/(\\d+)");
 
     public static void main(final String[] args) {
         new Aoc2017Day24().run();
@@ -26,7 +25,7 @@ public class Aoc2017Day24 extends AbstractAocBase {
     private List<Component> readComponents(final Scanner input) {
         final List<Component> components = new ArrayList<>();
         while (input.hasNextLine()) {
-            final Matcher matcher = matchRegex(regex, input.nextLine());
+            final Matcher matcher = matchRegex(REGEX, input.nextLine());
             components.add(new Component(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2))));
         }
         return components;
@@ -54,8 +53,8 @@ public class Aoc2017Day24 extends AbstractAocBase {
             if (rotated != null) {
                 components.remove(i);
                 final Bridge subBridge = calcLongest(rotated.getPortB(), components);
-                subBridge.strength += rotated.getStrength();
-                subBridge.length++;
+                subBridge.incStrength(rotated.getStrength());
+                subBridge.incLength();
                 max = max(max, subBridge);
                 components.add(i, component);
             }
@@ -64,13 +63,13 @@ public class Aoc2017Day24 extends AbstractAocBase {
     }
 
     private Bridge max(final Bridge bridgeA, final Bridge bridgeB) {
-        if (bridgeA.length > bridgeB.length) {
+        if (bridgeA.getLength() > bridgeB.getLength()) {
             return bridgeA;
         }
-        if (bridgeA.length < bridgeB.length) {
+        if (bridgeA.getLength() < bridgeB.getLength()) {
             return bridgeB;
         }
-        if (bridgeA.strength > bridgeB.strength) {
+        if (bridgeA.getStrength() > bridgeB.getStrength()) {
             return bridgeA;
         }
         return bridgeB;

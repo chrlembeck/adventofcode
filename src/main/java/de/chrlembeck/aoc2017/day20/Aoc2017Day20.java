@@ -1,7 +1,6 @@
 package de.chrlembeck.aoc2017.day20;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,19 +11,19 @@ import java.util.regex.Pattern;
 
 public class Aoc2017Day20 extends AbstractAocBase {
 
-    Pattern regex = Pattern
+    private static final Pattern REGEX = Pattern
             .compile("p=<(-?\\d+),(-?\\d+),(-?\\d+)>, v=<(-?\\d+),(-?\\d+),(-?\\d+)>, a=<(-?\\d+),(-?\\d+),(-?\\d+)>");
 
-    public Comparator<Particle> particleComparator = Comparator.comparing(Particle::getPx)
-            .thenComparing(Particle::getPy)
-            .thenComparing(Particle::getPz);
+    public Comparator<Particle> particleComparator = Comparator.comparing(Particle::getPosX)
+            .thenComparing(Particle::getPosY)
+            .thenComparing(Particle::getPosZ);
 
     public Comparator<Particle> accComp = Comparator
-            .comparing((Particle part) -> part.getAx().abs()
-                    .add(part.getAy().abs())
-                    .add(part.getAz().abs()))
-            .thenComparing(part-> part.getVx().add(part.getVy()).add(part.getVz()))
-            .thenComparing(part -> part.getPx().add(part.getPy()).add(part.getPz()));
+            .comparing((Particle part) -> part.getAccX().abs()
+                    .add(part.getAccY().abs())
+                    .add(part.getAccZ().abs()))
+            .thenComparing(part-> part.getVelX().add(part.getVelY()).add(part.getVelZ()))
+            .thenComparing(part -> part.getPosX().add(part.getPosY()).add(part.getPosZ()));
 
 
     public static void main(final String[] args) {
@@ -38,7 +37,7 @@ public class Aoc2017Day20 extends AbstractAocBase {
 
         while (input.hasNextLine()) {
             final String line = input.nextLine();
-            final Matcher matcher = matchRegex(regex, line);
+            final Matcher matcher = matchRegex(REGEX, line);
             final Particle particle = readParticle(pos, matcher);
             particle.normalizeDirection();
 
@@ -46,25 +45,21 @@ public class Aoc2017Day20 extends AbstractAocBase {
                 nearest = particle;
             } else {
                 final int cmp = accComp.compare(nearest, particle);
-                if (cmp > 0) {
-                    nearest = particle;
-                } else if (cmp == 0) {
+                if (cmp >= 0) {
                     nearest = particle;
                 }
-                //System.out.println("Nearest: " + nearest + ", a=" + nearest.getAx().add(nearest.getAy()).add(nearest.getAz()) + "v=" + nearest.getVx().add(nearest.getVy()).add(nearest.getVz()) + " particle: " + particle);
             }
             pos++;
         }
-        return nearest.identifier;
+        return nearest.getIdentifier();
     }
 
     private Particle readParticle(final int pos, final Matcher matcher) {
-        final Particle particle = new Particle(pos, new BigInteger(matcher.group(1)),
+        return new Particle(pos, new BigInteger(matcher.group(1)),
                 new BigInteger(matcher.group(2)), new BigInteger(matcher.group(3)),
                 new BigInteger(matcher.group(4)), new BigInteger(matcher.group(5)),
                 new BigInteger(matcher.group(6)), new BigInteger(matcher.group(7)),
                 new BigInteger(matcher.group(8)), new BigInteger(matcher.group(9)));
-        return particle;
     }
 
     @Override
@@ -73,14 +68,14 @@ public class Aoc2017Day20 extends AbstractAocBase {
         final int pos = 0;
         while (input.hasNextLine()) {
             final String line = input.nextLine();
-            final Matcher matcher = matchRegex(regex, line);
+            final Matcher matcher = matchRegex(REGEX, line);
             final Particle particle = readParticle(pos, matcher);
             particles.add(particle);
         }
         for (int i = 0; i < 1000; i++) {
             particles.sort(particleComparator);
 
-            final List<Integer> removeList = new ArrayList<Integer>();
+            final List<Integer> removeList = new ArrayList<>();
             for (int j = particles.size() - 2; j >= 0; j--) {
                 final Particle particleA = particles.get(j);
                 final Particle particleB = particles.get(j + 1);
@@ -98,12 +93,12 @@ public class Aoc2017Day20 extends AbstractAocBase {
             }
 
             for (final Particle p : particles) {
-                p.velX = p.velX.add(p.accX);
-                p.velY = p.velY.add(p.accY);
-                p.velZ = p.velZ.add(p.accZ);
-                p.posX = p.posX.add(p.velX);
-                p.posY = p.posY.add(p.velY);
-                p.posZ = p.posZ.add(p.velZ);
+                p.setVelX(p.getVelX().add(p.getAccX()));
+                p.setVelY(p.getVelY().add(p.getAccY()));
+                p.setVelZ(p.getVelZ().add(p.getAccZ()));
+                p.setPosX(p.getPosX().add(p.getVelX()));
+                p.setPosY(p.getPosY().add(p.getVelY()));
+                p.setPosZ(p.getPosZ().add(p.getVelZ()));
             }
         }
         return particles.size();

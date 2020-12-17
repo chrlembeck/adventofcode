@@ -1,15 +1,14 @@
 package de.chrlembeck.aoc2015.day02;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.chrlembeck.aoccommon.AbstractAocBase;
-
 public class Aoc2015Day02 extends AbstractAocBase {
 
-    Pattern regex = Pattern.compile("(\\d+)x(\\d+)x(\\d+)");
+    private final static Pattern REGEX = Pattern.compile("(\\d+)x(\\d+)x(\\d+)");
 
     public static void main(final String[] args) {
         new Aoc2015Day02().run();
@@ -29,7 +28,7 @@ public class Aoc2015Day02 extends AbstractAocBase {
         int paper = 0;
         int ribbon = 0;
         while (input.hasNextLine()) {
-            final Matcher matcher = matchRegex(regex, input.nextLine());
+            final Matcher matcher = matchRegex(REGEX, input.nextLine());
             final int[] lengths = new int[3];
             for (int i = 0; i < 3; i++) {
                 lengths[i] = Integer.parseInt(matcher.group(i + 1));

@@ -1,11 +1,10 @@
 package de.chrlembeck.aoc2017.day21;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
-import de.chrlembeck.aoccommon.AbstractAocBase;
 
 public class Aoc2017Day21 extends AbstractAocBase {
 
@@ -50,7 +49,7 @@ public class Aoc2017Day21 extends AbstractAocBase {
         int width = 3;
         List<Integer> gridCopy = null;
         for (int i = 0; i < iterations; i++) {
-            final List<Integer> newGrid = new ArrayList<Integer>();
+            final List<Integer> newGrid = new ArrayList<>();
             if (width % 4 == 0) {
                 width = width / 2 * 3;
                 for (final Integer value : gridCopy) {

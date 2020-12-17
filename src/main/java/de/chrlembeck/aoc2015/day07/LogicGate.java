@@ -8,11 +8,11 @@ public class LogicGate implements Gate {
 
     public static final Pattern LOGIC = Pattern.compile("(\\w*)\\ (AND|OR)\\ (\\w*)\\ ->\\ ([a-z]*)");
 
-    private Gate left;
+    private final Gate left;
 
-    private Gate right;
+    private final Gate right;
 
-    private boolean isAnd;
+    private final boolean isAnd;
 
     public LogicGate(final Gate left, final Gate right, final boolean isAnd) {
         this.left = left;
@@ -37,8 +37,7 @@ public class LogicGate implements Gate {
     public int execute(final Map<String, Gate> program) {
         final int leftValue = this.left.execute(program);
         final int rightValue = this.right.execute(program);
-        final int value = isAnd ? (leftValue & rightValue) : (leftValue | rightValue);
-        return value;
+        return isAnd ? (leftValue & rightValue) : (leftValue | rightValue);
     }
 
     @Override

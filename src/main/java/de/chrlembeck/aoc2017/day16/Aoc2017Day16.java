@@ -1,12 +1,11 @@
 package de.chrlembeck.aoc2017.day16;
 
+import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import de.chrlembeck.aoccommon.AbstractAocBase;
 
 public class Aoc2017Day16 extends AbstractAocBase {
 
@@ -120,11 +119,11 @@ public class Aoc2017Day16 extends AbstractAocBase {
 
     static class TransformInfo {
 
-        int spin;
+        private int spin;
 
-        char[] order;
+        private char[] order;
 
-        char[] string;
+        private char[] string;
     }
 
     interface Command{
@@ -133,7 +132,7 @@ public class Aoc2017Day16 extends AbstractAocBase {
 
     class SwitchCommand implements Command {
 
-        final int offset;
+        private final int offset;
 
         public SwitchCommand(final int offset) {
             this.offset = offset;

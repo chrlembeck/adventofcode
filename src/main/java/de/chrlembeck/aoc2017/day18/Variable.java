@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 public class Variable implements Token {
 
-    private String name;
+    private final String name;
 
     public Variable(final String name) {
         this.name = name;

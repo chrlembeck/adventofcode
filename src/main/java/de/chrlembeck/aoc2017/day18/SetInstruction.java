@@ -2,9 +2,9 @@ package de.chrlembeck.aoc2017.day18;
 
 public class SetInstruction implements Instruction {
 
-    private Token value;
+    private final Token value;
 
-    private String varName;
+    private final String varName;
 
     public SetInstruction(final String varName, final String value) {
         this.varName = varName;
