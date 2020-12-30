@@ -36,10 +36,10 @@ public abstract class AbstractAocBase {
         final long end = System.nanoTime();
         System.out.println(prefix + result);
         long duration = end - start;
-        final long nanos = (duration) % 1000000;
-        duration /= 1000000;
-        final long millis = (duration) % 1000;
-        duration /= 1000;
+        final long nanos = (duration) % 1_000_000;
+        duration /= 1_000_000;
+        final long millis = (duration) % 1_000;
+        duration /= 1_000;
         final long seconds = (duration) % 60;
         duration /= 60;
         final long minutes = (duration) % 60;

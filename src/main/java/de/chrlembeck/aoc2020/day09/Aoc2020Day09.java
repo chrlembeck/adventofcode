@@ -18,18 +18,18 @@ public class Aoc2020Day09 extends AbstractAocBase {
         return findInvalid(numbers);
     }
 
-    private BigInteger findInvalid(final BigInteger[] numbers) {
-        nextNumber:
+    private BigInteger findInvalid(final BigInteger... numbers) {
         for (int candidateIdx = PREAMBLE; candidateIdx < numbers.length; candidateIdx++) {
-            BigInteger candidate = numbers[candidateIdx];
-            for (int leftIdx = candidateIdx - PREAMBLE; candidate != null && leftIdx < candidateIdx - 1; leftIdx++) {
+            final BigInteger candidate = numbers[candidateIdx];
+            boolean isValid = true;
+            for (int leftIdx = candidateIdx - PREAMBLE; isValid && leftIdx < candidateIdx - 1; leftIdx++) {
                 for (int rightIdx = leftIdx + 1; candidate != null && rightIdx < candidateIdx; rightIdx++) {
                     if (numbers[leftIdx].add(numbers[rightIdx]).compareTo(candidate) == 0) {
-                        candidate = null;
+                        isValid = false;
                     }
                 }
             }
-            if (candidate != null) {
+            if (isValid) {
                 return candidate;
             }
         }

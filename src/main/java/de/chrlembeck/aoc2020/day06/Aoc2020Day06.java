@@ -24,7 +24,7 @@ public class Aoc2020Day06 extends AbstractAocBase {
     private Set<Character> parseAllGroupAnswers(final Scanner input) {
         final Set<Character> answers = new TreeSet<>();
         String line;
-        while (input.hasNextLine() && !(line = input.nextLine()).equals("")) {
+        while (input.hasNextLine() && !"".equals(line = input.nextLine())) {
             for (int i = 0; i < line.length(); i++) {
                 answers.add(line.charAt(i));
             }
@@ -35,7 +35,7 @@ public class Aoc2020Day06 extends AbstractAocBase {
     private Set<Character> parseCommonGroupAnswers(final Scanner input) {
         Set<Character> commonAnswers = null;
         String line;
-        while (input.hasNextLine() && !(line = input.nextLine()).equals("")) {
+        while (input.hasNextLine() && !"".equals(line = input.nextLine())) {
             final Set<Character> personAnswers = new TreeSet<>();
             for (int characterIdx = 0; characterIdx < line.length(); characterIdx++) {
                 personAnswers.add(line.charAt(characterIdx));

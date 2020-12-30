@@ -2,6 +2,7 @@ package de.chrlembeck.aoc2019.day15;
 
 import de.chrlembeck.aoc2019.day11.Position;
 import de.chrlembeck.aoccommon.LangUtils;
+import de.chrlembeck.aoccommon.MathUtil;
 import java.math.BigInteger;
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
@@ -23,11 +24,11 @@ public class TargetFinder implements Consumer<BigInteger> {
 
     private Position currentPosition = new Position(0, 0);
 
-    private BlockingQueue<BigInteger> outputQueue = new LinkedBlockingQueue<>();
+    private final BlockingQueue<BigInteger> outputQueue = new LinkedBlockingQueue<>();
 
-    private Map<Position, Status> area = new TreeMap<>();
+    private final Map<Position, Status> area = new TreeMap<>();
 
-    private Map<Position, Integer> distanceMap = new TreeMap<>();
+    private final Map<Position, Integer> distanceMap = new TreeMap<>();
 
     private Position oxygenModulePosition;
 
@@ -82,11 +83,11 @@ public class TargetFinder implements Consumer<BigInteger> {
 
     private void addDistance(final Position position) {
         if (distanceMap.get(position) == null) {
-            final int left = LangUtils.isNull(distanceMap.get(position.leftNeighbour()), Integer.MAX_VALUE);
-            final int right = LangUtils.isNull(distanceMap.get(position.rightNeighbour()), Integer.MAX_VALUE);
-            final int top = LangUtils.isNull(distanceMap.get(position.topNeighbour()), Integer.MAX_VALUE);
-            final int bottom = LangUtils.isNull(distanceMap.get(position.bottomNeighbour()), Integer.MAX_VALUE);
-            distanceMap.put(position, 1 + LangUtils.min(left, right, top, bottom));
+            final int left = LangUtils.replaceIfNull(distanceMap.get(position.leftNeighbour()), Integer.MAX_VALUE);
+            final int right = LangUtils.replaceIfNull(distanceMap.get(position.rightNeighbour()), Integer.MAX_VALUE);
+            final int top = LangUtils.replaceIfNull(distanceMap.get(position.topNeighbour()), Integer.MAX_VALUE);
+            final int bottom = LangUtils.replaceIfNull(distanceMap.get(position.bottomNeighbour()), Integer.MAX_VALUE);
+            distanceMap.put(position, 1 + MathUtil.min(left, right, top, bottom));
         }
     }
 
@@ -94,16 +95,16 @@ public class TargetFinder implements Consumer<BigInteger> {
         if (area.containsKey(posToCheck)) {
             return area.get(posToCheck);
         }
-        if (posToCheck.getxPos() == currentPosition.getxPos() + 1 && posToCheck.getyPos() == currentPosition.getyPos()) {
+        if (posToCheck.getPosX() == currentPosition.getPosX() + 1 && posToCheck.getPosY() == currentPosition.getPosY()) {
             return move(EAST);
         }
-        if (posToCheck.getxPos() == currentPosition.getxPos() - 1 && posToCheck.getyPos() == currentPosition.getyPos()) {
+        if (posToCheck.getPosX() == currentPosition.getPosX() - 1 && posToCheck.getPosY() == currentPosition.getPosY()) {
             return move(WEST);
         }
-        if (posToCheck.getxPos() == currentPosition.getxPos() && posToCheck.getyPos() == currentPosition.getyPos() + 1) {
+        if (posToCheck.getPosX() == currentPosition.getPosX() && posToCheck.getPosY() == currentPosition.getPosY() + 1) {
             return move(SOUTH);
         }
-        if (posToCheck.getxPos() == currentPosition.getxPos() && posToCheck.getyPos() == currentPosition.getyPos() - 1) {
+        if (posToCheck.getPosX() == currentPosition.getPosX() && posToCheck.getPosY() == currentPosition.getPosY() - 1) {
             return move(NORTH);
         }
 

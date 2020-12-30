@@ -70,7 +70,7 @@ public class ArcadeOutputConsumer implements Consumer<BigInteger> {
     }
 
     private void adjustPaddle() {
-        inputConsumer.accept(BigInteger.valueOf(Integer.signum(ballPosition.getxPos() - paddlePosition.getxPos())));
+        inputConsumer.accept(BigInteger.valueOf(Integer.signum(ballPosition.getPosX() - paddlePosition.getPosX())));
     }
 
     public BigInteger getScore() {

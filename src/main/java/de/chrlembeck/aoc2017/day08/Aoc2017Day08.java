@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static de.chrlembeck.aoccommon.LangUtils.isNull;
+import static de.chrlembeck.aoccommon.LangUtils.replaceIfNull;
 
 public class Aoc2017Day08 extends AbstractAocBase {
 
@@ -28,8 +28,8 @@ public class Aoc2017Day08 extends AbstractAocBase {
                 final String conditionVariable = matcher.group(4);
                 final String operator = matcher.group(5);
                 final int threshold = Integer.parseInt(matcher.group(6));
-                final Integer compareValue = isNull(register.get(conditionVariable), 0);
-                Integer value = isNull(register.get(varName), 0);
+                final Integer compareValue = replaceIfNull(register.get(conditionVariable), 0);
+                Integer value = replaceIfNull(register.get(varName), 0);
                 if (("==".equals(operator) && compareValue == threshold)
                         || ("!=".equals(operator) && compareValue != threshold)
                         || (">=".equals(operator) && compareValue >= threshold)

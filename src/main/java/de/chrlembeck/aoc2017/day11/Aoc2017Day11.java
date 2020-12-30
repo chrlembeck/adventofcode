@@ -1,9 +1,8 @@
 package de.chrlembeck.aoc2017.day11;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
 import de.chrlembeck.aoccommon.Result;
+import java.util.Scanner;
 
 public class Aoc2017Day11 extends AbstractAocBase {
 
@@ -30,7 +29,10 @@ public class Aoc2017Day11 extends AbstractAocBase {
 
     public Result<Integer> calc(final Scanner input) {
         input.useDelimiter(",");
-        int xPos = 0, yPos = 0, maxDist = 0, dist = 0;
+        int xPos = 0;
+        int yPos = 0;
+        int maxDist = 0;
+        int dist = 0;
         while (input.hasNext()) {
             final String direction = input.next();
             switch (direction) {

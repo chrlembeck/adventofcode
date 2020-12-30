@@ -45,7 +45,7 @@ public class Aoc2019Day16 extends AbstractAocBase {
         return array;
     }
 
-    private String first8ToString(final int[] array) {
+    private String first8ToString(final int... array) {
         final StringBuilder output = new StringBuilder();
         for (int i = 0; i < 8; i++) {
             output.append(array[i]);
@@ -53,7 +53,7 @@ public class Aoc2019Day16 extends AbstractAocBase {
         return output.toString();
     }
 
-    private int[] fft(final int[] digits) {
+    private int[] fft(final int... digits) {
         final int[] result = new int[digits.length];
         for (int round = 0; round < digits.length; round++) {
             int digit = 0;
@@ -65,7 +65,7 @@ public class Aoc2019Day16 extends AbstractAocBase {
         return result;
     }
 
-    private int[] fft2(final int[] digits) {
+    private int[] fft2(final int... digits) {
         final int[] result = new int[digits.length];
         int sum = 0;
         for (int round = digits.length - 1; round >= 0; round--) {

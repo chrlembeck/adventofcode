@@ -3,21 +3,24 @@ package de.chrlembeck.aoc2020.day12;
 public enum Direction {
 
     NORTH(0),
+
     EAST(90),
+
     SOUTH(180),
+
     WEST(270);
 
     private long degree;
 
-    Direction(long degree) {
+    Direction(final long degree) {
         this.degree = degree;
     }
 
-    public Direction left(long value) {
+    public Direction left(final long value) {
         return byDegree(degree - value);
     }
 
-    public Direction right(long value) {
+    public Direction right(final long value) {
         return byDegree(degree + value);
     }
 

@@ -67,7 +67,7 @@ public class Aoc2019Day02 extends AbstractAocBase {
         final IntcodeProgram program = readProgram(input);
         for (int noun = 0; noun < 100; noun++) {
             for (int verb = 0; verb < 100; verb++) {
-                if (execute(program.clone(), noun, verb).compareTo(BigInteger.valueOf(19690720)) == 0) { // TODO clone?
+                if (execute(program.clone(), noun, verb).compareTo(BigInteger.valueOf(19_690_720)) == 0) {
                     return noun * 100 + verb;
                 }
             }

@@ -24,14 +24,14 @@ public class Aoc2015Day11 extends AbstractAocBase {
         return new String(password);
     }
 
-    public char[] nextValid(final char[] password) {
+    public char[] nextValid(final char... password) {
         do {
             next(password);
         } while (!valid(password));
         return password;
     }
 
-    public char[] next(final char[] password) {
+    public char[] next(final char... password) {
         password[password.length - 1]++;
         int pos = password.length - 1;
         while (password[pos] > 'z' && pos >=0) {
@@ -42,7 +42,7 @@ public class Aoc2015Day11 extends AbstractAocBase {
         return password;
     }
 
-    public boolean valid(final char[] password) {
+    public boolean valid(final char... password) {
         for (final char character : password) {
             if (character == 'i' || character == 'o' || character == 'l') {
                 return false;

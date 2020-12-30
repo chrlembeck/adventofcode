@@ -5,9 +5,9 @@ import java.util.function.Consumer;
 
 public class IntcodeComputer {
 
-    private IntcodeProgram program;
+    private final IntcodeProgram program;
 
-    private State state;
+    private final State state;
 
     private Thread calculator;
 

@@ -22,14 +22,17 @@ public class Aoc2020Day11 extends AbstractAocBase {
         return calc(input, this::visibleNeighborCounter, 5);
     }
 
-    public int calc(final Scanner input, BiFunction<SeatState[][], Position, Integer> neighborCounter, int neighborThreshold) {
-        SeatState[][] seats = readSeats(input);
-        while (calculateRound(seats, neighborCounter, neighborThreshold)) {
+    public int calc(final Scanner input, final BiFunction<SeatState[][], Position, Integer> neighborCounter, final int neighborThreshold) {
+        final SeatState[][] seats = readSeats(input);
+        boolean changed = true;
+        while (changed) {
+            changed = calculateRound(seats, neighborCounter, neighborThreshold);
         }
+
         int occupied = 0;
-        for (int y = 0; y < seats.length; y++) {
-            for (int x = 0; x < seats[y].length; x++) {
-                if (seats[y][x] == SeatState.OCCUPIED) {
+        for (final SeatState[] row : seats) {
+            for (final SeatState seat : row) {
+                if (seat == SeatState.OCCUPIED) {
                     occupied++;
                 }
             }
@@ -38,7 +41,7 @@ public class Aoc2020Day11 extends AbstractAocBase {
     }
 
     private boolean calculateRound(final SeatState[][] seats, final BiFunction<SeatState[][], Position, Integer> neighborCounter,
-            int neighborThreshold) {
+            final int neighborThreshold) {
         final SeatState[][] oldSeats = new SeatState[seats.length][];
         final int width = seats[0].length;
         final int height = seats.length;
@@ -48,7 +51,7 @@ public class Aoc2020Day11 extends AbstractAocBase {
         boolean modification = false;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                int neighbors = neighborCounter.apply(oldSeats, new Position(x, y));
+                final int neighbors = neighborCounter.apply(oldSeats, new Position(x, y));
                 if (oldSeats[y][x] == SeatState.EMPTY && neighbors == 0) {
                     seats[y][x] = SeatState.OCCUPIED;
                     modification = true;
@@ -66,8 +69,8 @@ public class Aoc2020Day11 extends AbstractAocBase {
         return input.tokens().map(this::convertRow).toArray(SeatState[][]::new);
     }
 
-    private SeatState[] convertRow(String row) {
-        SeatState[] seats = new SeatState[row.length()];
+    private SeatState[] convertRow(final String row) {
+        final SeatState[] seats = new SeatState[row.length()];
         for (int i = 0; i < row.length(); i++) {
             seats[i] = switch (row.charAt(i)) {
                 case '#' -> SeatState.OCCUPIED;
@@ -84,65 +87,65 @@ public class Aoc2020Day11 extends AbstractAocBase {
         return "/input/aoc2020/aoc2020day11.txt";
     }
 
-    public int directNeighborCounter(SeatState[][] seats, Position position) {
-        final int x = position.getxPos();
-        final int y = position.getyPos();
+    public int directNeighborCounter(final SeatState[][] seats, final Position position) {
+        final int posX = position.getPosX();
+        final int posY = position.getPosY();
         final int width = seats[0].length;
         final int height = seats.length;
         int neighbors = 0;
 
-        if (x > 0 && y > 0 && seats[y - 1][x - 1] == SeatState.OCCUPIED) {
+        if (posX > 0 && posY > 0 && seats[posY - 1][posX - 1] == SeatState.OCCUPIED) {
             neighbors++;
         }
-        if (y > 0 && seats[y - 1][x] == SeatState.OCCUPIED) {
+        if (posY > 0 && seats[posY - 1][posX] == SeatState.OCCUPIED) {
             neighbors++;
         }
-        if (x < width - 1 && y > 0 && seats[y - 1][x + 1] == SeatState.OCCUPIED) {
+        if (posX < width - 1 && posY > 0 && seats[posY - 1][posX + 1] == SeatState.OCCUPIED) {
             neighbors++;
         }
-        if (x < width - 1 && seats[y][x + 1] == SeatState.OCCUPIED) {
+        if (posX < width - 1 && seats[posY][posX + 1] == SeatState.OCCUPIED) {
             neighbors++;
         }
-        if (x < width - 1 && y < height - 1 && seats[y + 1][x + 1] == SeatState.OCCUPIED) {
+        if (posX < width - 1 && posY < height - 1 && seats[posY + 1][posX + 1] == SeatState.OCCUPIED) {
             neighbors++;
         }
-        if (y < height - 1 && seats[y + 1][x] == SeatState.OCCUPIED) {
+        if (posY < height - 1 && seats[posY + 1][posX] == SeatState.OCCUPIED) {
             neighbors++;
         }
-        if (x > 0 && y < height - 1 && seats[y + 1][x - 1] == SeatState.OCCUPIED) {
+        if (posX > 0 && posY < height - 1 && seats[posY + 1][posX - 1] == SeatState.OCCUPIED) {
             neighbors++;
         }
-        if (x > 0 && seats[y][x - 1] == SeatState.OCCUPIED) {
+        if (posX > 0 && seats[posY][posX - 1] == SeatState.OCCUPIED) {
             neighbors++;
         }
         return neighbors;
     }
 
-    public int visibleNeighborCounter(SeatState[][] seats, Position position) {
-        final int x = position.getxPos();
-        final int y = position.getyPos();
-        return seesNeighbor(seats, x, y, -1, -1)
-                + seesNeighbor(seats, x, y, 0,-1)
-                + seesNeighbor(seats, x, y, 1,-1)
-                + seesNeighbor(seats, x, y, 1,0)
-                + seesNeighbor(seats, x, y, 1,1)
-                + seesNeighbor(seats, x, y, 0,1)
-                + seesNeighbor(seats, x, y, -1,1)
-                + seesNeighbor(seats, x, y, -1,0);
+    public int visibleNeighborCounter(final SeatState[][] seats, final Position position) {
+        final int posX = position.getPosX();
+        final int posY = position.getPosY();
+        return seesNeighbor(seats, posX, posY, -1, -1)
+                + seesNeighbor(seats, posX, posY, 0, -1)
+                + seesNeighbor(seats, posX, posY, 1, -1)
+                + seesNeighbor(seats, posX, posY, 1, 0)
+                + seesNeighbor(seats, posX, posY, 1, 1)
+                + seesNeighbor(seats, posX, posY, 0, 1)
+                + seesNeighbor(seats, posX, posY, -1, 1)
+                + seesNeighbor(seats, posX, posY, -1, 0);
     }
 
-    private int seesNeighbor(final SeatState[][] seats, int x, int y, final int dx, final int dy) {
-        x+=dx;
-        y+=dy;
-        while (x >= 0 && x < seats[0].length && y >= 0 && y < seats.length) {
-            if (seats[y][x] == SeatState.OCCUPIED) {
+    private int seesNeighbor(final SeatState[][] seats, int posX, int posY, final int deltaX, final int deltaY) {
+        posX += deltaX;
+        posY += deltaY;
+        while (posX >= 0 && posX < seats[0].length && posY >= 0 && posY < seats.length) {
+            if (seats[posY][posX] == SeatState.OCCUPIED) {
                 return 1;
             }
-            if (seats[y][x] == SeatState.EMPTY) {
+            if (seats[posY][posX] == SeatState.EMPTY) {
                 return 0;
             }
-            x+=dx;
-            y+=dy;
+            posX += deltaX;
+            posY += deltaY;
         }
         return 0;
     }

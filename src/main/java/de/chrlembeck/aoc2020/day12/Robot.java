@@ -13,10 +13,10 @@ public class Robot {
 
     public Robot forward(final long steps) {
         return switch (direction) {
-            case NORTH -> new Robot(new Position(position.getX(), position.getY() - steps), direction);
-            case EAST -> new Robot(new Position(position.getX() + steps, position.getY()), direction);
-            case SOUTH -> new Robot(new Position(position.getX(), position.getY() + steps), direction);
-            case WEST -> new Robot(new Position(position.getX() - steps, position.getY()), direction);
+            case NORTH -> new Robot(new Position(position.getPosX(), position.getPosY() - steps), direction);
+            case EAST -> new Robot(new Position(position.getPosX() + steps, position.getPosY()), direction);
+            case SOUTH -> new Robot(new Position(position.getPosX(), position.getPosY() + steps), direction);
+            case WEST -> new Robot(new Position(position.getPosX() - steps, position.getPosY()), direction);
         };
     }
 
@@ -49,14 +49,14 @@ public class Robot {
     }
 
     public long getX() {
-        return position.getX();
+        return position.getPosX();
     }
 
     public long getY() {
-        return position.getY();
+        return position.getPosY();
     }
 
-    public Robot translate(final long dx, final long dy) {
-        return new Robot(position.translate(dx, dy), direction);
+    public Robot translate(final long deltaX, final long deltaY) {
+        return new Robot(position.translate(deltaX, deltaY), direction);
     }
 }

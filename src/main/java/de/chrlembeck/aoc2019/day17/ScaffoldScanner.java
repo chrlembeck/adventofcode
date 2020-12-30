@@ -5,21 +5,21 @@ import java.util.function.Consumer;
 
 public class ScaffoldScanner implements Consumer<BigInteger> {
 
-    StringBuilder sb = new StringBuilder();
+    @SuppressWarnings("PMD.AvoidStringBufferField")
+    private final StringBuilder resultContainer = new StringBuilder();
 
     @Override
-    public void accept(BigInteger bigInteger) {
-        char ch = (char) bigInteger.intValueExact();
-        sb.append(ch);
+    public void accept(final BigInteger output) {
+        resultContainer.append((char) output.intValueExact());
     }
 
     public String getScaffold() {
-        return sb.toString();
+        return resultContainer.toString();
     }
 
     public int getAlignmentParameters() {
         int alignmentParamter = 0;
-        String[] field = sb.toString().split("\n");
+        final String[] field = resultContainer.toString().split("\n");
         for (int y = 1; y < field.length - 1; y++) {
             for (int x = 1; x < field[0].length() - 1; x++) {
                 if (field[y].charAt(x) == '#' &&

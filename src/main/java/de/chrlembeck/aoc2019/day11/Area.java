@@ -14,7 +14,7 @@ public class Area {
 
     private Direction direction = Direction.UP;
 
-    private Map<Position, Integer> currentColors = new TreeMap();
+    private final Map<Position, Integer> currentColors = new TreeMap();
 
     public void left() {
         direction = direction.left();
@@ -29,10 +29,10 @@ public class Area {
     private void move() {
         position =
                 switch (direction) {
-                    case UP -> new Position(position.getxPos(), position.getyPos() - 1);
-                    case LEFT -> new Position(position.getxPos() - 1, position.getyPos());
-                    case DOWN -> new Position(position.getxPos(), position.getyPos() + 1);
-                    case RIGHT -> new Position(position.getxPos() + 1, position.getyPos());
+                    case UP -> new Position(position.getPosX(), position.getPosY() - 1);
+                    case LEFT -> new Position(position.getPosX() - 1, position.getPosY());
+                    case DOWN -> new Position(position.getPosX(), position.getPosY() + 1);
+                    case RIGHT -> new Position(position.getPosX() + 1, position.getPosY());
                 };
     }
 
@@ -58,10 +58,10 @@ public class Area {
     }
 
     public String getImage() {
-        final int minY = currentColors.keySet().stream().mapToInt(Position::getyPos).min().getAsInt();
-        final int minX = currentColors.keySet().stream().mapToInt(Position::getxPos).min().getAsInt();
-        final int maxY = currentColors.keySet().stream().mapToInt(Position::getyPos).max().getAsInt();
-        final int maxX = currentColors.keySet().stream().mapToInt(Position::getxPos).max().getAsInt();
+        final int minY = currentColors.keySet().stream().mapToInt(Position::getPosY).min().getAsInt();
+        final int minX = currentColors.keySet().stream().mapToInt(Position::getPosX).min().getAsInt();
+        final int maxY = currentColors.keySet().stream().mapToInt(Position::getPosY).max().getAsInt();
+        final int maxX = currentColors.keySet().stream().mapToInt(Position::getPosX).max().getAsInt();
         final StringBuilder image = new StringBuilder();
         for (int y = minY; y <= maxY; y++) {
             for (int x = minX; x <= maxX; x++) {

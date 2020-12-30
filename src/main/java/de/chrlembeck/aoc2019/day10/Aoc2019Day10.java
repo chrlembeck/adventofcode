@@ -71,10 +71,12 @@ public class Aoc2019Day10 extends AbstractAocBase {
         return null;
     }
 
-    public int[] findBest(final boolean[][] asteroids) {
+    public int[] findBest(final boolean[]... asteroids) {
         final int height = asteroids.length;
         final int width = asteroids[0].length;
-        int maxVisible = 0, maxX = -1, maxY = -1;
+        int maxVisible = 0;
+        int maxX = -1;
+        int maxY = -1;
         for (int yPos = 0; yPos < height; yPos++) {
             for (int xPos = 0; xPos < width; xPos++) {
                 if (asteroids[yPos][xPos]) {
@@ -136,7 +138,7 @@ public class Aoc2019Day10 extends AbstractAocBase {
         return true;
     }
 
-    private boolean[][] copy(final boolean[][] asteroids) {
+    private boolean[][] copy(final boolean[]... asteroids) {
         final boolean[][] copy = new boolean[asteroids.length][];
         for (int y = 0; y < asteroids.length; y++) {
             copy[y] = Arrays.copyOf(asteroids[y], asteroids[y].length);

@@ -2,62 +2,62 @@ package de.chrlembeck.aoc2020.day12;
 
 public class Position {
 
-    private final long x;
+    private final long posX;
 
-    private final long y;
+    private final long posY;
 
-    public Position(final long x, final long y) {
-        this.x = x;
-        this.y = y;
+    public Position(final long posX, final long posY) {
+        this.posX = posX;
+        this.posY = posY;
     }
 
     public Position left(final long value) {
-        return new Position(x, y);
+        return new Position(posX, posY);
     }
 
     public Position right(final long value) {
-        return new Position(x, y);
+        return new Position(posX, posY);
     }
 
     public Position north(final long steps) {
-        return new Position(x, y - steps);
+        return new Position(posX, posY - steps);
     }
 
     public Position south(final long steps) {
-        return new Position(x, y + steps);
+        return new Position(posX, posY + steps);
     }
 
     public Position east(final long steps) {
-        return new Position(x + steps, y);
+        return new Position(posX + steps, posY);
     }
 
     public Position west(final long steps) {
-        return new Position(x - steps, y);
+        return new Position(posX - steps, posY);
     }
 
-    public long getY() {
-        return y;
+    public long getPosY() {
+        return posY;
     }
 
-    public long getX() {
-        return x;
+    public long getPosX() {
+        return posX;
     }
 
     public long getManhattan() {
-        return Math.abs(x) + Math.abs(y);
+        return Math.abs(posX) + Math.abs(posY);
     }
 
     @Override
     public String toString() {
-        return "(" + x + ", " + y + ")";
+        return "(" + posX + ", " + posY + ")";
     }
 
-    public Position translate(final long dx, final long dy) {
-        return new Position(x + dx, y + dy);
+    public Position translate(final long deltaX, final long deltaY) {
+        return new Position(posX + deltaX, posY + deltaY);
     }
 
     public Position rotateRight(final int value) {
-        return new Position(x * cos(value) - y * sin(value), x * sin(value) + y * cos(value));
+        return new Position(posX * cos(value) - posY * sin(value), posX * sin(value) + posY * cos(value));
     }
 
     public Position rotateLeft(final int degree) {

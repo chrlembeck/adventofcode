@@ -81,7 +81,7 @@ public class Aoc2017Day21 extends AbstractAocBase {
         return sum;
     }
 
-    private int[] splitFour3x3ToNine2x2(final int[] field) {
+    private int[] splitFour3x3ToNine2x2(final int... field) {
         final int[] result = new int[9];
         result[0] = moveBit(field[0], 4, 0) | moveBit(field[0], 5, 1) | moveBit(field[0], 7, 2)
                 | moveBit(field[0], 8, 3);
@@ -109,7 +109,7 @@ public class Aoc2017Day21 extends AbstractAocBase {
                 : (input & (1 << source)) >> (source - dest);
     }
 
-    private static void readLargeToSmall(final String line, final int[][] threeToTwoMap) {
+    private static void readLargeToSmall(final String line, final int[]... threeToTwoMap) {
         final int input = (line.charAt(0) == '#' ? 0b100_000_000 : 0) | (line.charAt(1) == '#' ? 0b010_000_000 : 0)
                 | (line.charAt(2) == '#' ? 0b001_000_000 : 0) | (line.charAt(4) == '#' ? 0b000_100_000 : 0)
                 | (line.charAt(5) == '#' ? 0b000_010_000 : 0) | (line.charAt(6) == '#' ? 0b000_001_000 : 0)
@@ -130,7 +130,7 @@ public class Aoc2017Day21 extends AbstractAocBase {
         }
     }
 
-    private void readSmallToLarge(final String line, final int[] smallToLargeMap) {
+    private void readSmallToLarge(final String line, final int... smallToLargeMap) {
         final int input = (line.charAt(0) == '#' ? 0b1000 : 0) | (line.charAt(1) == '#' ? 0b0100 : 0)
                 | (line.charAt(3) == '#' ? 0b0010 : 0) | (line.charAt(4) == '#' ? 0b0001 : 0);
         final int output = (line.charAt(9) == '#' ? 0b100_000_000 : 0) | (line.charAt(10) == '#' ? 0b010_000_000 : 0)

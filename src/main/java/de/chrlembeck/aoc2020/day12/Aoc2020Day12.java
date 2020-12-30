@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class Aoc2020Day12 extends AbstractAocBase {
 
-    public static void main(final String[] args) {
-        new Aoc2020Day12().run();
-    }
-
     private Robot ship;
 
     private Position waypoint;
+
+    public static void main(final String[] args) {
+        new Aoc2020Day12().run();
+    }
 
     @Override
     public Object part1(final Scanner input) {
@@ -62,7 +62,7 @@ public class Aoc2020Day12 extends AbstractAocBase {
                 waypoint = waypoint.rotateRight(value);
                 break;
             case "F":
-                ship = ship.translate(waypoint.getX() * value, waypoint.getY() * value);
+                ship = ship.translate(waypoint.getPosX() * value, waypoint.getPosY() * value);
                 break;
             default:
                 throw new IllegalArgumentException();

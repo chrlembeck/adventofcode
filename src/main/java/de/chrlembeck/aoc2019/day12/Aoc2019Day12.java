@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static de.chrlembeck.aoccommon.LangUtils.lcm;
+import static de.chrlembeck.aoccommon.MathUtil.lcm;
 
 public class Aoc2019Day12 extends AbstractAocBase {
 
@@ -45,7 +45,7 @@ public class Aoc2019Day12 extends AbstractAocBase {
         return moons.stream().map(m -> m.getDimension(dimensionIdx)).toArray(Dimension[]::new);
     }
 
-    private long getLoopLength(final Dimension[] moonDimensions) {
+    private long getLoopLength(final Dimension... moonDimensions) {
         final Dimension[] originalDimensions = Arrays.stream(moonDimensions).map(Dimension::clone).toArray(Dimension[]::new);
         long idx = 0;
         boolean same;
@@ -72,7 +72,7 @@ public class Aoc2019Day12 extends AbstractAocBase {
         moons.forEach(Moon::applyVelocity);
     }
 
-    private void move(final Dimension[] dimensions) {
+    private void move(final Dimension... dimensions) {
         for (int leftIndex = 0; leftIndex < dimensions.length - 1; leftIndex++) {
             for (int rightIndex = leftIndex + 1; rightIndex < dimensions.length; rightIndex++) {
                 final Dimension oneDimension = dimensions[leftIndex];

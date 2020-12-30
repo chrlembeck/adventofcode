@@ -3,20 +3,21 @@ package de.chrlembeck.aoccommon;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.function.Function;
 
 public class Permutation<T> implements Iterator<T[]>, Iterable<T[]> {
 
     private long counter;
 
-    private ArrayList<T> originalList;
+    private final List<T> originalList;
 
     private int[] positions;
 
-    private Function<Integer, T[]> arrayProducer;
+    private final Function<Integer, T[]> arrayProducer;
 
     public Permutation(final T[] originalSet, final Function<Integer, T[]> arrayProducer) {
-        this.originalList = new ArrayList<T>(originalSet.length);
+        this.originalList = new ArrayList<>(originalSet.length);
         this.arrayProducer = arrayProducer;
         for (final T element : originalSet) {
             this.originalList.add(element);
@@ -26,7 +27,7 @@ public class Permutation<T> implements Iterator<T[]>, Iterable<T[]> {
     }
 
     public Permutation(final Collection<T> originalSet, final Function<Integer, T[]> arrayProducer) {
-        this.originalList = new ArrayList<T>(originalSet.size());
+        this.originalList = new ArrayList<>(originalSet.size());
         this.arrayProducer = arrayProducer;
         for (final T element : originalSet) {
             this.originalList.add(element);
@@ -59,8 +60,7 @@ public class Permutation<T> implements Iterator<T[]>, Iterable<T[]> {
     public T[] next() {
         counter++;
         int posIndex;
-        @SuppressWarnings("unchecked")
-        final ArrayList<T> tmp = (ArrayList<T>) originalList.clone();
+        final ArrayList<T> tmp = new ArrayList<>(originalList);
         final T[] result = arrayProducer.apply(originalList.size());
         for (int i = 0; i < positions.length; i++) {
             result[i] = tmp.remove(positions[i]);
@@ -87,7 +87,7 @@ public class Permutation<T> implements Iterator<T[]>, Iterable<T[]> {
     @SuppressWarnings("PMD.UseArraysAsList")
     public static <T> T[] getPerm(final T[] original, final int index, final Function<Integer, T[]> arrayProducer) {
         final int[] program = getProgram(index, original.length);
-        final ArrayList<T> list = new ArrayList<T>();
+        final ArrayList<T> list = new ArrayList<>();
         for (int i = 0; i < original.length; i++) {
             list.add(program[i], original[i]);
         }

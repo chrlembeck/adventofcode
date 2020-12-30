@@ -14,9 +14,9 @@ public class Aoc2019Day17 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        IntcodeProgram program = Aoc2019Day02.readProgram(input);
-        IntcodeComputer computer = new IntcodeComputer(program);
-        ScaffoldScanner scanner = new ScaffoldScanner();
+        final IntcodeProgram program = Aoc2019Day02.readProgram(input);
+        final IntcodeComputer computer = new IntcodeComputer(program);
+        final ScaffoldScanner scanner = new ScaffoldScanner();
         computer.setOutputConsumer(scanner);
         computer.startCalculation();
         computer.waitForExit();
@@ -26,9 +26,9 @@ public class Aoc2019Day17 extends AbstractAocBase {
 
     @Override
     public Object part2(final Scanner input) {
-        IntcodeProgram program = Aoc2019Day02.readProgram(input);
-        IntcodeComputer computer = new IntcodeComputer(program);
-        ScaffoldScanner scanner = new ScaffoldScanner();
+        final IntcodeProgram program = Aoc2019Day02.readProgram(input);
+        final IntcodeComputer computer = new IntcodeComputer(program);
+        final ScaffoldScanner scanner = new ScaffoldScanner();
         computer.setOutputConsumer(scanner);
         computer.startCalculation();
         computer.waitForExit();

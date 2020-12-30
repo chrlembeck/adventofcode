@@ -2,9 +2,9 @@ package de.chrlembeck.aoccommon;
 
 public class Result<T> {
 
-    private T part1;
+    private final T part1;
 
-    private T part2;
+    private final T part2;
 
     public Result(final T part1, final T part2) {
         this.part1 = part1;

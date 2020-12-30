@@ -41,9 +41,10 @@ public class Dimension implements Cloneable {
         }
     }
 
+    @Override
     public Dimension clone() {
         try {
-            Dimension clone = (Dimension) super.clone();
+            final Dimension clone = (Dimension) super.clone();
             clone.pos = this.pos;
             clone.velocity = this.velocity;
             return clone;

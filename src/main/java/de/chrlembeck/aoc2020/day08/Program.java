@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Program {
 
-    private List<AbstractInstruction> instructions;
+    private final List<AbstractInstruction> instructions;
 
     private long accumulator;
 

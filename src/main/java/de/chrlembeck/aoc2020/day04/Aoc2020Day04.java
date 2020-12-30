@@ -21,11 +21,11 @@ public class Aoc2020Day04 extends AbstractAocBase {
 
     private static final Pattern HGT_PATTERN = Pattern.compile("(\\d+)(in|cm)");
 
-    public static final String[] REQUIRED_FIELDS = new String[] { "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid" };
+    public static final String[] REQUIRED_FIELDS = { "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid" };
 
-    private Predicate<Map<String, String>> hasRequiredFields = passport -> Arrays.stream(REQUIRED_FIELDS).allMatch(passport::containsKey);
+    private final Predicate<Map<String, String>> hasRequiredFields = passport -> Arrays.stream(REQUIRED_FIELDS).allMatch(passport::containsKey);
 
-    private Predicate<Map<String, String>> fieldsValid =
+    private final Predicate<Map<String, String>> fieldsValid =
             passport -> between(passport.get("byr"), 1920, 2002)
                     && between(passport.get("iyr"), 2010, 2020)
                     && between(passport.get("eyr"), 2020, 2030)
@@ -61,7 +61,7 @@ public class Aoc2020Day04 extends AbstractAocBase {
     private boolean isHeightValid(final String hgt) {
         final Matcher hgtMatcher = HGT_PATTERN.matcher(hgt);
         if (hgtMatcher.matches()) {
-            if (hgtMatcher.group(2).equals("cm")) {
+            if ("cm".equals(hgtMatcher.group(2))) {
                 return between(hgtMatcher.group(1), 150, 193);
             } else {
                 return between(hgtMatcher.group(1), 59, 76);
@@ -83,7 +83,7 @@ public class Aoc2020Day04 extends AbstractAocBase {
     private Map<String, String> parsePassport(final Scanner input) {
         final Map<String, String> passport = new TreeMap<>();
         String line;
-        while (input.hasNextLine() && !(line = input.nextLine()).equals("")) {
+        while (input.hasNextLine() && !"".equals(line = input.nextLine())) {
             final Matcher matcher = ENTRY_PATTERN.matcher(line);
             while (matcher.find()) {
                 passport.put(matcher.group(1), matcher.group(2));

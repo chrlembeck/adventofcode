@@ -6,23 +6,23 @@ import java.util.Objects;
 public class Position implements Comparable<Position> {
 
     public static final Comparator<Position> X_Y_COMPARATOR = Comparator
-            .nullsFirst(Comparator.comparing(Position::getyPos).thenComparing(Position::getxPos));
+            .nullsFirst(Comparator.comparing(Position::getPosY).thenComparing(Position::getPosX));
 
-    private int xPos;
+    private final int posX;
 
-    private int yPos;
+    private final int posY;
 
-    public Position(final int xPos, final int yPos) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Position(final int posX, final int posY) {
+        this.posX = posX;
+        this.posY = posY;
     }
 
-    public int getxPos() {
-        return xPos;
+    public int getPosX() {
+        return posX;
     }
 
-    public int getyPos() {
-        return yPos;
+    public int getPosY() {
+        return posY;
     }
 
     @Override
@@ -39,32 +39,32 @@ public class Position implements Comparable<Position> {
             return false;
         }
         final Position otherPosition = (Position) other;
-        return xPos == otherPosition.xPos && yPos == otherPosition.yPos;
+        return posX == otherPosition.posX && posY == otherPosition.posY;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(xPos, yPos);
+        return Objects.hash(posX, posY);
     }
 
     @Override
     public String toString() {
-        return "(" + xPos + "; " + yPos + ")";
+        return "(" + posX + "; " + posY + ")";
     }
 
     public Position leftNeighbour() {
-        return new Position(xPos - 1, yPos);
+        return new Position(posX - 1, posY);
     }
 
     public Position rightNeighbour() {
-        return new Position(xPos + 1, yPos);
+        return new Position(posX + 1, posY);
     }
 
     public Position topNeighbour() {
-        return new Position(xPos, yPos - 1);
+        return new Position(posX, posY - 1);
     }
 
     public Position bottomNeighbour() {
-        return new Position(xPos, yPos + 1);
+        return new Position(posX, posY + 1);
     }
 }

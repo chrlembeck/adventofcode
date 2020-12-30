@@ -14,13 +14,13 @@ public abstract class AbstractInstruction {
 
     private final IntcodeProgram program;
 
-    private int opcode;
+    private final int opcode;
 
-    private int firstParameter;
+    private final int firstParameter;
 
-    private int secondParameter;
+    private final int secondParameter;
 
-    private int thirdParameter;
+    private final int thirdParameter;
 
     public static AbstractInstruction readNextInstruction(final IntcodeProgram program, final State state) {
         final int code = program.get(state.getProgCount()).intValueExact();

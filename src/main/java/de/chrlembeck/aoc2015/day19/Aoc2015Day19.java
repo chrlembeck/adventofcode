@@ -47,7 +47,8 @@ public class Aoc2015Day19 extends AbstractAocBase {
     @Override
     public Integer part2(final Scanner input) {
         final Map<String, String> reverseMap = readReverseMap(input);
-        String oldMolecule, molecule = reverse(input.nextLine());
+        String oldMolecule;
+        String molecule = reverse(input.nextLine());
         final Pattern regex = Pattern.compile("(" + String.join("|", reverseMap.keySet()) + ")");
         int stepCount = 0;
         do {

@@ -24,7 +24,7 @@ public class Bridge {
         length++;
     }
 
-    public void incStrength(int additionalStrength) {
+    public void incStrength(final int additionalStrength) {
         this.strength += additionalStrength;
     }
 }
