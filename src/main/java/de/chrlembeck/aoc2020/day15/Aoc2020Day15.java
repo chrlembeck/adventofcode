@@ -11,21 +11,20 @@ public class Aoc2020Day15 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        int[] startNums = input.useDelimiter(",").tokens().mapToInt(Integer::parseInt).toArray();
-        return playGame(2020, startNums);
+        return playGame(2020, input);
     }
 
     @Override
     public Object part2(final Scanner input) {
-        int[] startNums = input.useDelimiter(",").tokens().mapToInt(Integer::parseInt).toArray();
-        return playGame(30_000_000, startNums);
+        return playGame(30_000_000, input);
     }
 
-    public int playGame(final int rounds, final int[] startingNumbers) {
+    public int playGame(final int rounds, final Scanner input) {
+        final int[] startingNumbers = input.useDelimiter(",").tokens().mapToInt(Integer::parseInt).toArray();
         int lastNumber = startingNumbers[startingNumbers.length - 1];
         final int[] lastUsages = new int[rounds];
         for (int i = 0; i < startingNumbers.length; i++) {
-            lastUsages[startingNumbers[i]] = i+1;
+            lastUsages[startingNumbers[i]] = i + 1;
         }
         for (int round = startingNumbers.length; round < rounds; round++) {
             final int lastUsage = lastUsages[lastNumber];

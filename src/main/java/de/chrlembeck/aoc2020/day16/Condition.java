@@ -12,7 +12,7 @@ class Condition {
 
     private final int toB;
 
-    public Condition(String name, int fromA, int toA, int fromB, int toB) {
+    public Condition(final String name, final int fromA, final int toA, final int fromB, final int toB) {
         this.name = name;
         this.fromA = fromA;
         this.toA = toA;
@@ -24,7 +24,7 @@ class Condition {
         return (fromA <= value && value <= toA) || (fromB <= value && value <= toB);
     }
 
-    public boolean startsWith(String prefix) {
+    public boolean startsWith(final String prefix) {
         return name.startsWith(prefix);
     }
 }

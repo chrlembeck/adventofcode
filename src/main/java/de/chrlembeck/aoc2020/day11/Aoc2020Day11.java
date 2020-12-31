@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.BiFunction;
 
+@SuppressWarnings("PMD.GodClass")
 public class Aoc2020Day11 extends AbstractAocBase {
 
     public static void main(final String[] args) {

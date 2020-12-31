@@ -19,10 +19,10 @@ public class Aoc2020Day14 extends AbstractAocBase {
     public Object part1(final Scanner input) {
         long zeros = 0;
         long ones = 0;
-        Map<Long, Long> memory = new TreeMap<>();
+        final Map<Long, Long> memory = new TreeMap<>();
         while (input.hasNextLine()) {
-            String line = input.nextLine();
-            Matcher matcher = REGEX.matcher(line);
+            final String line = input.nextLine();
+            final Matcher matcher = REGEX.matcher(line);
             if (matcher.matches()) {
                 memory.put(Long.valueOf(matcher.group(1)), (Long.valueOf(matcher.group(2)) & zeros) | ones);
             } else {
@@ -43,11 +43,11 @@ public class Aoc2020Day14 extends AbstractAocBase {
 
     @Override
     public Object part2(final Scanner input) {
-        Map<Long, Long> memory = new TreeMap<>();
+        final Map<Long, Long> memory = new TreeMap<>();
         String mask = null;
         while (input.hasNextLine()) {
-            String line = input.nextLine();
-            Matcher matcher = REGEX.matcher(line);
+            final String line = input.nextLine();
+            final Matcher matcher = REGEX.matcher(line);
             if (matcher.matches()) {
                 writeValue(memory, mask, Long.parseLong(matcher.group(1)), Long.valueOf(matcher.group(2)));
             } else {
@@ -59,7 +59,7 @@ public class Aoc2020Day14 extends AbstractAocBase {
 
     private void writeValue(final Map<Long, Long> memory, final String mask, final long address, final Long value) {
         if (mask.contains("X")) {
-            final int idx = mask.length() - mask.indexOf("X") - 1;
+            final int idx = mask.length() - mask.indexOf('X') - 1;
             writeValue(memory, mask.replaceFirst("X", "0"), address & (0xffffffff ^ (1l << idx)), value);
             writeValue(memory, mask.replaceFirst("X", "1"), address, value);
         } else {
