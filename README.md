@@ -16,12 +16,12 @@ Day | 2015                | 2016                | 2017                | 2018    
  8  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
  9  | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
  10 | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
- 11 | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
- 12 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
- 13 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
- 14 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
- 15 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
- 16 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :x:
+ 11 | :heavy_check_mark:  | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
+ 12 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
+ 13 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
+ 14 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
+ 15 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
+ 16 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :heavy_check_mark: | :heavy_check_mark:
  17 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :x:
  18 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :x:
  19 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :x:
