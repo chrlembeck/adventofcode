@@ -11,12 +11,20 @@ public class Aoc2020Day17 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        return null;
+        return calc(input, 3);
     }
 
     @Override
     public Object part2(final Scanner input) {
-        return null;
+        return calc(input, 4);
+    }
+
+    private int calc(final Scanner input, final int dimension) {
+        NCube cube = new NCube(dimension, input);
+        for (int i = 1; i <= 6; i++) {
+            cube = cube.next();
+        }
+        return cube.countActive();
     }
 
     @Override
