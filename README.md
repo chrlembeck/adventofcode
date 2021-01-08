@@ -25,7 +25,7 @@ Day | 2015                | 2016                | 2017                | 2018    
  17 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :heavy_check_mark:
  18 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :heavy_check_mark:
  19 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :heavy_check_mark:
- 20 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :x:
+ 20 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :heavy_check_mark:
  21 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :x:
  22 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :x:
  23 | :x:                 | :x:                 | :heavy_check_mark:  | :x:                 | :x:                | :x:
