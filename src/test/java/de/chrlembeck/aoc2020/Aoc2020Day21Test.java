@@ -11,16 +11,22 @@ public class Aoc2020Day21Test {
     @Test
     public void test1() {
         final Aoc2020Day21 day = new Aoc2020Day21();
-        assertEquals(null, test("", day::part1));
-        assertEquals(null, test("", day::part1));
-        assertEquals(null, test(day.getInput1(), day::part1));
+        assertEquals("5", test("""
+                               mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+                               trh fvjkl sbzzf mxmxvkd (contains dairy)
+                               sqjhc fvjkl (contains soy)
+                               sqjhc mxmxvkd sbzzf (contains fish)""", day::part1));
+        assertEquals("2020", test(day.getInput1(), day::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2020Day21 day = new Aoc2020Day21();
-        assertEquals(null, test("", day::part2));
-        assertEquals(null, test("", day::part2));
-        assertEquals(null, test(day.getInput1(), day::part2));
+        assertEquals("mxmxvkd,sqjhc,fvjkl", test("""
+                               mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+                               trh fvjkl sbzzf mxmxvkd (contains dairy)
+                               sqjhc fvjkl (contains soy)
+                               sqjhc mxmxvkd sbzzf (contains fish)""", day::part2));
+        assertEquals("bcdgf,xhrdsl,vndrb,dhbxtb,lbnmsr,scxxn,bvcrrfbr,xcgtv", test(day.getInput1(), day::part2));
     }
 }
