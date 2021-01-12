@@ -29,10 +29,10 @@ Day   | 2015                | 2016                | 2017                | 2018  
   21  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark:
   22  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark:
   23  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark:
-  24  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :x:
-  25  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :x:
-Stars | **22/50**           | **0/50**            | **50/50**           | **0/50**            | **32/50**          | **46/50**
- Sum  | **44%**             | **0%**              | **100%**            | **0%**              | **64%**            | **92%**
+  24  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark:
+  25  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark:
+Stars | **22/50**           | **0/50**            | **50/50**           | **0/50**            | **32/50**          | **50/50**
+ Sum  | **44%**             | **0%**              | **100%**            | **0%**              | **64%**            | **100%**
  
 **150 of 300 stars earned**
 
