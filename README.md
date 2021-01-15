@@ -6,15 +6,15 @@ See http://www.adventofcode.com
 
 Day   | 2015                | 2016                | 2017                | 2018                | 2019               | 2020
 ----- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------ | ------------------ 
-  1   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
-  2   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
-  3   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
-  4   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
-  5   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
-  6   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
-  7   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
-  8   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
-  9   | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  1   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  2   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  3   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  4   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  5   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  6   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  7   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  8   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
+  9   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
   10  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
   11  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
   12  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark:
@@ -31,10 +31,10 @@ Day   | 2015                | 2016                | 2017                | 2018  
   23  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark:
   24  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark:
   25  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark:
-Stars | **22/50**           | **0/50**            | **50/50**           | **0/50**            | **32/50**          | **50/50**
- Sum  | **44%**             | **0%**              | **100%**            | **0%**              | **64%**            | **100%**
+Stars | **22/50**           | **18/50**           | **50/50**           | **0/50**            | **32/50**          | **50/50**
+ Sum  | **44%**             | **36%**              | **100%**            | **0%**              | **64%**            | **100%**
  
-**150 of 300 stars earned**
+**172 of 300 stars earned**
 
 Legend
 

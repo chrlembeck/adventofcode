@@ -1,8 +1,7 @@
 package de.chrlembeck.aoc2016.day04;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
+import java.util.Scanner;
 
 public class Aoc2016Day04 extends AbstractAocBase {
 
@@ -11,13 +10,13 @@ public class Aoc2016Day04 extends AbstractAocBase {
     }
 
     @Override
-    public String part1(final Scanner input) {
-        return "";
+    public Integer part1(final Scanner input) {
+        return input.useDelimiter("\n").tokens().map(Room::new).filter(Room::isValid).mapToInt(Room::getId).sum();
     }
 
     @Override
-    public String part2(final Scanner input) {
-        return "";
+    public Integer part2(final Scanner input) {
+        return input.useDelimiter("\n").tokens().map(Room::new).filter(r -> r.decrypt().equals("northpole object storage")).findAny().get().getId();
     }
 
     @Override

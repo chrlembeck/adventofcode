@@ -1,8 +1,7 @@
 package de.chrlembeck.aoc2016.day09;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
+import java.util.Scanner;
 
 public class Aoc2016Day09 extends AbstractAocBase {
 
@@ -11,13 +10,53 @@ public class Aoc2016Day09 extends AbstractAocBase {
     }
 
     @Override
-    public String part1(final Scanner input) {
-        return "";
+    public Integer part1(final Scanner input) {
+        String file = input.nextLine();
+        int fileLength = 0;
+        int idx = file.indexOf('(');
+        while (idx != -1) {
+            fileLength += idx;
+            file = file.substring(idx + 1);
+            idx = file.indexOf(')');
+            String rep = file.substring(0, idx);
+            file = file.substring(idx + 1);
+            String[] reps = rep.split("x");
+            final int length = Integer.parseInt(reps[0]);
+            file = file.substring(length);
+            fileLength += Integer.parseInt(reps[1]) * length;
+            idx = file.indexOf('(');
+        }
+        fileLength += file.length();
+
+        return fileLength;
     }
 
     @Override
-    public String part2(final Scanner input) {
-        return "";
+    public Long part2(final Scanner input) {
+        String file = input.nextLine();
+        return length(file);
+    }
+
+    public static long length(String file) {
+        int idx = file.indexOf('(');
+        if (idx == -1) {
+            return file.length();
+        }
+        if (idx > 0) {
+            return idx + length(file.substring(idx));
+        }
+        if (idx == 0) {
+            idx = file.indexOf(')');
+            String rep = file.substring(1, idx);
+            file = file.substring(idx + 1);
+            String[] reps = rep.split("x");
+            int length = Integer.parseInt(reps[0]);
+            int count = Integer.parseInt(reps[1]);
+            String inner = file.substring(0, length);
+            file = file.substring(length);
+            return count * length(inner) + length(file);
+        }
+        throw new IllegalStateException();
     }
 
     @Override
