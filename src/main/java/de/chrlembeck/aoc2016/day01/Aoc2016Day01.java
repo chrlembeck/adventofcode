@@ -27,11 +27,11 @@ public class Aoc2016Day01 extends AbstractAocBase {
             final int distance = Integer.parseInt(token.substring(1));
             for (int i = 0; i < distance; i++) {
                 if (robot.walk() && stopAtTwiceVisitedPosition) {
-                    return Math.abs(robot.getX()) + Math.abs(robot.getY());
+                    return Math.abs(robot.getPosX()) + Math.abs(robot.getPosY());
                 }
             }
         }
-        return Math.abs(robot.getX()) + Math.abs(robot.getY());
+        return Math.abs(robot.getPosX()) + Math.abs(robot.getPosY());
     }
 
     @Override
