@@ -14,7 +14,7 @@ public class Aoc2016Day10 extends AbstractAocBase {
     public Integer part1(final Scanner input) {
         final Map<Integer, Bot> bots = new TreeMap<>();
         final Map<Integer, List<Integer>> outputs = new TreeMap<>();
-        return input.useDelimiter("\n").tokens().map(line -> consume(line, bots, outputs)).reduce(OptionalResult::or).get().getValue();
+        return input.useDelimiter("\n").tokens().map(line -> consume(line, bots, outputs)).reduce(OptionalResult::orElse).get().getValue();
     }
 
     @Override
@@ -29,17 +29,17 @@ public class Aoc2016Day10 extends AbstractAocBase {
         final String[] parts = line.split(" ");
         OptionalResult result = OptionalResult.EMPTY;
         if ("value".equals(parts[0])) {
-            result = result.or(bots.computeIfAbsent(Integer.valueOf(parts[5]), Bot::new).apply(Integer.valueOf(parts[1])));
+            result = result.orElse(bots.computeIfAbsent(Integer.valueOf(parts[5]), Bot::new).apply(Integer.valueOf(parts[1])));
         } else if ("bot".equals(parts[0])) {
             final Integer lowNr = Integer.valueOf(parts[6]);
-            Bot bot = bots.computeIfAbsent(Integer.valueOf(parts[1]), Bot::new);
+            final Bot bot = bots.computeIfAbsent(Integer.valueOf(parts[1]), Bot::new);
             result = "bot".equals(parts[5]) ?
-                    result.or(bot.setLowReceiver(bots.computeIfAbsent(lowNr, Bot::new))) :
-                    result.or(bot.setLowReceiver(new OutputReceiver(outputs.computeIfAbsent(lowNr, ArrayList::new))));
-            Integer highNr = Integer.valueOf(parts[11]);
+                    result.orElse(bot.registerLowReceiver(bots.computeIfAbsent(lowNr, Bot::new))) :
+                    result.orElse(bot.registerLowReceiver(new OutputReceiver(outputs.computeIfAbsent(lowNr, ArrayList::new))));
+            final Integer highNr = Integer.valueOf(parts[11]);
             result = "bot".equals(parts[10]) ?
-                    result.or(bot.setHighReceiver(bots.computeIfAbsent(highNr, Bot::new))) :
-                    result.or(bot.setHighReceiver(new OutputReceiver(outputs.computeIfAbsent(highNr, ArrayList::new))));
+                    result.orElse(bot.registerHighReceiver(bots.computeIfAbsent(highNr, Bot::new))) :
+                    result.orElse(bot.registerHighReceiver(new OutputReceiver(outputs.computeIfAbsent(highNr, ArrayList::new))));
         } else {
             throw new IllegalArgumentException(parts[0]);
         }

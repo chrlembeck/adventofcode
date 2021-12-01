@@ -6,72 +6,72 @@ import java.util.StringTokenizer;
 
 public class Room {
 
-    private String checksum;
+    private final String checksum;
 
-    private List<String> names = new ArrayList<>();
+    private final List<String> names = new ArrayList<>();
 
-    private int id;
+    private int identifier;
 
     public Room(final String input) {
         final int pos = input.indexOf('[');
         checksum = input.substring(pos + 1, pos + 6);
-        final String prefix = input.substring(0, pos);
         if (checksum.length() < 5) {
             throw new IllegalArgumentException();
         }
-        StringTokenizer tokenizer = new StringTokenizer(prefix, "-", false);
+        final String prefix = input.substring(0, pos);
+        final StringTokenizer tokenizer = new StringTokenizer(prefix, "-", false);
         while (tokenizer.hasMoreTokens()) {
-            String token = tokenizer.nextToken();
+            final String token = tokenizer.nextToken();
             if (tokenizer.hasMoreTokens()) {
                 names.add(token);
             } else {
-                id = Integer.parseInt(token);
+                identifier = Integer.parseInt(token);
             }
         }
     }
 
     public boolean isValid() {
-        int[] occurrences = new int['z' - 'a' + 1];
-        for (String name : names) {
+        final int[] occurrences = new int['z' - 'a' + 1];
+        for (final String name : names) {
             for (int i = 0; i < name.length(); i++) {
-                char ch = name.charAt(i);
-                occurrences[ch - 'a']++;
+                final char character = name.charAt(i);
+                occurrences[character - 'a']++;
             }
         }
         for (int i = 0; i < checksum.length(); i++) {
-            char ch = checksum.charAt(i);
-            int count = occurrences[ch - 'a'];
+            final char character = checksum.charAt(i);
+            final int count = occurrences[character - 'a'];
             if (!isMax(count, occurrences)) {
                 return false;
             }
-            occurrences[ch - 'a'] = 0;
+            occurrences[character - 'a'] = 0;
         }
         return true;
     }
 
-    private boolean isMax(final int max, final int[] occurrences) {
-        for (int i = 0; i < occurrences.length; i++) {
-            if (max < occurrences[i]) {
+    private boolean isMax(final int max, final int... occurrences) {
+        for (final int occurrence: occurrences) {
+            if (max < occurrence) {
                 return false;
             }
         }
         return true;
     }
 
-    public int getId() {
-        return id;
+    public int getIdentifier() {
+        return identifier;
     }
 
     public String decrypt() {
-        StringBuilder sb = new StringBuilder();
-        for (String name : names) {
+        final StringBuilder result = new StringBuilder();
+        for (final String name : names) {
             for (int i = 0; i < name.length(); i++) {
-                char ch = name.charAt(i);
-                ch = (char) ('a' + (ch - 'a' + id) % ('z' - 'a' + 1));
-                sb.append(ch);
+                char character = name.charAt(i);
+                character = (char) ('a' + (character - 'a' + identifier) % ('z' - 'a' + 1));
+                result.append(character);
             }
-            sb.append(" ");
+            result.append(" ");
         }
-        return sb.toString().trim();
+        return result.toString().trim();
     }
 }

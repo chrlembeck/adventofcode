@@ -22,12 +22,12 @@ public class Aoc2016Day03 extends AbstractAocBase {
         final List<Triple> list = new ArrayList<>();
         final Triple[] array = input.useDelimiter("\n").tokens().map(Triple::new).toArray(Triple[]::new);
         for (int i = 0; i < array.length; i += 3) {
-            Triple x = array[i];
-            Triple y = array[i + 1];
-            Triple z = array[i + 2];
-            list.add(new Triple(x.a, y.a, z.a));
-            list.add(new Triple(x.b, y.b, z.b));
-            list.add(new Triple(x.c, y.c, z.c));
+            final Triple tripleA = array[i];
+            final Triple tripleB = array[i + 1];
+            final Triple tripleC = array[i + 2];
+            list.add(new Triple(tripleA.valueA, tripleB.valueA, tripleC.valueA));
+            list.add(new Triple(tripleA.valueB, tripleB.valueB, tripleC.valueB));
+            list.add(new Triple(tripleA.valueC, tripleB.valueC, tripleC.valueC));
         }
         return list.stream().filter(Triple::isValid).count();
     }
@@ -39,27 +39,29 @@ public class Aoc2016Day03 extends AbstractAocBase {
 
     static class Triple {
 
-        private int a;
+        private final int valueA;
 
-        private int b;
+        private final int valueB;
 
-        private int c;
+        private final int valueC;
 
-        public Triple(String line) {
-            StringTokenizer tokenizer = new StringTokenizer(line, " ", false);
-            a = Integer.parseInt(tokenizer.nextToken());
-            b = Integer.parseInt(tokenizer.nextToken());
-            c = Integer.parseInt(tokenizer.nextToken());
+        public Triple(final String line) {
+            final StringTokenizer tokenizer = new StringTokenizer(line, " ", false);
+            valueA = Integer.parseInt(tokenizer.nextToken());
+            valueB = Integer.parseInt(tokenizer.nextToken());
+            valueC = Integer.parseInt(tokenizer.nextToken());
         }
 
-        public Triple(int x, int y, int z) {
-            a = x;
-            b = y;
-            c = z;
+        public Triple(final int valueA, final int valueB, final int valueC) {
+            this.valueA = valueA;
+            this.valueB = valueB;
+            this.valueC = valueC;
         }
 
         public boolean isValid() {
-            return (a >= b && a >= c && a < b + c) || (b >= a && b >= c && b < a + c) || (c >= a && c >= b && c < a + b);
+            return (valueA >= valueB && valueA >= valueC && valueA < valueB + valueC)
+                    || (valueB >= valueA && valueB >= valueC && valueB < valueA + valueC)
+                    || (valueC >= valueA && valueC >= valueB && valueC < valueA + valueB);
         }
     }
 }

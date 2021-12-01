@@ -20,39 +20,46 @@ public class Aoc2016Day08 extends AbstractAocBase {
 
     @Override
     public Integer part1(final Scanner input) {
-        boolean[][] screen = new boolean[6][50];
+        final boolean[][] screen = new boolean[6][50];
         input.useDelimiter("\n").tokens().forEach(command -> applyCommand(screen, command));
         return Arrays.stream(screen).mapToInt(this::countTrue).sum();
     }
 
-    private void applyCommand(boolean[][] screen, String command) {
-        Matcher rectMatcher = RECT.matcher(command);
-        Matcher rotColMatcher = ROTATE_COL.matcher(command);
-        Matcher rotRowMatcher = ROTATE_ROW.matcher(command);
+    @Override
+    public String part2(final Scanner input) {
+        final boolean[][] screen = new boolean[6][50];
+        input.useDelimiter("\n").tokens().forEach(command -> applyCommand(screen, command));
+        return print(screen);
+    }
+
+    private void applyCommand(final boolean[][] screen, final String command) {
+        final Matcher rectMatcher = RECT.matcher(command);
+        final Matcher rotColMatcher = ROTATE_COL.matcher(command);
+        final Matcher rotRowMatcher = ROTATE_ROW.matcher(command);
         if (rectMatcher.matches()) {
-            int width = Integer.parseInt(rectMatcher.group(1));
-            int height = Integer.parseInt(rectMatcher.group(2));
+            final int width = Integer.parseInt(rectMatcher.group(1));
+            final int height = Integer.parseInt(rectMatcher.group(2));
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     screen[y][x] = true;
                 }
             }
         } else if (rotColMatcher.matches()) {
-            int x = Integer.parseInt(rotColMatcher.group(1));
-            int offset = Integer.parseInt(rotColMatcher.group(2));
-            boolean[] tmp = new boolean[screen.length];
+            final int columnIndex = Integer.parseInt(rotColMatcher.group(1));
+            final int offset = Integer.parseInt(rotColMatcher.group(2));
+            final boolean[] tmp = new boolean[screen.length];
             for (int i = 0; i < screen.length; i++) {
-                tmp[i] = screen[i][x];
+                tmp[i] = screen[i][columnIndex];
             }
             for (int i = 0; i < screen.length; i++) {
-                screen[i][x] = tmp[(i - offset + screen.length) % screen.length];
+                screen[i][columnIndex] = tmp[(i - offset + screen.length) % screen.length];
             }
         } else if (rotRowMatcher.matches()) {
-            int y = Integer.parseInt(rotRowMatcher.group(1));
-            int offset = Integer.parseInt(rotRowMatcher.group(2));
-            boolean[] tmp = Arrays.copyOf(screen[y], screen[y].length);
-            for (int i = 0; i < screen[y].length; i++) {
-                screen[y][i] = tmp[(i - offset + screen[y].length) % screen[y].length];
+            final int rowIndex = Integer.parseInt(rotRowMatcher.group(1));
+            final int offset = Integer.parseInt(rotRowMatcher.group(2));
+            final boolean[] tmp = Arrays.copyOf(screen[rowIndex], screen[rowIndex].length);
+            for (int i = 0; i < screen[rowIndex].length; i++) {
+                screen[rowIndex][i] = tmp[(i - offset + screen[rowIndex].length) % screen[rowIndex].length];
             }
         } else {
             throw new IllegalArgumentException(command);
@@ -60,9 +67,9 @@ public class Aoc2016Day08 extends AbstractAocBase {
         print(screen);
     }
 
-    private int countTrue(boolean[] booleans) {
+    private int countTrue(final boolean... booleans) {
         int result = 0;
-        for (boolean value : booleans) {
+        for (final boolean value : booleans) {
             if (value) {
                 result++;
             }
@@ -71,21 +78,15 @@ public class Aoc2016Day08 extends AbstractAocBase {
     }
 
     @Override
-    public String part2(final Scanner input) {
-        boolean[][] screen = new boolean[6][50];
-        input.useDelimiter("\n").tokens().forEach(command -> applyCommand(screen, command));
-        return print(screen);
-    }
-
-    @Override
     public String getInputLocation(final int part) {
         return "/input/aoc2016/aoc2016day08.txt";
     }
 
-    public String print(boolean[][] screen) {
-        StringBuilder result = new StringBuilder();
-        for (boolean[] row : screen) {
-            for (boolean v : row) {
+    @SuppressWarnings("PMD.UseVarargs")
+    public String print(final boolean[][] screen) {
+        final StringBuilder result = new StringBuilder();
+        for (final boolean[] row : screen) {
+            for (final boolean v : row) {
                 result.append(v ? '#' : '.');
             }
             result.append('\n');

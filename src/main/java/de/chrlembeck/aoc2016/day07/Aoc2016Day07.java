@@ -26,14 +26,15 @@ public class Aoc2016Day07 extends AbstractAocBase {
 
     static class IP7 {
 
-        private List<String> hypernetSequences;
+        private final List<String> hypernetSequences;
 
-        private List<String> supernetSequences;
+        private final List<String> supernetSequences;
 
         public IP7(String line) {
             supernetSequences = new ArrayList<>();
             hypernetSequences = new ArrayList<>();
-            int left, right;
+            int left;
+            int right;
             do {
                 left = line.indexOf('[');
                 right = line.indexOf(']');
@@ -53,12 +54,12 @@ public class Aoc2016Day07 extends AbstractAocBase {
         }
 
         public boolean supportsTLS() {
-            for (String token : hypernetSequences) {
+            for (final String token : hypernetSequences) {
                 if (hasABBA(token)) {
                     return false;
                 }
             }
-            for (String token : supernetSequences) {
+            for (final String token : supernetSequences) {
                 if (hasABBA(token)) {
                     return true;
                 }
@@ -67,23 +68,22 @@ public class Aoc2016Day07 extends AbstractAocBase {
         }
 
         public boolean supportsSSL() {
-            Set<String> abas = new TreeSet<>();
-            for (String token : supernetSequences) {
+            final Set<String> abas = new TreeSet<>();
+            for (final String token : supernetSequences) {
                 collectABA(abas, token);
             }
-            for (String aba : abas) {
-                String bab = "" + aba.charAt(1) + aba.charAt(0) + aba.charAt(1);
-                for (String token : hypernetSequences) {
+            for (final String aba : abas) {
+                final String bab = Character.toString(aba.charAt(1)) + aba.charAt(0) + aba.charAt(1);
+                for (final String token : hypernetSequences) {
                     if (token.contains(bab)) {
                         return true;
                     }
                 }
             }
             return false;
-
         }
 
-        public static boolean hasABBA(String token) {
+        public static boolean hasABBA(final String token) {
             if (token.length() < 4) {
                 return false;
             }
@@ -95,7 +95,7 @@ public class Aoc2016Day07 extends AbstractAocBase {
             return false;
         }
 
-        public static void collectABA(Collection<String> abas, String token) {
+        public static void collectABA(final Collection<String> abas, final String token) {
             for (int i = 0; i < token.length() - 2; i++) {
                 if (token.charAt(i) == token.charAt(i + 2) && token.charAt(i) != token.charAt(i + 1)) {
                     abas.add(token.substring(i, i + 2));

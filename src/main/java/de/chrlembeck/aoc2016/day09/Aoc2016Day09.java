@@ -18,9 +18,9 @@ public class Aoc2016Day09 extends AbstractAocBase {
             fileLength += idx;
             file = file.substring(idx + 1);
             idx = file.indexOf(')');
-            String rep = file.substring(0, idx);
+            final String rep = file.substring(0, idx);
             file = file.substring(idx + 1);
-            String[] reps = rep.split("x");
+            final String[] reps = rep.split("x");
             final int length = Integer.parseInt(reps[0]);
             file = file.substring(length);
             fileLength += Integer.parseInt(reps[1]) * length;
@@ -33,7 +33,7 @@ public class Aoc2016Day09 extends AbstractAocBase {
 
     @Override
     public Long part2(final Scanner input) {
-        String file = input.nextLine();
+        final String file = input.nextLine();
         return length(file);
     }
 
@@ -47,12 +47,12 @@ public class Aoc2016Day09 extends AbstractAocBase {
         }
         if (idx == 0) {
             idx = file.indexOf(')');
-            String rep = file.substring(1, idx);
+            final String rep = file.substring(1, idx);
             file = file.substring(idx + 1);
-            String[] reps = rep.split("x");
-            int length = Integer.parseInt(reps[0]);
-            int count = Integer.parseInt(reps[1]);
-            String inner = file.substring(0, length);
+            final String[] reps = rep.split("x");
+            final int length = Integer.parseInt(reps[0]);
+            final int count = Integer.parseInt(reps[1]);
+            final String inner = file.substring(0, length);
             file = file.substring(length);
             return count * length(inner) + length(file);
         }

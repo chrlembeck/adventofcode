@@ -6,9 +6,9 @@ import java.util.Set;
 
 public class Robot {
 
-    private int x;
+    private int posX;
 
-    private int y;
+    private int posY;
 
     private final Set<Point> history;
 
@@ -16,7 +16,7 @@ public class Robot {
 
     public Robot() {
         history = new HashSet<>();
-        history.add(new Point(x, y));
+        history.add(new Point(posX, posY));
     }
 
     public void left(){
@@ -34,26 +34,26 @@ public class Robot {
     public boolean walk() {
         switch (direction) {
             case NORTH:
-                y--;
+                posY--;
                 break;
             case SOUTH:
-                y++;
+                posY++;
                 break;
             case EAST:
-                x++;
+                posX++;
                 break;
             case WEST:
-                x--;
+                posX--;
                 break;
         }
-        return !history.add(new Point(x, y));
+        return !history.add(new Point(posX, posY));
     }
 
-    public int getX() {
-        return x;
+    public int getPosX() {
+        return posX;
     }
 
-    public int getY() {
-        return y;
+    public int getPosY() {
+        return posY;
     }
 }

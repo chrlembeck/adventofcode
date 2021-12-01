@@ -5,20 +5,21 @@ import java.util.function.Function;
 
 public class Bot implements Function<Integer, OptionalResult> {
 
-    private Integer botNr;
+    private final Integer botNr;
 
     private Function<Integer, OptionalResult> lowReceiver;
 
     private Function<Integer, OptionalResult> highReceiver;
 
-    private TreeSet<Integer> values = new TreeSet<>();
+    @SuppressWarnings("PMD.LooseCoupling")
+    private final TreeSet<Integer> values = new TreeSet<>();
 
-    public Bot(Integer botNr) {
+    public Bot(final Integer botNr) {
         this.botNr = botNr;
     }
 
     @Override
-    public OptionalResult apply(Integer value) {
+    public OptionalResult apply(final Integer value) {
         values.add(value);
         return execute();
     }
@@ -29,10 +30,10 @@ public class Bot implements Function<Integer, OptionalResult> {
         } else if (lowReceiver == null || highReceiver == null) {
             return OptionalResult.EMPTY;
         } else {
-            Integer low = values.pollFirst();
-            Integer high = values.pollFirst();
+            final Integer low = values.pollFirst();
+            final Integer high = values.pollFirst();
             OptionalResult result = lowReceiver.apply(low);
-            result = result.or(highReceiver.apply(high));
+            result = result.orElse(highReceiver.apply(high));
             lowReceiver = null;
             highReceiver = null;
             if (low == 17 && high == 61) {
@@ -42,12 +43,12 @@ public class Bot implements Function<Integer, OptionalResult> {
         }
     }
 
-    public OptionalResult setLowReceiver(Function<Integer, OptionalResult> lowBot) {
+    public OptionalResult registerLowReceiver(final Function<Integer, OptionalResult> lowBot) {
         lowReceiver = lowBot;
         return execute();
     }
 
-    public OptionalResult setHighReceiver(Function<Integer, OptionalResult> highBot) {
+    public OptionalResult registerHighReceiver(final Function<Integer, OptionalResult> highBot) {
         highReceiver = highBot;
         return execute();
     }

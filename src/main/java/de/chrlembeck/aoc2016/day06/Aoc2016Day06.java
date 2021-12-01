@@ -22,10 +22,10 @@ public class Aoc2016Day06 extends AbstractAocBase {
     }
 
 
-    public String decode(final Scanner input, BiPredicate<Integer, Integer> predicate) {
+    public String decode(final Scanner input, final BiPredicate<Integer, Integer> predicate) {
         int[][] histogram = null;
         while (input.hasNext()) {
-            String line = input.next();
+            final String line = input.next();
             if (histogram == null) {
                 histogram = new int[line.length()]['z' - 'a' + 1];
             }
@@ -37,7 +37,7 @@ public class Aoc2016Day06 extends AbstractAocBase {
                 .toString();
     }
 
-    private char findMax(int[] histogram, BiPredicate<Integer, Integer> predicate) {
+    private char findMax(final int[] histogram, final BiPredicate<Integer, Integer> predicate) {
         int max = 0;
         int maxIndex = 0;
         for (int i = 0; i < histogram.length; i++) {

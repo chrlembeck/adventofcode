@@ -8,11 +8,11 @@ public class OptionalResult {
 
     public final static OptionalResult EMPTY = new OptionalResult(Optional.empty());
 
-    private <T> OptionalResult(Optional<Integer> optional) {
+    private <T> OptionalResult(final Optional<Integer> optional) {
         this.optional = optional;
     }
 
-    public OptionalResult(Integer value) {
+    public OptionalResult(final Integer value) {
         this.optional = Optional.of(value);
     }
 
@@ -20,7 +20,7 @@ public class OptionalResult {
         return optional.isPresent();
     }
 
-    public OptionalResult or(OptionalResult other) {
+    public OptionalResult orElse(final OptionalResult other) {
         return isPresent() ? this : other;
     }
 

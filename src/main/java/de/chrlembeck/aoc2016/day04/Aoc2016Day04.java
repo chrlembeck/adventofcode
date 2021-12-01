@@ -11,12 +11,12 @@ public class Aoc2016Day04 extends AbstractAocBase {
 
     @Override
     public Integer part1(final Scanner input) {
-        return input.useDelimiter("\n").tokens().map(Room::new).filter(Room::isValid).mapToInt(Room::getId).sum();
+        return input.useDelimiter("\n").tokens().map(Room::new).filter(Room::isValid).mapToInt(Room::getIdentifier).sum();
     }
 
     @Override
     public Integer part2(final Scanner input) {
-        return input.useDelimiter("\n").tokens().map(Room::new).filter(r -> r.decrypt().equals("northpole object storage")).findAny().get().getId();
+        return input.useDelimiter("\n").tokens().map(Room::new).filter(r -> "northpole object storage".equals(r.decrypt())).findAny().get().getIdentifier();
     }
 
     @Override
