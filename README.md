@@ -8,7 +8,7 @@ Day   | 2015                | 2016                | 2017                | 2018  
 ----- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------ | ------------------ | ------------------ 
   1   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
   2   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
-  3   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
+  3   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
   4   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
   5   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
   6   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
@@ -31,8 +31,8 @@ Day   | 2015                | 2016                | 2017                | 2018  
   23  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
   24  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
   25  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
-Stars | **22/50**           | **18/50**           | **50/50**           | **0/50**            | **32/50**          | **50/50**          | **2/50**
- Sum  | **44%**             | **36%**              | **100%**            | **0%**              | **64%**            | **100%**          | **4%**
+Stars | **22/50**           | **18/50**           | **50/50**           | **0/50**            | **32/50**          | **50/50**          | **6/50**
+ Sum  | **44%**             | **36%**              | **100%**            | **0%**              | **64%**            | **100%**          | **12%**
  
 **172 of 300 stars earned**
 
