@@ -14,7 +14,7 @@ public class Aoc2021Day10 extends AbstractAocBase {
         while (input.hasNext()) {
             final String line = input.nextLine();
         }
-        return null;
+        return "";
     }
 
     @Override
@@ -22,7 +22,7 @@ public class Aoc2021Day10 extends AbstractAocBase {
         while (input.hasNext()) {
             final String line = input.nextLine();
         }
-        return null;
+        return "";
     }
 
     @Override
