@@ -7,7 +7,7 @@ See http://www.adventofcode.com
 Day   | 2015                | 2016                | 2017                | 2018                | 2019               | 2020               | 2021
 ----- | ------------------- | ------------------- | ------------------- | ------------------- | ------------------ | ------------------ | ------------------ 
   1   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
-  2   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
+  2   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
   3   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
   4   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
   5   | :heavy_check_mark:  | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
