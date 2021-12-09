@@ -24,14 +24,14 @@ public class Aoc2019Day10Test {
 
     @Test
     public void compare() {
-        assertEquals(0, Aoc2019Day10.angleComparator.compare(new Point(1,0), new Point(2,0)));
-        assertEquals(0, Aoc2019Day10.angleComparator.compare(new Point(1,1), new Point(2,2)));
-        assertEquals(0, Aoc2019Day10.angleComparator.compare(new Point(0,1), new Point(0,2)));
-        assertEquals(0, Aoc2019Day10.angleComparator.compare(new Point(-1,1), new Point(-2,2)));
-        assertEquals(0, Aoc2019Day10.angleComparator.compare(new Point(-1,0), new Point(-2,0)));
-        assertEquals(0, Aoc2019Day10.angleComparator.compare(new Point(-1,-1), new Point(-2,-2)));
-        assertEquals(0, Aoc2019Day10.angleComparator.compare(new Point(0,-1), new Point(0,-2)));
-        assertEquals(0, Aoc2019Day10.angleComparator.compare(new Point(1,-1), new Point(2,-2)));
+        assertEquals(0, Aoc2019Day10.ANGLE_COMPARATOR.compare(new Point(1,0), new Point(2,0)));
+        assertEquals(0, Aoc2019Day10.ANGLE_COMPARATOR.compare(new Point(1,1), new Point(2,2)));
+        assertEquals(0, Aoc2019Day10.ANGLE_COMPARATOR.compare(new Point(0,1), new Point(0,2)));
+        assertEquals(0, Aoc2019Day10.ANGLE_COMPARATOR.compare(new Point(-1,1), new Point(-2,2)));
+        assertEquals(0, Aoc2019Day10.ANGLE_COMPARATOR.compare(new Point(-1,0), new Point(-2,0)));
+        assertEquals(0, Aoc2019Day10.ANGLE_COMPARATOR.compare(new Point(-1,-1), new Point(-2,-2)));
+        assertEquals(0, Aoc2019Day10.ANGLE_COMPARATOR.compare(new Point(0,-1), new Point(0,-2)));
+        assertEquals(0, Aoc2019Day10.ANGLE_COMPARATOR.compare(new Point(1,-1), new Point(2,-2)));
     }
 
     @Test

@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Aoc2019Day10 extends AbstractAocBase {
 
-    public static Comparator<Point> angleComparator = Comparator.comparingDouble((Point point) -> {
+    public static final Comparator<Point> ANGLE_COMPARATOR = Comparator.comparingDouble((Point point) -> {
         if (point.x == 0) {
             return angle(0, point.y > 0 ? 1 : -1);
         } else if (point.y == 0) {
@@ -17,7 +17,7 @@ public class Aoc2019Day10 extends AbstractAocBase {
         }
     });
 
-    public static Comparator<Point> distanceComparator = Comparator.comparingInt((Point point) -> point.x * point.x + point.y * point.y);
+    public static final Comparator<Point> DISTANCE_COMPARATOR = Comparator.comparingInt((Point point) -> point.x * point.x + point.y * point.y);
 
     public static void main(final String[] args) {
         new Aoc2019Day10().run();
@@ -46,7 +46,7 @@ public class Aoc2019Day10 extends AbstractAocBase {
                     final double angle = angle(point.x, point.y);
                     SortedSet<Point> set = map.get(angle);
                     if (set == null) {
-                        set = new TreeSet<>(distanceComparator);
+                        set = new TreeSet<>(DISTANCE_COMPARATOR);
                         map.put(angle, set);
                     }
                     set.add(point);

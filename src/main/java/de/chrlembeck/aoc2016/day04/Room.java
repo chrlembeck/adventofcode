@@ -70,7 +70,7 @@ public class Room {
                 character = (char) ('a' + (character - 'a' + identifier) % ('z' - 'a' + 1));
                 result.append(character);
             }
-            result.append(" ");
+            result.append(' ');
         }
         return result.toString().trim();
     }

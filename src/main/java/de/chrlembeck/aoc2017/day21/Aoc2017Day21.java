@@ -22,6 +22,7 @@ public class Aoc2017Day21 extends AbstractAocBase {
         return calc(input, 18);
     }
 
+    @SuppressWarnings("PMD.UseArraysAsList")
     private int calc(final Scanner input, final int iterations) {
         // contains the transformations from a 2x2 matrix to a 3x3 matrix
         final int[] twoToThreeMap = new int[1 << 4];

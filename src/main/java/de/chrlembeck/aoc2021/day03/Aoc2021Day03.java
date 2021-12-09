@@ -59,7 +59,7 @@ public class Aoc2021Day03 extends AbstractAocBase {
                     counter++;
                 }
             }
-            char wantedBit = wantedBitCriteria.apply(counter, lines.size());
+            final char wantedBit = wantedBitCriteria.apply(counter, lines.size());
             for (int lineIdx = lines.size() - 1; lineIdx >= 0; lineIdx--) {
                 if (lines.get(lineIdx).charAt(charIdx) != wantedBit) {
                     lines.remove(lineIdx);

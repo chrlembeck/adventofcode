@@ -11,18 +11,31 @@ public class Aoc2021Day06 extends AbstractAocBase {
 
     @Override
     public Object part1(final Scanner input) {
-        while (input.hasNext()) {
-            final String line = input.nextLine();
-        }
-        return "";
+        return calcFishCount(input, 80);
     }
 
     @Override
     public Object part2(final Scanner input) {
-        while (input.hasNext()) {
-            final String line = input.nextLine();
+        return calcFishCount(input, 256);
+    }
+
+    public long calcFishCount(final Scanner input, final int days) {
+        input.useDelimiter(",");
+        final long[] lanternfishs = new long[9];
+        while (input.hasNextInt()) {
+            lanternfishs[input.nextInt()]++;
         }
-        return "";
+        for (int dayIndex = 0; dayIndex < days; dayIndex++) {
+            final long newFishes = lanternfishs[0];
+            System.arraycopy(lanternfishs, 1, lanternfishs, 0, 8);
+            lanternfishs[8] = newFishes;
+            lanternfishs[6] += newFishes;
+        }
+        long sum = 0;
+        for (final long fishcount : lanternfishs) {
+            sum += fishcount;
+        }
+        return sum;
     }
 
     @Override

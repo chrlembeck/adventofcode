@@ -26,6 +26,7 @@
         <exclude name="ExcessiveParameterList"/>
         <exclude name="DataClass"/>
         <exclude name="TooManyMethods"/>
+        <exclude name="CognitiveComplexity"/>
     </rule>
     <rule ref="category/java/documentation.xml" >
         <exclude name="CommentRequired"/>
@@ -35,6 +36,7 @@
         <exclude name="AvoidLiteralsInIfCondition"/>
         <exclude name="BeanMembersShouldSerialize"/>
         <exclude name="AssignmentInOperand"/>
+        <exclude name="NullAssignment"/>
         <exclude name="CloneThrowsCloneNotSupportedException"/>
     </rule>
     <rule ref="category/java/multithreading.xml" >

@@ -18,13 +18,14 @@ public class Aoc2021Day02 extends AbstractAocBase {
         int depth = 0;
         int pos = 0;
         while (input.hasNext()) {
-            Matcher matcher = matchRegex(REGEX, input.nextLine());
+            final Matcher matcher = matchRegex(REGEX, input.nextLine());
             final String command = matcher.group(1);
             final int value = Integer.parseInt(matcher.group(2));
             switch (command) {
                 case "up": depth -= value; break;
                 case "down": depth += value; break;
                 case "forward": pos += value; break;
+                default: throw new RuntimeException("unknown command: " + command);
             }
         }
         return pos * depth;
@@ -36,13 +37,14 @@ public class Aoc2021Day02 extends AbstractAocBase {
         int pos = 0;
         int aim = 0;
         while (input.hasNext()) {
-            Matcher matcher = matchRegex(REGEX, input.nextLine());
+            final Matcher matcher = matchRegex(REGEX, input.nextLine());
             final String command = matcher.group(1);
             final int value = Integer.parseInt(matcher.group(2));
             switch (command) {
                 case "up": aim -= value; break;
                 case "down": aim += value; break;
                 case "forward": pos += value; depth += aim * value; break;
+                default: throw new RuntimeException("unknown command: " + command);
             }
         }
         return pos * depth;

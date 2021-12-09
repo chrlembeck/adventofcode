@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class Aoc2017Day16 extends AbstractAocBase {
 
-    public static Pattern regex = Pattern.compile("([sxp])(\\w+)(/(\\w+))?");
+    public static final Pattern REGEX = Pattern.compile("([sxp])(\\w+)(/(\\w+))?");
 
     public static void main(final String[] args) {
         new Aoc2017Day16().run();
@@ -36,7 +36,7 @@ public class Aoc2017Day16 extends AbstractAocBase {
         final List<Command> commands = new ArrayList<>();
         while(input.hasNext()) {
             final String command = input.next();
-            final Matcher matcher = regex.matcher(command);
+            final Matcher matcher = REGEX.matcher(command);
             if (matcher.matches()) {
                 switch (matcher.group(1)) {
                 case "s":
