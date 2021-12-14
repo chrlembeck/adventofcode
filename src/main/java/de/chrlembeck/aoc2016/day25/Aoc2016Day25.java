@@ -53,7 +53,7 @@ public class Aoc2016Day25 extends AbstractAocBase {
         @Override
         public boolean test(int value) {
             zeroExpected = !zeroExpected;
-            if (limit-- == 0) {
+            if (--limit == 0) {
                 return false;
             }
             return value == (zeroExpected ? 0 : 1);
