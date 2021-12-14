@@ -2,22 +2,32 @@ package de.chrlembeck.aoc2016.day12;
 
 public class JumpNotZero implements Operation {
 
-    private int offset;
+    private Expression value;
 
-    private Environment.Register register;
+    private Expression offset;
 
-    public JumpNotZero(Environment.Register register, int offset) {
-        this.register = register;
+    public JumpNotZero(Expression value, Expression offset) {
+        this.value = value;
         this.offset = offset;
     }
 
     @Override
     public void execute(Environment env) {
-        int value = env.readRegister(register);
-        if (value != 0) {
-            env.incPC(offset);
+        int intValue = value.evaluate(env);
+        if (intValue != 0) {
+            env.incPC(offset.evaluate(env));
         } else {
             env.incPC();
         }
+    }
+
+    @Override
+    public Operation toggle() {
+        return new Copy(value, offset);
+    }
+
+    @Override
+    public String toString() {
+        return "jnz " + value + " " + offset;
     }
 }

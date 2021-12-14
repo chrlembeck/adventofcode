@@ -27,14 +27,14 @@ Day   | 2015                | 2016                | 2017                | 2018  
   19  | :hourglass:         | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
   20  | :hourglass:         | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
   21  | :hourglass:         | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
-  22  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
-  23  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
-  24  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
-  25  | :hourglass:         | :hourglass:         | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
-Stars | **22/50**           | **42/50**           | **50/50**           | **0/50**            | **32/50**          | **50/50**          | **26/50**
- Sum  | **44%**             | **84%**             | **100%**            | **0%**              | **64%**            | **100%**          | **52%**
+  22  | :hourglass:         | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
+  23  | :hourglass:         | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
+  24  | :hourglass:         | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
+  25  | :hourglass:         | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:
+Stars | **22/50**           | **50/50**           | **50/50**           | **0/50**            | **32/50**          | **50/50**          | **26/50**
+ Sum  | **44%**             | **100%**            | **100%**            | **0%**              | **64%**            | **100%**          | **52%**
  
-**198 of 350 stars earned**
+**230 of 350 stars earned**
 
 Legend
 

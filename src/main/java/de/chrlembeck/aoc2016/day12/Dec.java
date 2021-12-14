@@ -1,18 +1,29 @@
 package de.chrlembeck.aoc2016.day12;
 
-
 public class Dec implements Operation {
 
-    private Environment.Register register;
+    private Expression expression;
 
-    public Dec(Environment.Register reg){
-        this.register = reg;
+    public Dec(Expression expression) {
+        this.expression = expression;
     }
 
     @Override
     public void execute(Environment env) {
-        int value = env.readRegister(register);
-        env.setRegister(register, value-1);
+        if (expression instanceof Environment.Register register) {
+            int value = env.readRegister(register);
+            env.setRegister(register, value - 1);
+        }
         env.incPC();
+    }
+
+    @Override
+    public Operation toggle() {
+        return new Inc(expression);
+    }
+
+    @Override
+    public String toString() {
+        return "dec " + expression;
     }
 }

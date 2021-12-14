@@ -36,8 +36,6 @@ public class Aoc2016Day18 extends AbstractAocBase {
             newLine = newLine + compute(line.charAt(line.length()-2), line.charAt(line.length()-1), SAFE);
             line = newLine;
         }
-        System.out.println(anz);
-
         return anz;
     }
 

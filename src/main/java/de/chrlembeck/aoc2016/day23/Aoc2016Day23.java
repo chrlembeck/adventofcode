@@ -1,8 +1,9 @@
 package de.chrlembeck.aoc2016.day23;
 
-import java.util.Scanner;
-
+import de.chrlembeck.aoc2016.day12.Environment;
+import de.chrlembeck.aoc2016.day12.Operation;
 import de.chrlembeck.aoccommon.AbstractAocBase;
+import java.util.Scanner;
 
 public class Aoc2016Day23 extends AbstractAocBase {
 
@@ -11,13 +12,19 @@ public class Aoc2016Day23 extends AbstractAocBase {
     }
 
     @Override
-    public String part1(final Scanner input) {
-        return "";
+    public Integer part1(final Scanner input) {
+        Environment env = new Environment(Operation.readOperations(input));
+        env.setRegister(Environment.Register.A, 7);
+        env.run();
+        return env.readRegister(Environment.Register.A);
     }
 
     @Override
-    public String part2(final Scanner input) {
-        return "";
+    public Integer part2(final Scanner input) {
+        Environment env = new Environment(Operation.readOperations(input));
+        env.setRegister(Environment.Register.A, 12);
+        env.run();
+        return env.readRegister(Environment.Register.A);
     }
 
     @Override

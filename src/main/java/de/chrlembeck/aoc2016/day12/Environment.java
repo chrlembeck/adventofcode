@@ -1,10 +1,13 @@
 package de.chrlembeck.aoc2016.day12;
 
 import java.util.List;
+import java.util.function.IntPredicate;
 
 public class Environment {
 
-    enum Register {
+    private IntPredicate outputChannel;
+
+    public enum Register implements Expression{
         A(0),
         B(1),
         C(2),
@@ -28,6 +31,11 @@ public class Environment {
                 case "d" -> D;
                 default -> throw new IllegalArgumentException();
             };
+        }
+
+        @Override
+        public int evaluate(Environment env) {
+            return env.readRegister(this);
         }
     }
 
@@ -62,5 +70,31 @@ public class Environment {
 
     public void incPC(int offset) {
         pc += offset;
+    }
+
+    public Operation getOperationAt(int pos) {
+        return operations.get(pos);
+    }
+
+    public int getPc() {
+        return pc;
+    }
+
+    public int getOperationCount() {
+        return operations.size();
+    }
+
+    public void replaceOperation(int index, Operation newOperation) {
+        operations.set(index, newOperation);
+    }
+
+    public void output(int value) {
+        if (!outputChannel.test(value)) {
+            pc = getOperationCount();
+        }
+    }
+
+    public void setOutputChannel(IntPredicate outputChannel) {
+        this.outputChannel = outputChannel;
     }
 }

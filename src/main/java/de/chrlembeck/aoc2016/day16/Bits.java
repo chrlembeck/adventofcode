@@ -46,15 +46,12 @@ public class Bits {
     }
 
     public String checksum() {
-        int d = 0;
         int w = width;
         int b = 1;
         while (w % 2 == 0) {
             w /= 2;
             b *= 2;
-            d += 1;
         }
-        System.out.println(width + " lässt sich " + d + " mal durch 2 teilen. Es bleiben " + w + " übrigt. Die Zweierpotenz ist " + b + ".");
         StringBuilder sb = new StringBuilder();
         for (int cPos = 0; cPos < w; cPos++) {
             boolean cs = checksum(cPos * b, b);
