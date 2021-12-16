@@ -19,14 +19,12 @@ public class Aoc2015Day12Test {
         assertEquals("0", test("[-1,{\"a\":1}]", day::part1));
         assertEquals("0", test("{}", day::part1));
         assertEquals("0", test("[]", day::part1));
-        assertEquals("111754", test(day.getInput1(), day::part1));
+        assertEquals("119433", test(day.getInput1(), day::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2015Day12 day = new Aoc2015Day12();
-        assertEquals("", test("", day::part2));
-        assertEquals("", test("", day::part2));
-        assertEquals("", test(day.getInput2(), day::part2));
+        assertEquals("68466", test(day.getInput2(), day::part2));
     }
 }

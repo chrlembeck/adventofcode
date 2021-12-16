@@ -11,19 +11,18 @@ public class Aoc2015Day15Test {
     @Test
     public void test1() {
         final Aoc2015Day15 day = new Aoc2015Day15();
-        assertEquals("", test("", day::part1));
-        assertEquals("", test("", day::part1));
-        assertEquals("", test("", day::part1));
-        assertEquals("", test("", day::part1));
-        assertEquals("", test("", day::part1));
-        assertEquals("", test(day.getInput1(), day::part1));
+        assertEquals("62842880", test("""
+                              Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8
+                              Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3""", day::part1));
+        assertEquals("222870", test(day.getInput1(), day::part1));
     }
 
     @Test
     public void test2() {
         final Aoc2015Day15 day = new Aoc2015Day15();
-        assertEquals("", test("", day::part2));
-        assertEquals("", test("", day::part2));
-        assertEquals("", test(day.getInput2(), day::part2));
+        assertEquals("57600000", test("""
+                              Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8
+                              Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3""", day::part2));
+        assertEquals("117936", test(day.getInput2(), day::part2));
     }
 }

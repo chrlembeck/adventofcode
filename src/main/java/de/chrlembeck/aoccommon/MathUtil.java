@@ -114,4 +114,15 @@ public final class MathUtil {
         }
         return new BigInteger[] { oldS, bezoutT, oldRemainder };
     }
+
+    public static int max(int[] values) {
+        if (values == null || values.length == 0) {
+            throw new IllegalArgumentException("no element passed.");
+        }
+        int max = Integer.MIN_VALUE;
+        for (int value:values) {
+            max = Math.max(max, value);
+        }
+        return max;
+    }
 }

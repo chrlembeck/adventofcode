@@ -1,7 +1,7 @@
 package de.chrlembeck.aoc2015.day12;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
-import java.util.Scanner;
+import java.util.*;
 
 public class Aoc2015Day12 extends AbstractAocBase {
 
@@ -11,37 +11,88 @@ public class Aoc2015Day12 extends AbstractAocBase {
 
     @Override
     public Long part1(final Scanner input) {
-        final String line = input.nextLine();
-        long sum = 0;
-        for (int i = 0; i < line.length(); i++) {
-            final char next = line.charAt(i);
-            if (Character.isDigit(next) || next == '-') {
-                // number
-                if (next == '-') {
-                    i++;
-                }
-                long number = line.charAt(i) - '0';
-
-                while (i < line.length() - 1 && Character.isDigit(line.charAt(i + 1))) {
-                    number = number * 10 + (line.charAt(i + 1) - '0');
-                    i++;
-                }
-                sum += (next == '-') ? -number : number;
-            } else if (next == '\"') {
-                // string
-                i++;
-                while (i < line.length() && line.charAt(i) != '\"') {
-                    i++;
-                }
-            }
-        }
-
-        return sum;
+        String line = input.nextLine();
+        Position position = new Position();
+        JsonElement element = parseJsonElement(line, position);
+        return element.sumNumbers(false);
     }
 
     @Override
-    public String part2(final Scanner input) {
-        return "";
+    public Long part2(final Scanner input) {
+        String line = input.nextLine();
+        Position position = new Position();
+        JsonElement element = parseJsonElement(line, position);
+        return element.sumNumbers(true);
+    }
+
+    private JsonElement parseJsonElement(String text, Position position) {
+        if (text.charAt(position.getPos()) == '\"') {
+            return parseString(text, position);
+        } else if (text.charAt(position.getPos()) == '[') {
+            return parseArray(text, position);
+        }
+        if (text.charAt(position.getPos()) == '{') {
+            return parseObject(text, position);
+        } else {
+            return parseConstant(text, position);
+        }
+    }
+
+    private JsonElement parseObject(String text, Position position) {
+        Map<String, JsonElement> attributes = new TreeMap<>();
+        position.inc(1); // '{'
+        if (text.charAt(position.getPos()) != '}') {
+            JsonString name = parseString(text, position);
+            position.inc(1); // ':'
+            JsonElement value = parseJsonElement(text, position);
+            attributes.put(name.getValue(), value);
+            while (position.getPos() < text.length() && text.charAt(position.getPos()) == ',') {
+                position.inc(1); // ','
+                name = parseString(text, position);
+                position.inc(1); // ':'
+                value = parseJsonElement(text, position);
+                attributes.put(name.getValue(), value);
+            }
+        }
+        position.inc(1); // '}'
+        return new JsonObject(attributes);
+    }
+
+    private JsonElement parseArray(String text, Position position) {
+        List<JsonElement> elements = new ArrayList<>();
+        position.inc(1); // '['
+        elements.add(parseJsonElement(text, position));
+        while (position.getPos() < text.length() && text.charAt(position.getPos()) == ',') {
+            position.inc(1); // ','
+            elements.add(parseJsonElement(text, position));
+        }
+        position.inc(1); // ']'
+
+        return new JsonArray(elements);
+    }
+
+    private JsonString parseString(String text, Position position) {
+        position.inc(1);
+        int start = position.getPos();
+        while (position.getPos() < text.length() && text.charAt(position.getPos()) != '\"') {
+            position.inc(1);
+        }
+        position.inc(1);
+        return new JsonString(text.substring(start, position.getPos()-1));
+    }
+
+    private JsonElement parseConstant(String text, Position position) {
+        boolean neg = false;
+        if (text.charAt(position.getPos()) == '-') {
+            neg = true;
+            position.inc(1);
+        }
+        int value = 0;
+        while (position.getPos() < text.length() && Character.isDigit(text.charAt(position.getPos()))) {
+            value = value*10 + (text.charAt(position.getPos()) - '0');
+            position.inc(1);
+        }
+        return new JsonConst(neg ? -value : value);
     }
 
     @Override

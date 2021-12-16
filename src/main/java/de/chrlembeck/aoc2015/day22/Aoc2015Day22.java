@@ -1,8 +1,7 @@
 package de.chrlembeck.aoc2015.day22;
 
-import java.util.Scanner;
-
 import de.chrlembeck.aoccommon.AbstractAocBase;
+import java.util.Scanner;
 
 public class Aoc2015Day22 extends AbstractAocBase {
 
@@ -12,6 +11,8 @@ public class Aoc2015Day22 extends AbstractAocBase {
 
     @Override
     public String part1(final Scanner input) {
+
+
         return "";
     }
 
