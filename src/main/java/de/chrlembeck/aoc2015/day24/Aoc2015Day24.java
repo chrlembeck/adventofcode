@@ -1,8 +1,8 @@
 package de.chrlembeck.aoc2015.day24;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
+
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class Aoc2015Day24 extends AbstractAocBase {
@@ -15,15 +15,14 @@ public class Aoc2015Day24 extends AbstractAocBase {
     public Long part1(final Scanner input) {
         List<Integer> weights = input.useDelimiter("\n").tokens().map(Integer::valueOf).collect(Collectors.toList());
         int weight = weights.stream().mapToInt(Integer::intValue).sum();
-        int groupWeight = weight / 3;
-
-        var result = findSolutions(weights, groupWeight);
-        return result;
+        return findSolution(weights, weight / 3, false);
     }
 
     @Override
-    public String part2(final Scanner input) {
-        return "";
+    public Long part2(final Scanner input) {
+        List<Integer> weights = input.useDelimiter("\n").tokens().map(Integer::valueOf).collect(Collectors.toList());
+        int weight = weights.stream().mapToInt(Integer::intValue).sum();
+        return findSolution(weights, weight / 4, true);
     }
 
     public static final long quantumEntanglement(final Integer[] list) {
@@ -34,44 +33,54 @@ public class Aoc2015Day24 extends AbstractAocBase {
         return result;
     }
 
-    private long findSolutions(List<Integer> weights, int groupWeight) {
-        LengthSortedResult pairs = findGroup1(weights, groupWeight);
-        for (Integer[] pair : pairs) {
-            List<Integer> other = new ArrayList<>(weights);
-            for (Integer i: pair) {
-                other.remove(i);
-            }
-            LengthSortedResult p2s = findGroup1(other, groupWeight);
-            if (p2s.size() > 0) {
-                return quantumEntanglement(pair);
+    private long findSolution(final List<Integer> weights, final int groupWeight, final boolean part1) {
+        final LengthSortedResult combinations = calcCombinations(weights, groupWeight);
+        for (Integer[] firstCombination : combinations) {
+            List<Integer> remaining = difference(weights, firstCombination);
+            final LengthSortedResult combinationsForSecondGroup = calcCombinations(remaining, groupWeight);
+            if (part1) {
+                if (combinationsForSecondGroup.size() > 0) {
+                    return quantumEntanglement(firstCombination);
+                }
+            } else if (combinationsForSecondGroup.size() > 0) {
+                for (final Integer[] secondCombination : combinationsForSecondGroup) {
+                    final LengthSortedResult combinationsForThirdGroup = calcCombinations(difference(remaining, secondCombination), groupWeight);
+                    if (combinationsForThirdGroup.size() > 0) {
+                        return quantumEntanglement(firstCombination);
+                    }
+                }
             }
         }
         return -1;
     }
 
-    private static LengthSortedResult findGroup1(List<Integer> weights, int groupWeight) {
+    private List<Integer> difference(final List<Integer> elements, final Integer[] elementsToRemove) {
+        final List<Integer> remaining = new ArrayList<>(elements);
+        for (final Integer elementToRemove : elementsToRemove) {
+            remaining.remove(elementToRemove);
+        }
+        return remaining;
+    }
+
+    private static LengthSortedResult calcCombinations(List<Integer> weights, int groupWeight) {
         LengthSortedResult res = new LengthSortedResult(weights.size() + 1);
-        Consumer<Integer[]> collector = l1 -> res.add(l1);
-        findGroup1(weights, groupWeight, new ArrayList<>(), collector, 0);
+        calcCombinations(weights, groupWeight, new ArrayList<>(), 0, res);
         return res;
     }
 
-    private static void findGroup1(List<Integer> weights, int remaining, List<Integer> result, Consumer<Integer[]> resultConsumer, int startAt) {
+    private static void calcCombinations(final List<Integer> weights, final int remaining, final List<Integer> combination, final int startAt, final LengthSortedResult result) {
         for (int i = startAt; i < weights.size(); i++) {
-            Integer current = weights.get(i);
+            final Integer current = weights.get(i);
             if (current > remaining) {
                 break;
             }
-            result.add(current);
+            combination.add(current);
             if (remaining == current) {
-                resultConsumer.accept(result.toArray(Integer[]::new));
+                result.add(combination.toArray(Integer[]::new));
             } else if (remaining > current) {
-                findGroup1(weights, remaining - current, result, resultConsumer, i + 1);
+                calcCombinations(weights, remaining - current, combination, i + 1, result);
             }
-            Integer removed = result.remove(result.size() - 1);
-            if (!(removed.intValue() == current.intValue())) {
-                throw new IllegalStateException();
-            }
+            combination.remove(combination.size() - 1);
         }
     }
 
@@ -91,7 +100,6 @@ public class Aoc2015Day24 extends AbstractAocBase {
             for (int i = 0; i < data.length; i++) {
                 data[i] = new ArrayList<>();
             }
-
         }
 
         public void add(Integer[] pair) {
