@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.BiFunction;
+
+import static java.lang.Math.max;
 
 public class Aoc2022Day01 extends AbstractAocBase {
 
@@ -16,32 +17,37 @@ public class Aoc2022Day01 extends AbstractAocBase {
 
     @Override
     public Long part1(final Scanner input) {
-        return calc(input, 0L, Math::max);
+        long max = 0;
+        long current = 0;
+
+        while (input.hasNextLine()) {
+            String line = input.nextLine();
+            if (line.isEmpty())  {
+                current = 0;
+            } else {
+                current += Long.parseLong(line);
+                max = max(current, max);
+            }
+        }
+        return max;
     }
 
     @Override
     public Long part2(final Scanner input) {
-        List<Long> calories = calc(input, new ArrayList<>(), (l, v) -> {
-            l.add(v);
-            return l;
-        });
-        calories.sort(Collections.reverseOrder());
-        return calories.get(0) + calories.get(1) + calories.get(2);
-    }
-
-    public <T> T calc(final Scanner input, T initial, BiFunction<T, Long, T> valueConsumer) {
-        T result = initial;
         long current = 0;
+        List<Long> calories = new ArrayList<>();
         while (input.hasNextLine()) {
-            final String line = input.nextLine();
-            if (line.isEmpty()) {
-                result = valueConsumer.apply(result, current);
+            String line = input.nextLine();
+            if (line.isEmpty())  {
+                calories.add(current);
                 current = 0;
             } else {
                 current += Long.parseLong(line);
             }
         }
-        return valueConsumer.apply(result, current);
+        calories.add(current);
+        Collections.sort(calories, Collections.reverseOrder());
+        return calories.get(0) + calories.get(1) + calories.get(2);
     }
 
     @Override
