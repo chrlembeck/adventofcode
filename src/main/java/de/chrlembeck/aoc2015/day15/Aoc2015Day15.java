@@ -1,6 +1,7 @@
 package de.chrlembeck.aoc2015.day15;
 
 import de.chrlembeck.aoccommon.AbstractAocBase;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -26,7 +27,7 @@ public class Aoc2015Day15 extends AbstractAocBase {
         return calc(input, true);
     }
 
-    private long calc(final Scanner input, final boolean reduceCaloried) {
+    private long calc(final Scanner input, final boolean reduceCalories) {
         List<Ingedient> ingredients = input.findAll(REGEX).map(Ingedient::new).collect(Collectors.toList());
         MaxFinder max = new MaxFinder();
 
@@ -43,7 +44,7 @@ public class Aoc2015Day15 extends AbstractAocBase {
                 texture += test[i] * ingredients.get(i).getTexture();
                 calories += test[i] * ingredients.get(i).getCalories();
             }
-            long score = (!reduceCaloried || calories == 500) && (capacity > 0 && durability > 0 && flavor > 0 && texture > 0) ? capacity * durability * flavor * texture : 0;
+            long score = (!reduceCalories || calories == 500) && (capacity > 0 && durability > 0 && flavor > 0 && texture > 0) ? capacity * durability * flavor * texture : 0;
             max.accept(score);
         };
 
