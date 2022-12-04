@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public abstract class AbstractAocBase {
 
@@ -67,12 +68,14 @@ public abstract class AbstractAocBase {
     }
 
     public Matcher matchRegex(final String regex, final CharSequence input) {
-        final Pattern pattern = Pattern.compile(regex);
-        final Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()) {
-            return matcher;
-        } else {
-            throw new IllegalArgumentException("Input '" + input + "' does not match pattern " + pattern.pattern());
-        }
+        return matchRegex(Pattern.compile(regex), input);
+    }
+
+    public static Stream<Matcher> matcherStream(Scanner input, String delimiterPattern, Pattern pattern) {
+        return tokenStream(input, delimiterPattern, pattern, Function.identity());
+    }
+
+    public static <T> Stream<T> tokenStream(Scanner input, String delimiterPattern, Pattern pattern, Function <Matcher, T> tokenGenerator) {
+        return input.useDelimiter(delimiterPattern).tokens().map(token -> matchRegex(pattern, token)).map(tokenGenerator);
     }
 }
