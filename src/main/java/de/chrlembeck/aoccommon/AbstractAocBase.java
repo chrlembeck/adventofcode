@@ -76,6 +76,9 @@ public abstract class AbstractAocBase {
     }
 
     public static <T> Stream<T> tokenStream(Scanner input, String delimiterPattern, Pattern pattern, Function <Matcher, T> tokenGenerator) {
-        return input.useDelimiter(delimiterPattern).tokens().map(token -> matchRegex(pattern, token)).map(tokenGenerator);
+        return input.useDelimiter(delimiterPattern)
+                .tokens()
+                .map(token -> matchRegex(pattern, token))
+                .map(tokenGenerator);
     }
 }
