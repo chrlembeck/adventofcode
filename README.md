@@ -18,8 +18,8 @@ Day   | 2015               | 2016                | 2017                | 2018   
   10  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
   11  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
   12  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
-  13  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
-  14  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
+  13  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
+  14  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:
   15  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
   16  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
   17  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:
@@ -31,10 +31,10 @@ Day   | 2015               | 2016                | 2017                | 2018   
   23  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:        | :hourglass:
   24  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:        | :hourglass:
   25  | :heavy_check_mark: | :heavy_check_mark:  | :heavy_check_mark:  | :hourglass:         | :hourglass:        | :heavy_check_mark: | :hourglass:        | :hourglass:
-Stars | **50/50**          | **50/50**           | **50/50**           | **0/50**            | **32/50**          | **50/50**          | **44/50**          | **24/50**
+Stars | **50/50**          | **50/50**           | **50/50**           | **0/50**            | **32/50**          | **50/50**          | **44/50**          | **26/50**
  Sum  | **100%**           | **100%**            | **100%**            | **0%**              | **64%**            | **100%**           | **88%**            | **48%**
  
-**300 of 400 stars earned**
+**304 of 400 stars earned**
 
 Legend
 

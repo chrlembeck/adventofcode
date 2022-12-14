@@ -10,8 +10,6 @@ public class Aoc2021Day20 extends AbstractAocBase {
         new Aoc2021Day20().run();
     }
 
-
-    // 5053 too low, 5772 too high, 5309 too hight
     @Override
     public Object part1(final Scanner input) {
         return calc(input, 2);

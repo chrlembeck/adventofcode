@@ -4,6 +4,7 @@ import de.chrlembeck.aoccommon.AbstractAocBase;
 
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class Aoc2022Day12 extends AbstractAocBase {
                 }
             }
         }
-        return findPath(area, start);
+        return findPath(area, start).orElseThrow();
     }
 
     @Override
@@ -35,9 +36,9 @@ public class Aoc2022Day12 extends AbstractAocBase {
         for (int y = 0; y < area.length; y++) {
             for (int x = 0; x < area[0].length; x++) {
                 if (area[y][x] == 'a' || area[y][x] == 'S') {
-                    int path = findPath(area, new Point(x, y));
-                    if (path != -1) {
-                        best = Math.min(best, path);
+                    Optional<Integer> path = findPath(area, new Point(x, y));
+                    if (path.isPresent()) {
+                        best = Math.min(best, path.get());
                     }
                 }
             }
@@ -45,8 +46,7 @@ public class Aoc2022Day12 extends AbstractAocBase {
         return best;
     }
 
-
-    private int findPath(char[][] area, Point start) {
+    private Optional<Integer> findPath(char[][] area, Point start) {
         boolean[][] visited = new boolean[area.length][area[0].length];
         Queue<Point> next = new LinkedList<>();
         next.offer(start);
@@ -58,7 +58,7 @@ public class Aoc2022Day12 extends AbstractAocBase {
             while (!current.isEmpty()) {
                 Point p = current.poll();
                 if (area[p.y][p.x] == 'E') {
-                    return steps;
+                    return Optional.of(steps);
                 }
                 char elevation = area[p.y][p.x];
                 if (elevation == 'S') {
@@ -83,7 +83,7 @@ public class Aoc2022Day12 extends AbstractAocBase {
             }
             steps++;
         }
-        return -1;
+        return Optional.empty();
     }
 
     private boolean check(int x, int y, int xn, int yn, char[][] area, boolean[][] visited) {
