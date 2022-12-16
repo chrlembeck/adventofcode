@@ -1,6 +1,5 @@
 package de.chrlembeck.aoc2021.day24;
 
-import java.math.BigInteger;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,17 +19,17 @@ public record Variable (int index) implements Expression {
     }
 
     @Override
-    public boolean isDividableBy(BigInteger i) {
+    public boolean isDividableBy(long i) {
         return false;
     }
 
     @Override
-    public Expression divideSpecBy(BigInteger denominator) {
+    public Expression divideSpecBy(long denominator) {
         throw new RuntimeException();
     }
 
     @Override
-    public BigInteger evaluate(Map<Variable, BigInteger> values) {
+    public long evaluate(Map<Variable, Long> values) {
         return Objects.requireNonNull(values.get(this));
     }
 

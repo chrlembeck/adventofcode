@@ -1,6 +1,5 @@
 package de.chrlembeck.aoc2021.day24;
 
-import java.math.BigInteger;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -23,27 +22,27 @@ public class Div implements Expression {
 
     @Override
     public Optional<Range> getRange() {
-        if (denominator instanceof IntValue i && i.getValue().compareTo(BigInteger.ZERO) > 0 && numerator.getRange().isPresent()) {
+        if (denominator instanceof IntValue i && i.value() > 0 && numerator.getRange().isPresent()) {
             Range range = numerator.getRange().get();
-            return Optional.of(new Range(range.lower().divide(i.getValue()), range.upper().divide(i.getValue())));
+            return Optional.of(new Range(range.lower() / i.value(), range.upper() / i.value()));
         }
         System.out.println(" NO RANGE FOR " + this);
         return Optional.empty();
     }
 
     @Override
-    public Expression divideSpecBy(BigInteger value) {
+    public Expression divideSpecBy(long value) {
         throw new RuntimeException();
     }
 
     @Override
-    public boolean isDividableBy(BigInteger value) {
+    public boolean isDividableBy(long value) {
         return false;
     }
 
     @Override
-    public BigInteger evaluate(Map<Variable, BigInteger> values) {
-        return numerator.evaluate(values).divide(denominator.evaluate(values));
+    public long evaluate(Map<Variable, Long> values) {
+        return numerator.evaluate(values) / denominator.evaluate(values);
     }
 
     @Override

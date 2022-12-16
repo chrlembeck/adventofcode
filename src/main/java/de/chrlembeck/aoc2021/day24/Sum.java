@@ -1,6 +1,5 @@
 package de.chrlembeck.aoc2021.day24;
 
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,11 +23,11 @@ public class Sum implements Expression {
         return addends;
     }
 
-    public boolean isGreaterOrEqualToZeroAndLessThan(BigInteger value) {
-        return value.compareTo(BigInteger.ZERO) > 0 && addends.size() == 2
+    public boolean isGreaterOrEqualToZeroAndLessThan(long value) {
+        return value > 0 && addends.size() == 2
                 && addends.get(0) instanceof Variable
                 && addends.get(1) instanceof IntValue c
-                && c.getValue().add(BigInteger.valueOf(9)).compareTo(value) < 0;
+                && c.value() + 9 < 0;
     }
 
     public Optional<Range> getRange() {
@@ -36,18 +35,18 @@ public class Sum implements Expression {
             return Optional.empty();
         } else {
             return Optional.of(new Range(
-                    addends.stream().map(Expression::getRange).map(Optional::get).map(Range::lower).reduce(BigInteger.ZERO, BigInteger::add),
-                    addends.stream().map(Expression::getRange).map(Optional::get).map(Range::upper).reduce(BigInteger.ZERO, BigInteger::add)));
+                    addends.stream().map(Expression::getRange).map(Optional::get).map(Range::lower).reduce(0l, (a, b) -> a + b),
+                    addends.stream().map(Expression::getRange).map(Optional::get).map(Range::upper).reduce(0l, (a, b) -> a + b)));
         }
     }
 
     @Override
-    public boolean isDividableBy(BigInteger i) {
+    public boolean isDividableBy(long i) {
         return addends.stream().allMatch(a -> a.isDividableBy(i));
     }
 
     @Override
-    public Expression divideSpecBy(BigInteger denominator) {
+    public Expression divideSpecBy(long denominator) {
         if (isDividableBy(denominator)) {
             return Expression.createAdd(addends.stream().map(a -> a.divideSpecBy(denominator)).toArray(Expression[]::new));
         } else {
@@ -56,8 +55,8 @@ public class Sum implements Expression {
     }
 
     @Override
-    public BigInteger evaluate(Map<Variable, BigInteger> values) {
-        return addends.stream().map(f -> f.evaluate(values)).reduce(BigInteger::add).orElseThrow();
+    public long evaluate(Map<Variable, Long> values) {
+        return addends.stream().map(f -> f.evaluate(values)).reduce((a, b) -> a + b).orElseThrow();
     }
 
     @Override

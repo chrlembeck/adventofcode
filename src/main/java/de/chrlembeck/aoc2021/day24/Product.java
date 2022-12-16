@@ -1,6 +1,5 @@
 package de.chrlembeck.aoc2021.day24;
 
-import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,11 +25,11 @@ public class Product implements Expression {
         if (factors.size() == 2 && factors.get(0).getRange().isPresent() && factors.get(1).getRange().isPresent()) {
             Range range1 = factors.get(0).getRange().get();
             Range range2 = factors.get(1).getRange().get();
-            BigInteger[] values = new BigInteger[4];
-            values[0] = range1.lower().multiply(range2.lower());
-            values[1] = range1.lower().multiply(range2.upper());
-            values[2] = range1.upper().multiply(range2.lower());
-            values[3] = range1.upper().multiply(range2.upper());
+            long[] values = new long[4];
+            values[0] = range1.lower()*range2.lower();
+            values[1] = range1.lower()*range2.upper();
+            values[2] = range1.upper()*range2.lower();
+            values[3] = range1.upper()*range2.upper();
             Arrays.sort(values);
             return Optional.of(new Range(values[0], values[3]));
         }
@@ -39,12 +38,12 @@ public class Product implements Expression {
     }
 
     @Override
-    public boolean isDividableBy(BigInteger i) {
+    public boolean isDividableBy(long i) {
         return factors.stream().anyMatch(f -> f.isDividableBy(i));
     }
 
     @Override
-    public Expression divideSpecBy(BigInteger denominator) {
+    public Expression divideSpecBy(long denominator) {
         List<Expression> newFactors = new ArrayList<>(factors);
         return newFactors.stream()
                 .filter(f -> f.isDividableBy(denominator))
@@ -57,8 +56,8 @@ public class Product implements Expression {
     }
 
     @Override
-    public BigInteger evaluate(Map<Variable, BigInteger> values) {
-        return factors.stream().map(f -> f.evaluate(values)).reduce(BigInteger::multiply).orElseThrow();
+    public long evaluate(Map<Variable, Long> values) {
+        return factors.stream().map(f -> f.evaluate(values)).reduce((a, b) -> a * b).orElseThrow();
     }
 
     @Override

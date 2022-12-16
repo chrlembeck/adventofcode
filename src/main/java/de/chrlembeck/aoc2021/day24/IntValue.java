@@ -1,26 +1,14 @@
 package de.chrlembeck.aoc2021.day24;
 
-import java.math.BigInteger;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public class IntValue implements Value, Expression {
+public record IntValue(long value) implements Value, Expression {
 
-    public static final IntValue MINUS_ONE = new IntValue(BigInteger.valueOf(-1));
+    public static final IntValue ZERO = new IntValue(0);
 
-    public static final IntValue ZERO = new IntValue(BigInteger.ZERO);
-
-    public static final IntValue ONE = new IntValue(BigInteger.ONE);
-
-    public static final IntValue NINE = new IntValue(BigInteger.valueOf(9));
-
-
-    private final BigInteger value;
-
-    public IntValue(BigInteger value) {
-        this.value = value;
-    }
+    public static final IntValue ONE = new IntValue(1);
 
     @Override
     public Expression eval(State state) {
@@ -29,11 +17,7 @@ public class IntValue implements Value, Expression {
 
     @Override
     public String toString() {
-        return value.toString();
-    }
-
-    public BigInteger getValue() {
-        return value;
+        return Long.toString(value);
     }
 
     public Optional<Range> getRange() {
@@ -41,29 +25,29 @@ public class IntValue implements Value, Expression {
     }
 
     @Override
-    public boolean isDividableBy(BigInteger i) {
-        return value.mod(i).compareTo(BigInteger.ZERO) == 0;
+    public boolean isDividableBy(long i) {
+        return value % i == 0;
     }
 
     @Override
-    public Expression divideSpecBy(BigInteger denominator) {
+    public Expression divideSpecBy(long denominator) {
         if (isDividableBy(denominator)) {
-            return new IntValue(value.divide(denominator));
+            return new IntValue(value / denominator);
         } else {
             throw new RuntimeException();
         }
     }
 
     public IntValue add(IntValue addend) {
-        return new IntValue(value.add(addend.getValue()));
+        return new IntValue(value + addend.value());
     }
 
     public IntValue mul(IntValue factor) {
-        return new IntValue(value.multiply(factor.getValue()));
+        return new IntValue(value * factor.value());
     }
 
     @Override
-    public BigInteger evaluate(Map<Variable, BigInteger> values) {
+    public long evaluate(Map<Variable, Long> values) {
         return value;
     }
 

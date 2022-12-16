@@ -1,6 +1,5 @@
 package de.chrlembeck.aoc2021.day24;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,20 +14,20 @@ public interface BooleanCondition {
         if (left == right || left.equals(right)) {
             return TRUE;
         } else if (left instanceof IntValue i && right instanceof IntValue r) {
-            return (i.getValue().compareTo(r.getValue()) == 0) ? TRUE : FALSE;
+            return (i.value() == r.value()) ? TRUE : FALSE;
         } else if (left instanceof Variable && right instanceof IntValue i) {
-            if (i.getValue().compareTo(BigInteger.ZERO) <= 0 || i.getValue().compareTo(BigInteger.TEN) >= 0) {
+            if (i.value() <= 0 || i.value() >= 10) {
                 return FALSE;
             }
         } else if (right instanceof Variable && left instanceof IntValue i) {
-            if (i.getValue().compareTo(BigInteger.ZERO) <= 0 || i.getValue().compareTo(BigInteger.TEN) >= 0) {
+            if (i.value() <= 0 || i.value() >= 10) {
                 return FALSE;
             }
         } else if (left instanceof Variable && right.getRange().isPresent() && right.getRange().get().isOutsideVariableRange()) {
             return FALSE;
         } else if (right instanceof Variable && left.getRange().isPresent() && left.getRange().get().isOutsideVariableRange()) {
             return FALSE;
-        } else if (right instanceof IntValue i && left.getRange().isPresent() && !left.getRange().get().contains(i.getValue())) {
+        } else if (right instanceof IntValue i && left.getRange().isPresent() && !left.getRange().get().contains(i.value())) {
             return FALSE;
         }
         return new EqualCondition(left, right);
@@ -38,7 +37,7 @@ public interface BooleanCondition {
         if (left == right || left.equals(right)) {
             return FALSE;
         } else if (left instanceof IntValue i && right instanceof IntValue r) {
-            return (i.getValue().compareTo(r.getValue()) == 0) ? FALSE : TRUE;
+            return (i.value() == r.value()) ? FALSE : TRUE;
         }
         return createOr(createLessThan(left, right), createLessThan(right, left));
     }
@@ -47,14 +46,14 @@ public interface BooleanCondition {
         if (left == right || left.equals(right)) {
             return FALSE;
         } else if (left instanceof IntValue l && right instanceof IntValue r) {
-            return (l.getValue().compareTo(r.getValue()) < 0) ? TRUE : FALSE;
-        } else if (left instanceof Variable && right.getRange().isPresent() && right.getRange().get().upper().compareTo(BigInteger.ONE) <= 0) {
+            return (l.value() < r.value()) ? TRUE : FALSE;
+        } else if (left instanceof Variable && right.getRange().isPresent() && right.getRange().get().upper() <= 1) {
             return FALSE;
-        } else if (left instanceof Variable && right.getRange().isPresent() && right.getRange().get().lower().compareTo(BigInteger.valueOf(9)) >= 0) {
+        } else if (left instanceof Variable && right.getRange().isPresent() && right.getRange().get().lower() >= 9) {
             return TRUE;
-        } else if (right instanceof Variable && left.getRange().isPresent() && left.getRange().get().lower().compareTo(BigInteger.valueOf(9)) >= 0) {
+        } else if (right instanceof Variable && left.getRange().isPresent() && left.getRange().get().lower() >= 9) {
             return FALSE;
-        } else if (right instanceof Variable && left.getRange().isPresent() && left.getRange().get().upper().compareTo(BigInteger.ONE) <= 0) {
+        } else if (right instanceof Variable && left.getRange().isPresent() && left.getRange().get().upper() <= 1) {
             return TRUE;
         }
         return new LessThanCondition(left, right);

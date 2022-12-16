@@ -1,22 +1,21 @@
 package de.chrlembeck.aoc2021.day24;
 
-import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public interface Expression {
 
     Optional<Range> getRange();
 
     static Expression createMod(Expression left, Expression right) {
-        if (left instanceof IntValue i && i.getValue().compareTo(BigInteger.ZERO) == 0) {
+        if (left instanceof IntValue i && i.value() == 0) {
             return i;
         }
         if (left instanceof IntValue l && right instanceof IntValue r) {
-            return new IntValue(l.getValue().mod(r.getValue()));
+            return new IntValue(l.value() % (r.value()));
         }
-        return createAdd(left, createMul(createMul(new IntValue(BigInteger.valueOf(-1)), right), createDiv(left, right)));
+        return createAdd(left, createMul(createMul(new IntValue(-1), right), createDiv(left, right)));
     }
 
     static Expression createAdd(Expression... addends) {
@@ -43,11 +42,11 @@ public interface Expression {
                 newAddends.add(addend);
             }
         }
-        for (Map.Entry<Variable, IntValue> e: vars.entrySet()) {
+        for (Map.Entry<Variable, IntValue> e : vars.entrySet()) {
             newAddends.add(createMul(e.getValue(), e.getKey()));
         }
 
-        if (constant.getValue().compareTo(BigInteger.ZERO) != 0) {
+        if (constant.value() != 0) {
             newAddends.add(constant);
         }
         if (newAddends.size() == 0) {
@@ -80,10 +79,10 @@ public interface Expression {
                 newFactors.add(factor);
             }
         }
-        if (constant.getValue().compareTo(BigInteger.ZERO) == 0) {
+        if (constant.value() == 0) {
             return IntValue.ZERO;
         }
-        if (constant.getValue().compareTo(BigInteger.ONE) != 0) {
+        if (constant.value() != 1) {
             newFactors.add(constant);
         }
 
@@ -109,21 +108,21 @@ public interface Expression {
     }
 
     static Expression createDiv(Expression numerator, Expression denominator) {
-        if (numerator instanceof IntValue i && i.getValue().compareTo(BigInteger.ZERO) == 0) {
+        if (numerator instanceof IntValue i && i.value() == 0) {
             return IntValue.ZERO;
         } else if (numerator instanceof IntValue n && denominator instanceof IntValue d) {
-            return new IntValue(n.getValue().divide(d.getValue()));
-        } else if (denominator instanceof IntValue d && d.getValue().compareTo(BigInteger.ONE) == 0) {
+            return new IntValue(n.value()/d.value());
+        } else if (denominator instanceof IntValue d && d.value()==1) {
             return numerator;
-        } else if (denominator instanceof IntValue d && numerator.isDividableBy(d.getValue())) {
-            return numerator.divideSpecBy(d.getValue());
-        } else if (denominator instanceof IntValue d && numerator instanceof Sum add && add.isGreaterOrEqualToZeroAndLessThan(d.getValue())) {
+        } else if (denominator instanceof IntValue d && numerator.isDividableBy(d.value())) {
+            return numerator.divideSpecBy(d.value());
+        } else if (denominator instanceof IntValue d && numerator instanceof Sum add && add.isGreaterOrEqualToZeroAndLessThan(d.value())) {
             return IntValue.ZERO;
         } else if (denominator instanceof IntValue && numerator.getVariables().size() == 1 && new Div(numerator, denominator).hasSameValueForEach(numerator.getVariables().iterator().next())) {
-            return new IntValue(new Div(numerator, denominator).evaluate(Map.of(numerator.getVariables().iterator().next(), BigInteger.ONE)));
-        } else if (denominator instanceof IntValue d && numerator instanceof Sum add && add.getAddends().stream().anyMatch(a -> a.isDividableBy(d.getValue()))) {
-            List<Expression> dividable = add.getAddends().stream().filter(a -> a.isDividableBy(d.getValue())).map(a -> a.divideSpecBy(d.getValue())).toList();
-            List<Expression> notDividable = add.getAddends().stream().filter(a -> !a.isDividableBy(d.getValue())).toList();
+            return new IntValue(new Div(numerator, denominator).evaluate(Map.of(numerator.getVariables().iterator().next(), 1l)));
+        } else if (denominator instanceof IntValue d && numerator instanceof Sum add && add.getAddends().stream().anyMatch(a -> a.isDividableBy(d.value()))) {
+            List<Expression> dividable = add.getAddends().stream().filter(a -> a.isDividableBy(d.value())).map(a -> a.divideSpecBy(d.value())).toList();
+            List<Expression> notDividable = add.getAddends().stream().filter(a -> !a.isDividableBy(d.value())).toList();
             Expression res1 = createDiv(createAdd(notDividable.toArray(Expression[]::new)), denominator);
             Expression res2 = createAdd(dividable.toArray(Expression[]::new));
             return createAdd(res1, res2);
@@ -132,7 +131,7 @@ public interface Expression {
         }
     }
 
-    BigInteger evaluate(Map<Variable, BigInteger> values);
+    long evaluate(Map<Variable, Long> values);
 
     default Set<Variable> getVariables() {
         Set<Variable> variables = new HashSet<>();
@@ -142,13 +141,13 @@ public interface Expression {
 
     void collectVariables(Set<Variable> variables);
 
-    Expression divideSpecBy(BigInteger value);
+    Expression divideSpecBy(long value);
 
-    boolean isDividableBy(BigInteger value);
+    boolean isDividableBy(long value);
 
     default boolean hasSameValueForEach(Variable variable) {
-        return IntStream.rangeClosed(1,9)
-                .mapToObj(i -> Map.of(variable, BigInteger.valueOf(i)))
+        return LongStream.rangeClosed(1, 9)
+                .mapToObj(i -> Map.of(variable, i))
                 .map(this::evaluate).collect(Collectors.toSet()).size() == 1;
     }
 }
