@@ -11,8 +11,17 @@ public class Aoc2021Day25Test {
     @Test
     public void test1() {
         final Aoc2021Day25 day = new Aoc2021Day25();
-        assertEquals("", test("", day::part1));
-        assertEquals("", test(day.getInput1(), day::part1));
+        assertEquals("58", test("""
+                v...>>.vv>
+                .vv>>.vv..
+                >>.>v>...v
+                >>v>>.>.v.
+                v>v.vv.v..
+                >.>>..v...
+                .vv..>.>v.
+                v.v..>>v.v
+                ....v..v.>""", day::part1));
+        assertEquals("360", test(day.getInput1(), day::part1));
     }
 
     @Test

@@ -111,15 +111,15 @@ public interface Expression {
         if (numerator instanceof IntValue i && i.value() == 0) {
             return IntValue.ZERO;
         } else if (numerator instanceof IntValue n && denominator instanceof IntValue d) {
-            return new IntValue(n.value()/d.value());
-        } else if (denominator instanceof IntValue d && d.value()==1) {
+            return new IntValue(n.value() / d.value());
+        } else if (denominator instanceof IntValue d && d.value() == 1) {
             return numerator;
         } else if (denominator instanceof IntValue d && numerator.isDividableBy(d.value())) {
             return numerator.divideSpecBy(d.value());
         } else if (denominator instanceof IntValue d && numerator instanceof Sum add && add.isGreaterOrEqualToZeroAndLessThan(d.value())) {
             return IntValue.ZERO;
         } else if (denominator instanceof IntValue && numerator.getVariables().size() == 1 && new Div(numerator, denominator).hasSameValueForEach(numerator.getVariables().iterator().next())) {
-            return new IntValue(new Div(numerator, denominator).evaluate(Map.of(numerator.getVariables().iterator().next(), 1l)));
+            return new IntValue(new Div(numerator, denominator).evaluate(Map.of(numerator.getVariables().iterator().next(), 1L)));
         } else if (denominator instanceof IntValue d && numerator instanceof Sum add && add.getAddends().stream().anyMatch(a -> a.isDividableBy(d.value()))) {
             List<Expression> dividable = add.getAddends().stream().filter(a -> a.isDividableBy(d.value())).map(a -> a.divideSpecBy(d.value())).toList();
             List<Expression> notDividable = add.getAddends().stream().filter(a -> !a.isDividableBy(d.value())).toList();
