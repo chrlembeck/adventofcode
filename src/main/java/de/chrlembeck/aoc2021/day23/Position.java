@@ -96,7 +96,7 @@ public enum Position {
 
     public boolean isRoom() {
         return switch (this) {
-            case A2, A1, B2, B1, C2, C1, D2, D1, A3, A4, B3, B4, C3, C4, D3, D4 -> true;
+            case A1, A2, A3, A4, B1, B2, B3, B4, C1, C2, C3, C4, D1, D2, D3, D4 -> true;
             default -> false;
         };
     }

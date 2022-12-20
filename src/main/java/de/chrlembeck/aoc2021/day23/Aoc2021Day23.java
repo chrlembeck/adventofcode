@@ -56,15 +56,12 @@ public class Aoc2021Day23 extends AbstractAocBase {
             Collection<Move> moves = burrow.getMoves(pos, step2);
             for (Move move : moves) {
                 Burrow next = burrow.move(move.from(), move.to(), move.steps() * move.amphipodType().getEnergy());
+                if (move.to().isRoom()) {
+                    return List.of(next);
+                }
                 newStates.add(next);
             }
         }
-        int ready = burrow.countReady();
-        Optional<Burrow> better = newStates.stream().filter(b -> b.countReady() > ready).findAny();
-        if (better.isPresent()) {
-            return List.of(better.get());
-        }
-
         return newStates;
     }
 
