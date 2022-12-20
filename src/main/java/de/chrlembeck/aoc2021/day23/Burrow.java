@@ -58,6 +58,15 @@ public record Burrow(
         };
     }
 
+    public boolean isRoomEmptyOrReady(AmphipodType type) {
+        return switch (type) {
+            case AMBER -> (a2 == null && a1 == null) || (a2 == type && a1 == null) || (a2 == type && a1 == type);
+            case BRONZE -> (b2 == null && b1 == null) || (b2 == type && b1 == null) || (b2 == type && b1 == type);
+            case COPPER -> (c2 == null && c1 == null) || (c2 == type && c1 == null) || (c2 == type && c1 == type);
+            case DESERT -> (d2 == null && d1 == null) || (d2 == type && d1 == null) || (d2 == type && d1 == type);
+        };
+    }
+
     public AmphipodType getAmphipod(Position position) {
         return switch (position) {
             case H0 -> h0;
@@ -80,36 +89,36 @@ public record Burrow(
     }
 
     public boolean isReady() {
-        return a1 == AMBER && a2 == AMBER
-                && b1 == AmphipodType.BRONZE && b2 == AmphipodType.BRONZE
-                && c1 == COPPER && c2 == COPPER
-                && d1 == AmphipodType.DESERT && d2 == AmphipodType.DESERT;
+        return a2 == AMBER && a1 == AMBER
+                && b2 == AmphipodType.BRONZE && b1 == AmphipodType.BRONZE
+                && c2 == COPPER && c1 == COPPER
+                && d2 == AmphipodType.DESERT && d1 == AmphipodType.DESERT;
     }
 
     public int countReady() {
         int result = 0;
-        if (a1 == AMBER) {
-            result++;
-        }
         if (a2 == AMBER) {
             result++;
         }
-        if (b1 == AmphipodType.BRONZE) {
+        if (a1 == AMBER) {
             result++;
         }
         if (b2 == AmphipodType.BRONZE) {
             result++;
         }
-        if (c1 == COPPER) {
+        if (b1 == AmphipodType.BRONZE) {
             result++;
         }
         if (c2 == COPPER) {
             result++;
         }
-        if (d1 == AmphipodType.DESERT) {
+        if (c1 == COPPER) {
             result++;
         }
         if (d2 == AmphipodType.DESERT) {
+            result++;
+        }
+        if (d1 == AmphipodType.DESERT) {
             result++;
         }
         return result;
@@ -129,11 +138,11 @@ public record Burrow(
         if (from.isRoom() && (!from.up().isValid() || isFree(from.up()))) {
             Position pos = from.up();
             int stepsOut = 1;
-            if (pos.isRoom()) {
+            while (pos.isRoom() && (!pos.up().isValid() || isFree(pos.up()))) {
                 pos = pos.up();
                 stepsOut++;
             }
-            if (!pos.isValid() || isFree(pos)) {
+            if (!pos.isValid()) {
                 if (!pos.left().isValid() || isFree(pos.left())) {
                     Position left = pos.left();
                     int steps = stepsOut + 1;
@@ -166,21 +175,18 @@ public record Burrow(
 
     private Optional<Move> findWayHome(final Position from) {
         AmphipodType type = getAmphipod(from);
+        if (!isRoomEmptyOrReady(type)) {
+            return Optional.empty();
+        }
         int steps = 0;
         Position pos = from;
         while (pos != null) {
             if (pos.down() != null && type.isHome(pos.down())) {
-                if (isFree(pos.down())) {
+                while (pos.down() != null && isFree(pos.down())) {
                     pos = pos.down();
                     steps++;
-                    return isFree(pos.down())
-                            ? Optional.of(new Move(from, pos.down(), type, steps + 1))
-                            : ((getAmphipod(pos.down()) == type)
-                            ? Optional.of(new Move(from, pos, type, steps))
-                            : Optional.empty());
-                } else {
-                    return Optional.empty();
                 }
+                return Optional.of(new Move(from, pos, type, steps));
             }
             pos = pos.left() != null && (!pos.left().isValid() || isFree(pos.left())) ? pos.left() : null;
             steps++;
@@ -189,17 +195,11 @@ public record Burrow(
         pos = from;
         while (pos != null) {
             if (pos.down() != null && type.isHome(pos.down())) {
-                if (isFree(pos.down())) {
+                while (pos.down() != null && isFree(pos.down())) {
                     pos = pos.down();
                     steps++;
-                    return isFree(pos.down())
-                            ? Optional.of(new Move(from, pos.down(), type, steps + 1))
-                            : ((getAmphipod(pos.down()) == type)
-                            ? Optional.of(new Move(from, pos, type, steps))
-                            : Optional.empty());
-                } else {
-                    return Optional.empty();
                 }
+                return Optional.of(new Move(from, pos, type, steps));
             }
             pos = pos.right() != null && (!pos.right().isValid() || isFree(pos.right())) ? pos.right() : null;
             steps++;
@@ -223,14 +223,6 @@ public record Burrow(
         sb.append(h9 == null ? '.' : h9.name().charAt(0));
         sb.append(h10 == null ? '.' : h10.name().charAt(0));
         sb.append("#\n###");
-        sb.append(a2 == null ? '.' : a2.name().charAt(0));
-        sb.append('#');
-        sb.append(b2 == null ? '.' : b2.name().charAt(0));
-        sb.append('#');
-        sb.append(c2 == null ? '.' : c2.name().charAt(0));
-        sb.append('#');
-        sb.append(d2 == null ? '.' : d2.name().charAt(0));
-        sb.append("###\n  #");
         sb.append(a1 == null ? '.' : a1.name().charAt(0));
         sb.append('#');
         sb.append(b1 == null ? '.' : b1.name().charAt(0));
@@ -238,6 +230,14 @@ public record Burrow(
         sb.append(c1 == null ? '.' : c1.name().charAt(0));
         sb.append('#');
         sb.append(d1 == null ? '.' : d1.name().charAt(0));
+        sb.append("###\n  #");
+        sb.append(a2 == null ? '.' : a2.name().charAt(0));
+        sb.append('#');
+        sb.append(b2 == null ? '.' : b2.name().charAt(0));
+        sb.append('#');
+        sb.append(c2 == null ? '.' : c2.name().charAt(0));
+        sb.append('#');
+        sb.append(d2 == null ? '.' : d2.name().charAt(0));
         sb.append("#\n  #########");
         return sb.toString();
     }

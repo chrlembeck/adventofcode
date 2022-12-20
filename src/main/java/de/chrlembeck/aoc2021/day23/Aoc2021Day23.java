@@ -17,25 +17,18 @@ public class Aoc2021Day23 extends AbstractAocBase {
         PriorityQueue<Burrow> queue = new PriorityQueue<>();
         queue.add(burrow);
         AtomicInteger best = new AtomicInteger(Integer.MAX_VALUE);
-        Burrow bestB;
-        int counter = 0;
         int round = 0;
         while (!queue.isEmpty()) {
             Set<Burrow> innerQueue = new HashSet<>();
             while (!queue.isEmpty()) {
-                counter++;
                 Burrow current = queue.poll();
                 if (current.getEnergy() >= best.get()) {
                     continue;
                 }
                 if (current.isReady()) {
                     best.set(current.getEnergy());
-                    bestB = current;
                     System.out.println("solution: " + best.get());
                     return best.get();
-                }
-                if (counter % 10000 == 0) {
-//                System.out.println(current.getEnergy());
                 }
                 innerQueue.addAll(possibleStates(current));
             }
@@ -72,14 +65,14 @@ public class Aoc2021Day23 extends AbstractAocBase {
         String line1 = input.nextLine();
         String line2 = input.nextLine();
         Burrow burrow = new Burrow(null, null, null, null, null, null, null,
-                AmphipodType.of(line2.charAt(3)),
                 AmphipodType.of(line1.charAt(3)),
-                AmphipodType.of(line2.charAt(5)),
+                AmphipodType.of(line2.charAt(3)),
                 AmphipodType.of(line1.charAt(5)),
-                AmphipodType.of(line2.charAt(7)),
+                AmphipodType.of(line2.charAt(5)),
                 AmphipodType.of(line1.charAt(7)),
-                AmphipodType.of(line2.charAt(9)),
+                AmphipodType.of(line2.charAt(7)),
                 AmphipodType.of(line1.charAt(9)),
+                AmphipodType.of(line2.charAt(9)),
                 0
         );
         return burrow;

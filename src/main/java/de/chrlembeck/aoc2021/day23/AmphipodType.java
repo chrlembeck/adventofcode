@@ -34,10 +34,10 @@ public enum AmphipodType {
 
     public boolean isHome(Position pos) {
         return switch (this) {
-            case AMBER -> pos == A1 || pos == A2;
-            case BRONZE -> pos == B1 || pos == B2;
-            case COPPER -> pos == C1 || pos == C2;
-            case DESERT -> pos == D1 || pos == D2;
+            case AMBER -> pos == A2 || pos == A1;
+            case BRONZE -> pos == B2 || pos == B1;
+            case COPPER -> pos == C2 || pos == C1;
+            case DESERT -> pos == D2 || pos == D1;
         };
     }
 }
