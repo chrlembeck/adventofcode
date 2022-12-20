@@ -4,39 +4,33 @@ import java.util.*;
 
 import static de.chrlembeck.aoc2021.day23.AmphipodType.AMBER;
 import static de.chrlembeck.aoc2021.day23.AmphipodType.COPPER;
-import static de.chrlembeck.aoc2021.day23.Position.A1;
+import static de.chrlembeck.aoc2021.day23.Position.*;
 
-public class Burrow implements Comparable<Burrow> {
+public record Burrow(
+        AmphipodType h0,
+        AmphipodType h1,
+        AmphipodType h3,
+        AmphipodType h5,
+        AmphipodType h7,
+        AmphipodType h9,
+        AmphipodType h10,
+        AmphipodType a1,
+        AmphipodType a2,
+        AmphipodType b1,
+        AmphipodType b2,
+        AmphipodType c1,
+        AmphipodType c2,
+        AmphipodType d1,
+        AmphipodType d2,
+        int energy) implements Comparable<Burrow> {
 
     public static void main(String[] args) {
-        Burrow burrow = new Burrow();
-        burrow.h5 = AMBER;
-        burrow.a1 = COPPER;
-        for (Move move : burrow.getMoves(A1)) {
-            System.out.println(move);
-        }
-    }
-
-    private AmphipodType h0;
-    private AmphipodType h1;
-    private AmphipodType h3;
-    private AmphipodType h5;
-    private AmphipodType h7;
-    private AmphipodType h9;
-    private AmphipodType h10;
-    private AmphipodType a1;
-    private AmphipodType a2;
-    private AmphipodType b1;
-    private AmphipodType b2;
-    private AmphipodType c1;
-    private AmphipodType c2;
-    private AmphipodType d1;
-    private AmphipodType d2;
-
-    private int energy;
-
-    public void incEnergy(int delta) {
-        energy += delta;
+//        Burrow burrow = new Burrow();
+//        burrow.h5 = AMBER;
+//        burrow.a1 = COPPER;
+//        for (Move move : burrow.getMoves(A1)) {
+//            System.out.println(move);
+//        }
     }
 
     public int getEnergy() {
@@ -83,28 +77,6 @@ public class Burrow implements Comparable<Burrow> {
             case D2 -> d2;
             default -> null;
         };
-    }
-
-    public void setAmphipod(Position position, AmphipodType type) {
-        switch (position) {
-            case H0 -> h0 = type;
-            case H1 -> h1 = type;
-            case H3 -> h3 = type;
-            case H5 -> h5 = type;
-            case H7 -> h7 = type;
-            case H9 -> h9 = type;
-            case H10 -> h10 = type;
-            case A1 -> a1 = type;
-            case A2 -> a2 = type;
-            case B1 -> b1 = type;
-            case B2 -> b2 = type;
-            case C1 -> c1 = type;
-            case C2 -> c2 = type;
-            case D1 -> d1 = type;
-            case D2 -> d2 = type;
-            default -> throw new RuntimeException(""+position);
-        }
-        ;
     }
 
     public boolean isReady() {
@@ -235,27 +207,6 @@ public class Burrow implements Comparable<Burrow> {
         return Optional.empty();
     }
 
-    public Burrow copy() {
-        Burrow copy = new Burrow();
-        copy.h0 = h0;
-        copy.h1 = h1;
-        copy.h3 = h3;
-        copy.h5 = h5;
-        copy.h7 = h7;
-        copy.h9 = h9;
-        copy.h10 = h10;
-        copy.a1 = a1;
-        copy.a2 = a2;
-        copy.b1 = b1;
-        copy.b2 = b2;
-        copy.c1 = c1;
-        copy.c2 = c2;
-        copy.d1 = d1;
-        copy.d2 = d2;
-        copy.energy = energy;
-        return copy;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -293,12 +244,26 @@ public class Burrow implements Comparable<Burrow> {
 
     @Override
     public int compareTo(Burrow o) {
-        return Integer.compare(o.countReady(), countReady());
+        return Integer.compare(energy, o.energy);
     }
 
-    public void move(Position from, Position to) {
-        AmphipodType type = getAmphipod(from);
-        setAmphipod(to, type);
-        setAmphipod(from, null);
+    public Burrow move(Position from, Position to, int energy) {
+        AmphipodType movedType = getAmphipod(from);
+        AmphipodType h0 = to == H0 ? movedType : from == H0 ? null : this.h0;
+        AmphipodType h1 = to == H1 ? movedType : from == H1 ? null : this.h1;
+        AmphipodType h3 = to == H3 ? movedType : from == H3 ? null : this.h3;
+        AmphipodType h5 = to == H5 ? movedType : from == H5 ? null : this.h5;
+        AmphipodType h7 = to == H7 ? movedType : from == H7 ? null : this.h7;
+        AmphipodType h9 = to == H9 ? movedType : from == H9 ? null : this.h9;
+        AmphipodType h10 = to == H10 ? movedType : from == H10 ? null : this.h10;
+        AmphipodType a1 = to == A1 ? movedType : from == A1 ? null : this.a1;
+        AmphipodType a2 = to == A2 ? movedType : from == A2 ? null : this.a2;
+        AmphipodType b1 = to == B1 ? movedType : from == B1 ? null : this.b1;
+        AmphipodType b2 = to == B2 ? movedType : from == B2 ? null : this.b2;
+        AmphipodType c1 = to == C1 ? movedType : from == C1 ? null : this.c1;
+        AmphipodType c2 = to == C2 ? movedType : from == C2 ? null : this.c2;
+        AmphipodType d1 = to == D1 ? movedType : from == D1 ? null : this.d1;
+        AmphipodType d2 = to == D2 ? movedType : from == D2 ? null : this.d2;
+        return new Burrow(h0, h1, h3, h5, h7, h9, h10, a1, a2, b1, b2, c1, c2, d1, d2, this.energy + energy);
     }
 }
