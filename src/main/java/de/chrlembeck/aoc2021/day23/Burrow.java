@@ -5,72 +5,19 @@ import java.util.*;
 import static de.chrlembeck.aoc2021.day23.AmphipodType.*;
 import static de.chrlembeck.aoc2021.day23.Position.*;
 
-public record Burrow(
-        AmphipodType h0,
-        AmphipodType h1,
-        AmphipodType h3,
-        AmphipodType h5,
-        AmphipodType h7,
-        AmphipodType h9,
-        AmphipodType h10,
-        AmphipodType a1,
-        AmphipodType a2,
-        AmphipodType a3,
-        AmphipodType a4,
-        AmphipodType b1,
-        AmphipodType b2,
-        AmphipodType b3,
-        AmphipodType b4,
-        AmphipodType c1,
-        AmphipodType c2,
-        AmphipodType c3,
-        AmphipodType c4,
-        AmphipodType d1,
-        AmphipodType d2,
-        AmphipodType d3,
-        AmphipodType d4,
-        int energy) implements Comparable<Burrow> {
-
-    public static void main(String[] args) {
-//        Burrow burrow = new Burrow();
-//        burrow.h5 = AMBER;
-//        burrow.a1 = COPPER;
-//        for (Move move : burrow.getMoves(A1)) {
-//            System.out.println(move);
-//        }
-    }
+public record Burrow(AmphipodType h0, AmphipodType h1, AmphipodType h3, AmphipodType h5, AmphipodType h7,
+                     AmphipodType h9, AmphipodType h10, AmphipodType a1, AmphipodType a2, AmphipodType a3,
+                     AmphipodType a4,
+                     AmphipodType b1, AmphipodType b2, AmphipodType b3, AmphipodType b4, AmphipodType c1,
+                     AmphipodType c2, AmphipodType c3, AmphipodType c4, AmphipodType d1, AmphipodType d2,
+                     AmphipodType d3, AmphipodType d4, int energy) implements Comparable<Burrow> {
 
     public int getEnergy() {
         return energy;
     }
 
     public boolean isFree(Position position) {
-        return switch (position) {
-            case H0 -> h0 == null;
-            case H1 -> h1 == null;
-            case H3 -> h3 == null;
-            case H5 -> h5 == null;
-            case H7 -> h7 == null;
-            case H9 -> h9 == null;
-            case H10 -> h10 == null;
-            case A1 -> a1 == null;
-            case A2 -> a2 == null;
-            case A3 -> a3 == null;
-            case A4 -> a4 == null;
-            case B1 -> b1 == null;
-            case B2 -> b2 == null;
-            case B3 -> b3 == null;
-            case B4 -> b4 == null;
-            case C1 -> c1 == null;
-            case C2 -> c2 == null;
-            case C3 -> c3 == null;
-            case C4 -> c4 == null;
-            case D1 -> d1 == null;
-            case D2 -> d2 == null;
-            case D3 -> d3 == null;
-            case D4 -> d4 == null;
-            default -> throw new RuntimeException("" + position);
-        };
+        return getAmphipod(position) == null;
     }
 
     public boolean isRoomEmptyOrReady(AmphipodType type, boolean step2) {
@@ -95,7 +42,7 @@ public record Burrow(
         }
     }
 
-    public AmphipodType getAmphipod(Position position) {
+    public AmphipodType getAmphipod(final Position position) {
         return switch (position) {
             case H0 -> h0;
             case H1 -> h1;
@@ -124,68 +71,15 @@ public record Burrow(
         };
     }
 
-    public boolean isReady(boolean step2) {
+    public boolean isReady(final boolean step2) {
         return a1 == AMBER && a2 == AMBER && (!step2 || (a3 == AMBER && a4 == AMBER))
                 && b1 == BRONZE && b2 == BRONZE && (!step2 || (b3 == BRONZE && b4 == BRONZE))
                 && c1 == COPPER && c2 == COPPER && (!step2 || (c3 == COPPER && c4 == COPPER))
                 && d1 == DESERT && d2 == DESERT && (!step2 || (d3 == DESERT && d4 == DESERT));
     }
 
-    public int countReady() {
-        int result = 0;
-        if (a1 == AMBER) {
-            result++;
-        }
-        if (a2 == AMBER) {
-            result++;
-        }
-        if (a3 == AMBER) {
-            result++;
-        }
-        if (a4 == AMBER) {
-            result++;
-        }
-        if (b1 == BRONZE) {
-            result++;
-        }
-        if (b2 == BRONZE) {
-            result++;
-        }
-        if (b3 == BRONZE) {
-            result++;
-        }
-        if (b4 == BRONZE) {
-            result++;
-        }
-        if (c1 == COPPER) {
-            result++;
-        }
-        if (c2 == COPPER) {
-            result++;
-        }
-        if (c3 == COPPER) {
-            result++;
-        }
-        if (c4 == COPPER) {
-            result++;
-        }
-        if (d1 == DESERT) {
-            result++;
-        }
-        if (d2 == DESERT) {
-            result++;
-        }
-        if (d3 == DESERT) {
-            result++;
-        }
-        if (d4 == DESERT) {
-            result++;
-        }
-        return result;
-    }
-
-    public Collection<Move> getMoves(Position from, boolean step2) {
-        AmphipodType type = getAmphipod(from);
+    public Collection<Move> getMoves(final Position from, final boolean step2) {
+        final AmphipodType type = getAmphipod(from);
         if (type == null) {
             return Collections.emptyList();
         }
@@ -194,7 +88,7 @@ public record Burrow(
             return Collections.emptyList();
         }
 
-        List<Move> targets = new ArrayList<>();
+        final List<Move> targets = new ArrayList<>();
         if (from.isRoom() && (!from.up().isValid() || isFree(from.up()))) {
             Position pos = from.up();
             int stepsOut = 1;
@@ -241,14 +135,9 @@ public record Burrow(
         int steps = 0;
         Position pos = from;
         while (pos != null) {
-            Position down = pos.down(step2);
-            if (down != null && type.isHome(down)) {
-                while (down != null && isFree(down)) {
-                    pos = down;
-                    down = down.down(step2);
-                    steps++;
-                }
-                return Optional.of(new Move(from, pos, type, steps));
+            Optional<Move> downMove = checkDownMove(pos, step2, steps, type, from);
+            if (downMove.isPresent()) {
+                return downMove;
             }
             pos = pos.left() != null && (!pos.left().isValid() || isFree(pos.left())) ? pos.left() : null;
             steps++;
@@ -256,14 +145,9 @@ public record Burrow(
         steps = 0;
         pos = from;
         while (pos != null) {
-            Position down = pos.down(step2);
-            if (down != null && type.isHome(down)) {
-                while (down != null && isFree(down)) {
-                    pos = down;
-                    down = down.down(step2);
-                    steps++;
-                }
-                return Optional.of(new Move(from, pos, type, steps));
+            Optional<Move> downMove = checkDownMove(pos, step2, steps, type, from);
+            if (downMove.isPresent()) {
+                return downMove;
             }
             pos = pos.right() != null && (!pos.right().isValid() || isFree(pos.right())) ? pos.right() : null;
             steps++;
@@ -271,39 +155,17 @@ public record Burrow(
         return Optional.empty();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("#############\n#");
-        sb.append(h0 == null ? '.' : h0.name().charAt(0));
-        sb.append(h1 == null ? '.' : h1.name().charAt(0));
-        sb.append('.');
-        sb.append(h3 == null ? '.' : h3.name().charAt(0));
-        sb.append('.');
-        sb.append(h5 == null ? '.' : h5.name().charAt(0));
-        sb.append('.');
-        sb.append(h7 == null ? '.' : h7.name().charAt(0));
-        sb.append('.');
-        sb.append(h9 == null ? '.' : h9.name().charAt(0));
-        sb.append(h10 == null ? '.' : h10.name().charAt(0));
-        sb.append("#\n###");
-        sb.append(a1 == null ? '.' : a1.name().charAt(0));
-        sb.append('#');
-        sb.append(b1 == null ? '.' : b1.name().charAt(0));
-        sb.append('#');
-        sb.append(c1 == null ? '.' : c1.name().charAt(0));
-        sb.append('#');
-        sb.append(d1 == null ? '.' : d1.name().charAt(0));
-        sb.append("###\n  #");
-        sb.append(a2 == null ? '.' : a2.name().charAt(0));
-        sb.append('#');
-        sb.append(b2 == null ? '.' : b2.name().charAt(0));
-        sb.append('#');
-        sb.append(c2 == null ? '.' : c2.name().charAt(0));
-        sb.append('#');
-        sb.append(d2 == null ? '.' : d2.name().charAt(0));
-        sb.append("#\n  #########");
-        return sb.toString();
+    private Optional<Move> checkDownMove(Position pos, boolean step2, int steps, AmphipodType type, Position from) {
+        Position down = pos.down(step2);
+        if (down != null && type.isHome(down)) {
+            while (down != null && isFree(down)) {
+                pos = down;
+                down = down.down(step2);
+                steps++;
+            }
+            return Optional.of(new Move(from, pos, type, steps));
+        }
+        return Optional.empty();
     }
 
     @Override

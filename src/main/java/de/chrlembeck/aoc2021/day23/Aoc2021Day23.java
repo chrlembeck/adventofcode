@@ -3,7 +3,6 @@ package de.chrlembeck.aoc2021.day23;
 import de.chrlembeck.aoccommon.AbstractAocBase;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static de.chrlembeck.aoc2021.day23.AmphipodType.*;
 
@@ -27,27 +26,18 @@ public class Aoc2021Day23 extends AbstractAocBase {
         Burrow burrow = readBurrow(input, step2);
         PriorityQueue<Burrow> queue = new PriorityQueue<>();
         queue.add(burrow);
-        AtomicInteger best = new AtomicInteger(Integer.MAX_VALUE);
-        int round = 0;
         while (!queue.isEmpty()) {
-            Set<Burrow> innerQueue = new HashSet<>();
+            Set<Burrow> nextStates = new HashSet<>();
             while (!queue.isEmpty()) {
                 Burrow current = queue.poll();
-                if (current.getEnergy() >= best.get()) {
-                    continue;
-                }
                 if (current.isReady(step2)) {
-                    best.set(current.getEnergy());
-                    System.out.println("solution: " + best.get());
-                    return best.get();
+                    return current.getEnergy();
                 }
-                innerQueue.addAll(possibleStates(current, step2));
+                nextStates.addAll(possibleStates(current, step2));
             }
-            queue = new PriorityQueue<>(innerQueue);
-            round++;
-            System.out.println("Runde " + round + ": " + queue.size());
+            queue = new PriorityQueue<>(nextStates);
         }
-        return best.get();
+        return -1;
     }
 
     public List<Burrow> possibleStates(Burrow burrow, boolean step2) {
