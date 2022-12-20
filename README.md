@@ -28,13 +28,13 @@ See http://www.adventofcode.com
 | 20    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
 | 21    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
 | 22    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
-| 23    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :hourglass:        | :hourglass:        |
+| 23    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
 | 24    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
 | 25    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
-| Stars | **50/50**          | **50/50**          | **50/50**          | **0/50**    | **32/50**          | **50/50**          | **47/50**          | **30/50**          |
-| Sum   | **100%**           | **100%**           | **100%**           | **0%**      | **64%**            | **100%**           | **94%**            | **60%**            |
+| Stars | **50/50**          | **50/50**          | **50/50**          | **0/50**    | **32/50**          | **50/50**          | **50/50**          | **30/50**          |
+| Sum   | **100%**           | **100%**           | **100%**           | **0%**      | **64%**            | **100%**           | **100%**           | **60%**            |
 
-**309 of 400 stars earned**
+**312 of 400 stars earned**
 
 Legend
 
