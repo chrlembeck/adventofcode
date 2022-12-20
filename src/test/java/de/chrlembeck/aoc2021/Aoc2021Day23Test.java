@@ -23,7 +23,12 @@ public class Aoc2021Day23Test {
     @Test
     public void test2() {
         final Aoc2021Day23 day = new Aoc2021Day23();
-        assertEquals("44169", test("", day::part2));
-        assertEquals("", test(day.getInput2(), day::part2));
+        assertEquals("44169", test("""
+                #############
+                #...........#
+                ###B#C#B#D###
+                  #A#D#C#A#
+                  #########""", day::part2));
+        assertEquals("46451", test(day.getInput2(), day::part2));
     }
 }

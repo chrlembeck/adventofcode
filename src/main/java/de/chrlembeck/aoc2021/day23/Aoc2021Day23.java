@@ -5,6 +5,8 @@ import de.chrlembeck.aoccommon.AbstractAocBase;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static de.chrlembeck.aoc2021.day23.AmphipodType.*;
+
 public class Aoc2021Day23 extends AbstractAocBase {
 
     public static void main(final String[] args) {
@@ -12,8 +14,17 @@ public class Aoc2021Day23 extends AbstractAocBase {
     }
 
     @Override
-    public Object part1(final Scanner input) {
-        Burrow burrow = readBurrow(input);
+    public Integer part1(final Scanner input) {
+        return calc(input, false);
+    }
+
+    @Override
+    public Integer part2(final Scanner input) {
+        return calc(input, true);
+    }
+
+    private Integer calc(final Scanner input, boolean step2) {
+        Burrow burrow = readBurrow(input, step2);
         PriorityQueue<Burrow> queue = new PriorityQueue<>();
         queue.add(burrow);
         AtomicInteger best = new AtomicInteger(Integer.MAX_VALUE);
@@ -25,26 +36,24 @@ public class Aoc2021Day23 extends AbstractAocBase {
                 if (current.getEnergy() >= best.get()) {
                     continue;
                 }
-                if (current.isReady()) {
+                if (current.isReady(step2)) {
                     best.set(current.getEnergy());
                     System.out.println("solution: " + best.get());
                     return best.get();
                 }
-                innerQueue.addAll(possibleStates(current));
+                innerQueue.addAll(possibleStates(current, step2));
             }
             queue = new PriorityQueue<>(innerQueue);
             round++;
             System.out.println("Runde " + round + ": " + queue.size());
-            System.out.println(new HashSet<>(queue).size());
         }
-
         return best.get();
     }
 
-    public List<Burrow> possibleStates(Burrow burrow) {
+    public List<Burrow> possibleStates(Burrow burrow, boolean step2) {
         List<Burrow> newStates = new ArrayList<>();
         for (Position pos : Position.values()) {
-            Collection<Move> moves = burrow.getMoves(pos);
+            Collection<Move> moves = burrow.getMoves(pos, step2);
             for (Move move : moves) {
                 Burrow next = burrow.move(move.from(), move.to(), move.steps() * move.amphipodType().getEnergy());
                 newStates.add(next);
@@ -59,31 +68,24 @@ public class Aoc2021Day23 extends AbstractAocBase {
         return newStates;
     }
 
-    private static Burrow readBurrow(Scanner input) {
+    private static Burrow readBurrow(Scanner input, boolean step2) {
         input.nextLine();
         input.nextLine();
         String line1 = input.nextLine();
         String line2 = input.nextLine();
-        Burrow burrow = new Burrow(null, null, null, null, null, null, null,
-                AmphipodType.of(line1.charAt(3)),
-                AmphipodType.of(line2.charAt(3)),
-                AmphipodType.of(line1.charAt(5)),
-                AmphipodType.of(line2.charAt(5)),
-                AmphipodType.of(line1.charAt(7)),
-                AmphipodType.of(line2.charAt(7)),
-                AmphipodType.of(line1.charAt(9)),
-                AmphipodType.of(line2.charAt(9)),
-                0
-        );
-        return burrow;
-    }
-
-    @Override
-    public Object part2(final Scanner input) {
-        while (input.hasNext()) {
-            final String line = input.nextLine();
+        if (step2) {
+            return new Burrow(null, null, null, null, null, null, null,
+                    AmphipodType.of(line1.charAt(3)), DESERT, DESERT, AmphipodType.of(line2.charAt(3)),
+                    AmphipodType.of(line1.charAt(5)), COPPER, BRONZE, AmphipodType.of(line2.charAt(5)),
+                    AmphipodType.of(line1.charAt(7)), BRONZE, AMBER, AmphipodType.of(line2.charAt(7)),
+                    AmphipodType.of(line1.charAt(9)), AMBER, COPPER, AmphipodType.of(line2.charAt(9)), 0);
+        } else {
+            return new Burrow(null, null, null, null, null, null, null,
+                    AmphipodType.of(line1.charAt(3)), AmphipodType.of(line2.charAt(3)), null, null,
+                    AmphipodType.of(line1.charAt(5)), AmphipodType.of(line2.charAt(5)), null, null,
+                    AmphipodType.of(line1.charAt(7)), AmphipodType.of(line2.charAt(7)), null, null,
+                    AmphipodType.of(line1.charAt(9)), AmphipodType.of(line2.charAt(9)), null, null, 0);
         }
-        return "";
     }
 
     @Override

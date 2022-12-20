@@ -2,8 +2,7 @@ package de.chrlembeck.aoc2021.day23;
 
 import java.util.*;
 
-import static de.chrlembeck.aoc2021.day23.AmphipodType.AMBER;
-import static de.chrlembeck.aoc2021.day23.AmphipodType.COPPER;
+import static de.chrlembeck.aoc2021.day23.AmphipodType.*;
 import static de.chrlembeck.aoc2021.day23.Position.*;
 
 public record Burrow(
@@ -16,12 +15,20 @@ public record Burrow(
         AmphipodType h10,
         AmphipodType a1,
         AmphipodType a2,
+        AmphipodType a3,
+        AmphipodType a4,
         AmphipodType b1,
         AmphipodType b2,
+        AmphipodType b3,
+        AmphipodType b4,
         AmphipodType c1,
         AmphipodType c2,
+        AmphipodType c3,
+        AmphipodType c4,
         AmphipodType d1,
         AmphipodType d2,
+        AmphipodType d3,
+        AmphipodType d4,
         int energy) implements Comparable<Burrow> {
 
     public static void main(String[] args) {
@@ -48,23 +55,44 @@ public record Burrow(
             case H10 -> h10 == null;
             case A1 -> a1 == null;
             case A2 -> a2 == null;
+            case A3 -> a3 == null;
+            case A4 -> a4 == null;
             case B1 -> b1 == null;
             case B2 -> b2 == null;
+            case B3 -> b3 == null;
+            case B4 -> b4 == null;
             case C1 -> c1 == null;
             case C2 -> c2 == null;
+            case C3 -> c3 == null;
+            case C4 -> c4 == null;
             case D1 -> d1 == null;
             case D2 -> d2 == null;
+            case D3 -> d3 == null;
+            case D4 -> d4 == null;
             default -> throw new RuntimeException("" + position);
         };
     }
 
-    public boolean isRoomEmptyOrReady(AmphipodType type) {
-        return switch (type) {
-            case AMBER -> (a2 == null && a1 == null) || (a2 == type && a1 == null) || (a2 == type && a1 == type);
-            case BRONZE -> (b2 == null && b1 == null) || (b2 == type && b1 == null) || (b2 == type && b1 == type);
-            case COPPER -> (c2 == null && c1 == null) || (c2 == type && c1 == null) || (c2 == type && c1 == type);
-            case DESERT -> (d2 == null && d1 == null) || (d2 == type && d1 == null) || (d2 == type && d1 == type);
-        };
+    public boolean isRoomEmptyOrReady(AmphipodType type, boolean step2) {
+        if (step2) {
+            return switch (type) {
+                case AMBER ->
+                        (a1 == null && a2 == null && a3 == null && a4 == null) || (a1 == null && a2 == null && a3 == null && a4 == type) || (a1 == null && a2 == null && a3 == type && a4 == type) || (a1 == null && a2 == type && a3 == type && a4 == type) || (a1 == type && a2 == type && a3 == type && a4 == type);
+                case BRONZE ->
+                        (b1 == null && b2 == null && b3 == null && b4 == null) || (b1 == null && b2 == null && b3 == null && b4 == type) || (b1 == null && b2 == null && b3 == type && b4 == type) || (b1 == null && b2 == type && b3 == type && b4 == type) || (b1 == type && b2 == type && b3 == type && b4 == type);
+                case COPPER ->
+                        (c1 == null && c2 == null && c3 == null && c4 == null) || (c1 == null && c2 == null && c3 == null && c4 == type) || (c1 == null && c2 == null && c3 == type && c4 == type) || (c1 == null && c2 == type && c3 == type && c4 == type) || (c1 == type && c2 == type && c3 == type && c4 == type);
+                case DESERT ->
+                        (d1 == null && d2 == null && d3 == null && d4 == null) || (d1 == null && d2 == null && d3 == null && d4 == type) || (d1 == null && d2 == null && d3 == type && d4 == type) || (d1 == null && d2 == type && d3 == type && d4 == type) || (d1 == type && d2 == type && d3 == type && d4 == type);
+            };
+        } else {
+            return switch (type) {
+                case AMBER -> (a2 == null && a1 == null) || (a2 == type && a1 == null) || (a2 == type && a1 == type);
+                case BRONZE -> (b2 == null && b1 == null) || (b2 == type && b1 == null) || (b2 == type && b1 == type);
+                case COPPER -> (c2 == null && c1 == null) || (c2 == type && c1 == null) || (c2 == type && c1 == type);
+                case DESERT -> (d2 == null && d1 == null) || (d2 == type && d1 == null) || (d2 == type && d1 == type);
+            };
+        }
     }
 
     public AmphipodType getAmphipod(Position position) {
@@ -78,59 +106,91 @@ public record Burrow(
             case H10 -> h10;
             case A1 -> a1;
             case A2 -> a2;
+            case A3 -> a3;
+            case A4 -> a4;
             case B1 -> b1;
             case B2 -> b2;
+            case B3 -> b3;
+            case B4 -> b4;
             case C1 -> c1;
             case C2 -> c2;
+            case C3 -> c3;
+            case C4 -> c4;
             case D1 -> d1;
             case D2 -> d2;
+            case D3 -> d3;
+            case D4 -> d4;
             default -> null;
         };
     }
 
-    public boolean isReady() {
-        return a2 == AMBER && a1 == AMBER
-                && b2 == AmphipodType.BRONZE && b1 == AmphipodType.BRONZE
-                && c2 == COPPER && c1 == COPPER
-                && d2 == AmphipodType.DESERT && d1 == AmphipodType.DESERT;
+    public boolean isReady(boolean step2) {
+        return a1 == AMBER && a2 == AMBER && (!step2 || (a3 == AMBER && a4 == AMBER))
+                && b1 == BRONZE && b2 == BRONZE && (!step2 || (b3 == BRONZE && b4 == BRONZE))
+                && c1 == COPPER && c2 == COPPER && (!step2 || (c3 == COPPER && c4 == COPPER))
+                && d1 == DESERT && d2 == DESERT && (!step2 || (d3 == DESERT && d4 == DESERT));
     }
 
     public int countReady() {
         int result = 0;
-        if (a2 == AMBER) {
-            result++;
-        }
         if (a1 == AMBER) {
             result++;
         }
-        if (b2 == AmphipodType.BRONZE) {
+        if (a2 == AMBER) {
             result++;
         }
-        if (b1 == AmphipodType.BRONZE) {
+        if (a3 == AMBER) {
             result++;
         }
-        if (c2 == COPPER) {
+        if (a4 == AMBER) {
+            result++;
+        }
+        if (b1 == BRONZE) {
+            result++;
+        }
+        if (b2 == BRONZE) {
+            result++;
+        }
+        if (b3 == BRONZE) {
+            result++;
+        }
+        if (b4 == BRONZE) {
             result++;
         }
         if (c1 == COPPER) {
             result++;
         }
-        if (d2 == AmphipodType.DESERT) {
+        if (c2 == COPPER) {
             result++;
         }
-        if (d1 == AmphipodType.DESERT) {
+        if (c3 == COPPER) {
+            result++;
+        }
+        if (c4 == COPPER) {
+            result++;
+        }
+        if (d1 == DESERT) {
+            result++;
+        }
+        if (d2 == DESERT) {
+            result++;
+        }
+        if (d3 == DESERT) {
+            result++;
+        }
+        if (d4 == DESERT) {
             result++;
         }
         return result;
     }
 
-    public Collection<Move> getMoves(Position from) {
+    public Collection<Move> getMoves(Position from, boolean step2) {
         AmphipodType type = getAmphipod(from);
         if (type == null) {
             return Collections.emptyList();
         }
 
-        if (type.isHome(from) && (from.down() == null || getAmphipod(from.down()) == type)) {
+        if (type.isHome(from) && (from.down(step2) == null || getAmphipod(from.down(step2)) == type)) {
             return Collections.emptyList();
         }
 
@@ -168,22 +228,24 @@ public record Burrow(
             }
         }
         if (!from.isRoom()) {
-            findWayHome(from).ifPresent(targets::add);
+            findWayHome(from, step2).ifPresent(targets::add);
         }
         return targets;
     }
 
-    private Optional<Move> findWayHome(final Position from) {
+    private Optional<Move> findWayHome(final Position from, boolean step2) {
         AmphipodType type = getAmphipod(from);
-        if (!isRoomEmptyOrReady(type)) {
+        if (!isRoomEmptyOrReady(type, step2)) {
             return Optional.empty();
         }
         int steps = 0;
         Position pos = from;
         while (pos != null) {
-            if (pos.down() != null && type.isHome(pos.down())) {
-                while (pos.down() != null && isFree(pos.down())) {
-                    pos = pos.down();
+            Position down = pos.down(step2);
+            if (down != null && type.isHome(down)) {
+                while (down != null && isFree(down)) {
+                    pos = down;
+                    down = down.down(step2);
                     steps++;
                 }
                 return Optional.of(new Move(from, pos, type, steps));
@@ -194,9 +256,11 @@ public record Burrow(
         steps = 0;
         pos = from;
         while (pos != null) {
-            if (pos.down() != null && type.isHome(pos.down())) {
-                while (pos.down() != null && isFree(pos.down())) {
-                    pos = pos.down();
+            Position down = pos.down(step2);
+            if (down != null && type.isHome(down)) {
+                while (down != null && isFree(down)) {
+                    pos = down;
+                    down = down.down(step2);
                     steps++;
                 }
                 return Optional.of(new Move(from, pos, type, steps));
@@ -258,12 +322,20 @@ public record Burrow(
         AmphipodType h10 = to == H10 ? movedType : from == H10 ? null : this.h10;
         AmphipodType a1 = to == A1 ? movedType : from == A1 ? null : this.a1;
         AmphipodType a2 = to == A2 ? movedType : from == A2 ? null : this.a2;
+        AmphipodType a3 = to == A3 ? movedType : from == A3 ? null : this.a3;
+        AmphipodType a4 = to == A4 ? movedType : from == A4 ? null : this.a4;
         AmphipodType b1 = to == B1 ? movedType : from == B1 ? null : this.b1;
         AmphipodType b2 = to == B2 ? movedType : from == B2 ? null : this.b2;
+        AmphipodType b3 = to == B3 ? movedType : from == B3 ? null : this.b3;
+        AmphipodType b4 = to == B4 ? movedType : from == B4 ? null : this.b4;
         AmphipodType c1 = to == C1 ? movedType : from == C1 ? null : this.c1;
         AmphipodType c2 = to == C2 ? movedType : from == C2 ? null : this.c2;
+        AmphipodType c3 = to == C3 ? movedType : from == C3 ? null : this.c3;
+        AmphipodType c4 = to == C4 ? movedType : from == C4 ? null : this.c4;
         AmphipodType d1 = to == D1 ? movedType : from == D1 ? null : this.d1;
         AmphipodType d2 = to == D2 ? movedType : from == D2 ? null : this.d2;
-        return new Burrow(h0, h1, h3, h5, h7, h9, h10, a1, a2, b1, b2, c1, c2, d1, d2, this.energy + energy);
+        AmphipodType d3 = to == D3 ? movedType : from == D3 ? null : this.d3;
+        AmphipodType d4 = to == D4 ? movedType : from == D4 ? null : this.d4;
+        return new Burrow(h0, h1, h3, h5, h7, h9, h10, a1, a2, a3, a4, b1, b2, b3, b4, c1, c2, c3, c4, d1, d2, d3, d4, this.energy + energy);
     }
 }
