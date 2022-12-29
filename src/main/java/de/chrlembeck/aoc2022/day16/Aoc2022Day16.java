@@ -83,9 +83,9 @@ public class Aoc2022Day16 extends AbstractAocBase {
             final State currentState = states.poll();
             maxReleased = Math.max(maxReleased, currentState.released);
 
-            final int remainingMinutes = (maxMinutes - currentState.myMinutes) + (currentState.elephantLocation == null ? 0 : (maxMinutes - currentState.elephantMinutes));
+            final int remainingMovesMax = (maxMinutes - currentState.myMinutes) / 2 + (currentState.elephantLocation == null ? 0 : (maxMinutes - currentState.elephantMinutes)) / 2;
 
-            if (maxReleased < currentState.released + (remainingMinutes * remainingMinutes / 2) / 2 * maxRate) {
+            if (maxReleased < currentState.released + (remainingMovesMax * remainingMovesMax / 2) * maxRate) {
                 for (Valve dest : relevantValves) {
                     if ((dest != currentState.myLocation && ((currentState.opened & dest.mask) == 0))) {
                         if (currentState.elephantLocation == null || currentState.myMinutes <= currentState.elephantMinutes) {
