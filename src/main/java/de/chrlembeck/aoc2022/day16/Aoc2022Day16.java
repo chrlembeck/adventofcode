@@ -81,9 +81,6 @@ public class Aoc2022Day16 extends AbstractAocBase {
         int maxReleased = -1;
         while (!states.isEmpty()) {
             final State currentState = states.poll();
-            if (maxReleased != Math.max(maxReleased, currentState.released)) {
-                System.out.println(maxReleased + " -> " + Math.max(maxReleased, currentState.released) + currentState);
-            }
             maxReleased = Math.max(maxReleased, currentState.released);
 
             final int remainingMinutes = (maxMinutes - currentState.myMinutes) + (currentState.elephantLocation == null ? 0 : (maxMinutes - currentState.elephantMinutes));
