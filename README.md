@@ -21,7 +21,7 @@ See http://www.adventofcode.com
 | 13    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 14    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 15    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| 16    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
+| 16    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | 17    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
 | 18    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
 | 19    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
@@ -31,10 +31,10 @@ See http://www.adventofcode.com
 | 23    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
 | 24    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
 | 25    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :hourglass: | :hourglass:        | :heavy_check_mark: | :heavy_check_mark: | :hourglass:        |
-| Stars | **50/50**          | **50/50**          | **50/50**          | **0/50**    | **32/50**          | **50/50**          | **50/50**          | **32/50**          |
-| Sum   | **100%**           | **100%**           | **100%**           | **0%**      | **64%**            | **100%**           | **100%**           | **64%**            |
+| Stars | **50/50**          | **50/50**          | **50/50**          | **0/50**    | **32/50**          | **50/50**          | **50/50**          | **34/50**          |
+| Sum   | **100%**           | **100%**           | **100%**           | **0%**      | **64%**            | **100%**           | **100%**           | **68%**            |
 
-**314 of 400 stars earned**
+**316 of 400 stars earned**
 
 Legend
 
