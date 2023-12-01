@@ -88,7 +88,7 @@ public final class MathUtil {
      *
      * @param argA first integer for the equation.
      * @param argB second integer for the equation.
-     * @return array of three BigIntegers result={x,y,gcdAB}, where x is the first factor of the equation, y the second and gcdAB is the gratest common divisor of argA and b.
+     * @return array of three BigIntegers result={x,y,gcdAB}, where x is the first factor of the equation, y the second and gcdAB is the greatest common divisor of argA and b.
      */
     public static BigInteger[] extendedEuclidean(final BigInteger argA, final BigInteger argB) {
         BigInteger coefficientS = BigInteger.ZERO;
